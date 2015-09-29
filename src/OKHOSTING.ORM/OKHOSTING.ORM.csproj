@@ -85,6 +85,7 @@
     <Compile Include="MultipleKeyTable.cs" />
     <Compile Include="Operations\Delete.cs" />
     <Compile Include="Operations\Insert.cs" />
+    <Compile Include="Operations\Operation.cs" />
     <Compile Include="Operations\OrderBy.cs" />
     <Compile Include="Operations\Select.cs" />
     <Compile Include="Operations\SelectAggregate.cs" />

@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace OKHOSTING.ORM.Operations
 {
-	public class Insert
+	public class Insert: Operation
 	{
-		public DataType Into { get; set; }
 		public object Instance { get; set; }
 		public readonly List<DataMember> Values = new List<DataMember>();
 	}

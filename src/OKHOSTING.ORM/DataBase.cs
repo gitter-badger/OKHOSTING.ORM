@@ -78,13 +78,21 @@ namespace OKHOSTING.ORM
 
 		public int Insert(Insert insert)
 		{
+            OperationEventArgs args = new OperationEventArgs(insert);
+            OnBeforeOperation(args);
+
+            if (args.Cancel)
+            {
+                return 0;
+            }
+
 			Validate(insert.Instance);
 
 			Command sql = SqlGenerator.Insert(Parse(insert));
 			int result = NativeDataBase.Execute(sql);
 
 			//detect auto generated ID, when applicable
-			var autoNumberPK = insert.Into.PrimaryKey.Where(pk => pk.Column.IsAutoNumber).SingleOrDefault();
+			var autoNumberPK = insert.DataType.PrimaryKey.Where(pk => pk.Column.IsAutoNumber).SingleOrDefault();
 
 			if (autoNumberPK != null)
 			{
@@ -92,32 +100,70 @@ namespace OKHOSTING.ORM
 				autoNumberPK.SetValueFromColumn(insert.Instance, generatedId);
 			}
 
+            args.Result = result;
+
+            OnAfterOperation(args);
+
 			return result;
 		}
 
 		public int Update(Update update)
 		{
-			Validate(update.Instance);
+            OperationEventArgs args = new OperationEventArgs(update);
+            OnBeforeOperation(args);
+
+            if (args.Cancel)
+            {
+                return 0;
+            }
+
+            Validate(update.Instance);
 
 			Command sql = SqlGenerator.Update(Parse(update));
-			return NativeDataBase.Execute(sql);
-		}
+			int result = NativeDataBase.Execute(sql);
+            args.Result = result;
 
-		public int Delete(Delete delete)
+            OnAfterOperation(args);
+
+            return result;
+        }
+
+        public int Delete(Delete delete)
 		{
-			Command sql = SqlGenerator.Delete(Parse(delete));
-			return NativeDataBase.Execute(sql);
-		}
+            OperationEventArgs args = new OperationEventArgs(delete);
+            OnBeforeOperation(args);
+
+            if (args.Cancel)
+            {
+                return 0;
+            }
+
+            Command sql = SqlGenerator.Delete(Parse(delete));
+			int result = NativeDataBase.Execute(sql);
+            args.Result = result;
+
+            OnAfterOperation(args);
+
+            return result;
+        }
 
 		public IEnumerable<object> Select(Select select)
 		{
-			Command sql = SqlGenerator.Select(Parse(select));
+            OperationEventArgs args = new OperationEventArgs(select);
+            OnBeforeOperation(args);
+
+            if (args.Cancel)
+            {
+                yield break;
+            }
+
+            Command sql = SqlGenerator.Select(Parse(select));
 
 			using (var dataReader = NativeDataBase.GetDataReader(sql))
 			{
 				while (dataReader.Read())
 				{
-					object instance = Activator.CreateInstance(select.From.InnerType);
+					object instance = Activator.CreateInstance(select.DataType.InnerType);
 					ParseFromSelect(select, dataReader, instance);
 
 					yield return instance;
@@ -131,11 +177,11 @@ namespace OKHOSTING.ORM
 			List<Tuple<DataType, Select>> selects = new List<Tuple<DataType, Select>>();
 
 			//Crossing the DataTypes
-			foreach (DataType subType in select.From.SubDataTypesRecursive)
+			foreach (DataType subType in select.DataType.SubDataTypesRecursive)
 			{
 				//create a copy of the select but for the subtype
 				Select subSelect = new Select();
-				subSelect.From = subType;
+				subSelect.DataType = subType;
 				subSelect.Where.AddRange(select.Where);
 				subSelect.OrderBy.AddRange(select.OrderBy);
 				subSelect.Joins.AddRange(select.Joins);
@@ -1102,6 +1148,87 @@ namespace OKHOSTING.ORM
 			}
 		}
 
-		#endregion
-	}
+        #endregion
+
+
+        #region Events
+
+        /// <summary>
+        /// Delegate for the database interaction events
+        /// </summary>
+        public delegate void DataBaseOperationEventHandler(DataBase sender, OperationEventArgs eventArgs);
+
+        /// <summary>
+        /// Event thrown before of execute sentences against the database
+        /// </summary>
+        public event DataBaseOperationEventHandler BeforeOperation;
+
+        /// <summary>
+        /// Event thrown after of execute sentences against the database
+        /// </summary>
+        public event DataBaseOperationEventHandler AfterOperation;
+
+        /// <summary>
+        /// Raises the BeforeExecute event
+        /// </summary>
+        public virtual void OnBeforeOperation(OperationEventArgs e)
+        {
+            if (BeforeOperation != null) BeforeOperation(this, e);
+        }
+
+        /// <summary>
+        /// Raises the AfterExecute event
+        /// </summary>
+        public virtual void OnAfterOperation(OperationEventArgs e)
+        {
+            if (AfterOperation != null) AfterOperation(this, e);
+        }
+
+        #endregion
+
+        #region Static events
+
+        /// <summary>
+        /// Delegate used for the database creation. 
+        /// </summary>
+        public delegate DataBase CreateDataBaseEventHandler();
+
+        /// <summary>
+        /// Subscribe to this event to create the actual database that will be used in your apps, system-wide. Should only have 1 subscriber. If it has more it will return the last subscriber's result
+        /// </summary>
+        public static event CreateDataBaseEventHandler CreateDataBase;
+
+        /// <summary>
+        /// Allows you (or plugins) to perform adittional configurations on newly created databases
+        /// </summary>
+        public delegate void DataBaseCreatedEventHandler(DataBase dataBase);
+
+        /// <summary>
+        /// Subscribe to this event to create the actual database that will be used in your projects. Allow for "plugins" to subscribe to dabase events and affect system wide behaviour
+        /// </summary>
+        public static event DataBaseCreatedEventHandler DataBaseCreated;
+
+        /// <summary>
+        /// Will create a ready to use database. 
+        /// You should subscribeto Create and (optionally) Created events to return a fully configured database. Then just call this method from everywhere else.
+        /// </summary>
+        public static DataBase Create()
+        {
+            if (DataBase.CreateDataBase == null)
+            {
+                throw new NullReferenceException("DataBase.Create event has not subsrcibed method to actually create a configured DataBase. Subscribe to this event and create your own instance.");
+            }
+
+            DataBase db = DataBase.CreateDataBase();
+
+            if (DataBase.DataBaseCreated != null)
+            {
+                DataBase.DataBaseCreated(db);
+            }
+
+            return db;
+        }
+
+        #endregion
+    }
 }

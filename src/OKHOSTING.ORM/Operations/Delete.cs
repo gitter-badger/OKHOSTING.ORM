@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace OKHOSTING.ORM.Operations
 {
-	public class Delete
-	{
-		public DataType From { get; set; }
+	public class Delete : Operation
+    {
 		public readonly List<Filters.FilterBase> Where = new List<Filters.FilterBase>();
 	}
 

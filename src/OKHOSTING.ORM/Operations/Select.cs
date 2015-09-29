@@ -10,9 +10,8 @@ namespace OKHOSTING.ORM.Operations
 	/// <summary>
 	/// A select SQL query
 	/// </summary>
-	public class Select
-	{
-		public DataType From { get; set; }
+	public class Select : Operation
+    {
 		public SelectLimit Limit { get; set; }
 		public readonly List<SelectMember> Members = new List<SelectMember>();
 		public readonly List<SelectJoin> Joins = new List<SelectJoin>();

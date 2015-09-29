@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace OKHOSTING.ORM.Operations
 {
-	public class Update
-	{
+	public class Update : Operation
+    {
 		public Update()
 		{
 		}
 
-		public DataType From { get; set; }
 		public object Instance { get; set; }
 		public readonly List<DataMember> Set = new List<DataMember>();
 		public readonly List<Filters.FilterBase> Where = new List<Filters.FilterBase>();
