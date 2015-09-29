@@ -1,0 +1,19 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="$(ProjectDir)/bin/debug/OKHOSTING.Sql.ORM.dll" #>
+<#@ import namespace="System" #>
+<#@ import namespace="OKHOSTING.Sql.ORM" #>
+<#@ parameter name="dtype" type="OKHOSTING.Sql.ORM.DataType" #> 
+namespace OKHOSTING.Sql.ORM.UI.Web.Forms.Private.<#= dtype.InnerType.Name #>
+	
+	public partial class Detail {
+		<# 
+		foreach(var member in dtype.AllMemberInfos)
+		{
+		#>
+			protected global::System.Web.UI.WebControls.Label lbl<#= member.Name #>;
+		<#
+		} 
+		#>
+	}
+}

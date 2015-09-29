@@ -1,0 +1,72 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="$(ProjectDir)/bin/debug/OKHOSTING.Core.dll" #>
+<#@ assembly name="$(ProjectDir)/bin/debug/OKHOSTING.Sql.ORM.dll" #>
+<#@ import namespace="System" #>
+<#@ import namespace="OKHOSTING.Core.Data.Validation" #>
+<#@ import namespace="OKHOSTING.Sql.ORM" #>
+<#@ parameter name="dtype" type="OKHOSTING.Sql.ORM.DataType" #> 
+namespace OKHOSTING.Sql.ORM.UI.Web.Forms.Private.<#= dtype.InnerType.Name #>
+	
+	public partial class Edit {
+		
+		/// <summary>
+		/// cmdDelete control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Button cmdSave;
+
+		<# 
+		foreach (System.Reflection.MemberInfo member in dtype.AllMemberInfos)
+		{
+			Type returnType = MemberExpression.GetReturnType(member);
+
+			if (dtype.IsForeignKey(member))
+			{
+			#>
+				protected global::System.Web.UI.WebControls.DropDownList ctr<#= member.Name #>;
+			<#
+			}
+			else if(returnType.IsEnum)
+			{
+			#>
+				protected global::System.Web.UI.WebControls.DropDownList ctr<#= member.Name #>;
+			<#
+			}
+			else if (returnType == typeof(bool))
+			{
+			#>
+				protected global::System.Web.UI.WebControls.CheckBox ctr<#= member.Name #>;
+			<#
+			}
+			else if(returnType == typeof(DateTime))
+			{
+			#>
+				protected global::System.Web.UI.WebControls.TextBox ctr<#= member.Name #>;
+			<#
+			}
+			else if(OKHOSTING.Core.Extensions.TypeExtensions.IsNumeric(returnType))
+			{
+			#>
+				protected global::System.Web.UI.WebControls.TextBox ctr<#= member.Name #>;
+			<#
+			}
+			else if(returnType == typeof(string))
+			{
+			#>
+				protected global::System.Web.UI.WebControls.TextBox ctr<#= member.Name #>;
+			<#
+			}
+			else
+			{
+			#>
+				protected global::System.Web.UI.WebControls.TextBox ctr<#= member.Name #>;
+			<#
+			}
+		} 
+		#>
+	}
+}

@@ -1,0 +1,29 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="$(ProjectDir)/bin/debug/OKHOSTING.Sql.ORM.dll" #>
+<#@ import namespace="System" #>
+<#@ import namespace="OKHOSTING.Sql.ORM" #>
+<#@ parameter name="dtype" type="OKHOSTING.Sql.ORM.DataType" #> 
+namespace OKHOSTING.Sql.ORM.UI.Web.Forms.Private.<#= dtype.InnerType.Name #>
+	
+	public partial class Delete {
+		
+		/// <summary>
+		/// cmdDelete control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Button cmdDelete;
+		
+		/// <summary>
+		/// cmdCancel control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Button cmdCancel;
+	}
+}

@@ -1,0 +1,43 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="$(ProjectDir)/bin/debug/OKHOSTING.Sql.ORM.dll" #>
+<#@ import namespace="System" #>
+<#@ import namespace="OKHOSTING.Sql.ORM" #>
+<#@ parameter name="dtype" type="OKHOSTING.Sql.ORM.DataType" #> 
+using System;
+using OKHOSTING.Sql.ORM;
+using <#= dtype.InnerType.Namespace #>;
+
+namespace OKHOSTING.Sql.ORM.UI.Web.Forms.Private.<#= dtype.InnerType.Name #>
+{
+	protected <#= dtype.InnerType.Name #> Instance;
+
+	public partial class Detail : System.Web.UI.Page
+	{
+		
+		protected void Page_Load(object sender, EventArgs e)
+		{
+			Instance = new <#= dtype.InnerType.Name #>();
+			
+			<#
+			foreach(var dmember in dtype.PrimaryKey)
+			{
+			#>
+				Instance.<#= dmember.Member.Expression #> = (<#= dmember.Member.ReturnType.FullName #>) Core.Data.Converter.ChangeType(Request.QueryString["<#= dmember.Member.Expression #>"], typeof(<#= dmember.Member.ReturnType.FullName #>));
+			<#
+			}
+			#>
+
+			DataBase.Default.Select(Instance);
+
+			<# 
+			foreach(var member in dtype.AllMemberInfos)
+			{
+			#>
+				lbl<#= member.Name #>.Text = Instance.<#= member.Name #>.ToString();
+			<#
+			} 
+			#>
+		}
+	}
+}
