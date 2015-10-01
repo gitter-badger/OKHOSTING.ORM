@@ -42,27 +42,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Private\Logout.ashx.cs">
-      <DependentUpon>Logout.ashx</DependentUpon>
-    </Compile>
-    <Compile Include="Private\UserControls\ForeignKeyPickerAutoComplete.ashx.cs">
-      <DependentUpon>ForeignKeyPickerAutoComplete.ashx</DependentUpon>
-    </Compile>
-    <Compile Include="Private\UserControls\Navigation.ascx.cs">
-      <DependentUpon>Navigation.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Private\UserControls\Navigation.ascx.designer.cs">
-      <DependentUpon>Navigation.ascx</DependentUpon>
-    </Compile>
     <Compile Include="Templates\CodeGenerator.cs" />
-    <Compile Include="ForgotPassword.aspx.cs">
-      <DependentUpon>ForgotPassword.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ForgotPassword.aspx.designer.cs">
-      <DependentUpon>ForgotPassword.aspx</DependentUpon>
-    </Compile>
     <Compile Include="General.Master.cs">
       <DependentUpon>General.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -73,35 +53,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Login.aspx.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Login.aspx.designer.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Private\PrivateGeneral.master.cs">
-      <DependentUpon>PrivateGeneral.master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Private\PrivateGeneral.master.designer.cs">
-      <DependentUpon>PrivateGeneral.master</DependentUpon>
-    </Compile>
-    <Compile Include="Private\User\ChangePassword.aspx.cs">
-      <DependentUpon>ChangePassword.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Private\User\ChangePassword.aspx.designer.cs">
-      <DependentUpon>ChangePassword.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Private\UserControls\ForeignKeyPicker.ascx.cs">
-      <DependentUpon>ForeignKeyPicker.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Private\UserControls\ForeignKeyPicker.ascx.designer.cs">
-      <DependentUpon>ForeignKeyPicker.ascx</DependentUpon>
-    </Compile>
     <Compile Include="Templates\Navigation.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -109,13 +61,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Private\UserControls\Navigation.ascx" />
     <Content Include="Resources\css\custom.css" />
     <Content Include="Resources\css\bootstrap-theme.css" />
     <Content Include="Resources\css\bootstrap.css" />
     <Content Include="Resources\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="ForgotPassword.aspx" />
-    <Content Include="Login.aspx" />
     <Content Include="Templates\Delete\aspx.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>aspx.cs</LastGenOutput>
@@ -250,8 +199,6 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Private\User\ChangePassword.aspx" />
-    <Content Include="Private\UserControls\ForeignKeyPicker.ascx" />
     <Content Include="packages.config" />
     <Content Include="Resources\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Resources\fonts\glyphicons-halflings-regular.woff" />
@@ -269,9 +216,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="General.Master" />
-    <Content Include="Private\PrivateGeneral.master" />
-    <Content Include="Private\UserControls\ForeignKeyPickerAutoComplete.ashx" />
-    <Content Include="Private\Logout.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

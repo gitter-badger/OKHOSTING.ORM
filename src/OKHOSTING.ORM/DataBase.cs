@@ -1036,7 +1036,7 @@ namespace OKHOSTING.ORM
 			
 			var native = new OKHOSTING.Sql.Operations.SelectJoin();
 			native.Table = join.Type.Table;
-			native.JoinType = join.JoinType;
+			native.JoinType = Parse(join.JoinType);
 			native.Alias = join.Alias;
 
 			foreach (SelectMember selectMember in join.Members)
@@ -1052,7 +1052,12 @@ namespace OKHOSTING.ORM
 			return native;
 		}
 
-		protected Sql.Operations.Select Parse(Select select, Sql.Operations.Select native)
+        protected Sql.Operations.SelectJoinType Parse(SelectJoinType joinType)
+        {
+            return (Sql.Operations.SelectJoinType) Enum.Parse(typeof(Sql.Operations.SelectJoinType), joinType.ToString());
+        }
+
+        protected Sql.Operations.Select Parse(Select select, Sql.Operations.Select native)
 		{
 			if (select == null)
 			{

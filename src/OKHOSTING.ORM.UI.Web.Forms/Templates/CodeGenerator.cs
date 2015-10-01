@@ -5,10 +5,9 @@ namespace OKHOSTING.ORM.UI.Web.Forms.Templates
 {
 	public static class CodeGenerator
 	{
-		public static void Generate(IEnumerable<DataType> dtypes)
+		public static void Generate(string outputDirectory, IEnumerable<DataType> dtypes)
 		{
 			var session = new Dictionary<string, object>();
-			string outputDirectory = Path.Combine(OKHOSTING.Core.Net4.DefaultPaths.Base, "Private");
 
 			foreach (DataType dtype in dtypes)
 			{
@@ -83,7 +82,15 @@ namespace OKHOSTING.ORM.UI.Web.Forms.Templates
 				listAspxDesignerCs.Session = session;
 				listAspxDesignerCs.Initialize();
 				File.WriteAllText(Path.Combine(directoryPath, "List.aspx.designer.cs"), listAspxDesignerCs.TransformText());
-			}
-		}
+            }
+
+            //Navigation
+            session["dtypes"] = dtypes;
+
+            var navigation = new Navigation();
+            navigation.Session = session;
+            navigation.Initialize();
+            File.WriteAllText(Path.Combine(outputDirectory, "Navigation.aspx"), navigation.TransformText());
+        }
     }
 }

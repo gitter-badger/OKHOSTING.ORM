@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{127EF703-0355-4BAA-9648-FF1F8168B532}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OKHOSTING.ORM.Test</RootNamespace>
+    <AssemblyName>OKHOSTING.ORM.Test</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
+    <IsCodedUITest>False</IsCodedUITest>
+    <TestProjectType>UnitTest</TestProjectType>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+  </ItemGroup>
+  <Choose>
+    <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+      </ItemGroup>
+    </When>
+    <Otherwise>
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+      </ItemGroup>
+    </Otherwise>
+  </Choose>
+  <ItemGroup>
+    <Compile Include="BasicTests.cs" />
+    <Compile Include="CodeGeneration.cs" />
+    <Compile Include="Model\Address.cs" />
+    <Compile Include="Model\Country.cs" />
+    <Compile Include="Model\Customer.cs" />
+    <Compile Include="Model\CustomerContact.cs" />
+    <Compile Include="Model\Employee.cs" />
+    <Compile Include="Model\Person.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ValidationTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\OKHOSTING.Core\src\PCL\OKHOSTING.Core\OKHOSTING.Core.csproj">
+      <Project>{3f4502fa-51ea-4cb9-8e50-46f828d240a1}</Project>
+      <Name>OKHOSTING.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\OKHOSTING.Core\src\PCL\OKHOSTING.Data\OKHOSTING.Data.csproj">
+      <Project>{5ba0cbac-63e5-4e01-aeca-67ae3b63503b}</Project>
+      <Name>OKHOSTING.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\OKHOSTING.Sql\src\Net4\OKHOSTING.Sql.Net4.MySql\OKHOSTING.Sql.Net4.MySql.csproj">
+      <Project>{0a304a16-0f65-4ce6-a878-41263293021c}</Project>
+      <Name>OKHOSTING.Sql.Net4.MySql</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\OKHOSTING.Sql\src\Net4\OKHOSTING.Sql.Net4\OKHOSTING.Sql.Net4.csproj">
+      <Project>{dcead90d-4031-4c10-983e-b6e71f4a8b2f}</Project>
+      <Name>OKHOSTING.Sql.Net4</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\OKHOSTING.Sql\src\PCL\OKHOSTING.Sql.MySql\OKHOSTING.Sql.MySql.csproj">
+      <Project>{35ed0ac8-2240-4095-b7cb-60622e515a9c}</Project>
+      <Name>OKHOSTING.Sql.MySql</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\OKHOSTING.Sql\src\PCL\OKHOSTING.Sql\OKHOSTING.Sql.csproj">
+      <Project>{afc2147b-ead8-439b-8ca6-d1bf308064b3}</Project>
+      <Name>OKHOSTING.Sql</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\OKHOSTING.ORM.UI.Web.Forms\OKHOSTING.ORM.UI.Web.Forms.csproj">
+      <Project>{5163d46c-6a38-47cf-b068-c31a95596444}</Project>
+      <Name>OKHOSTING.ORM.UI.Web.Forms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\OKHOSTING.ORM\OKHOSTING.ORM.csproj">
+      <Project>{976ffeb3-e99d-4b0b-9735-98d2bb311986}</Project>
+      <Name>OKHOSTING.ORM</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Choose>
+    <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.CodedUITestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Extension, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITesting, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
+  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

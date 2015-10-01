@@ -50,7 +50,7 @@ namespace OKHOSTING.ORM.Operations
 				if (join == null)
 				{
 					join = new SelectJoin();
-					join.JoinType = Sql.Operations.SelectJoinType.Inner;
+					join.JoinType = SelectJoinType.Inner;
 					join.Type = parent;
 					join.Alias = parent.InnerType.Name + "_base";
 
@@ -128,7 +128,7 @@ namespace OKHOSTING.ORM.Operations
 							if (foreignJoin == null)
 							{
 								foreignJoin = new SelectJoin();
-								foreignJoin.JoinType = Sql.Operations.SelectJoinType.Inner;
+								foreignJoin.JoinType = SelectJoinType.Inner;
 								foreignJoin.Type = foreignDataType;
 								foreignJoin.Alias = currentExpression.Replace('.', '_');
 

@@ -19,7 +19,7 @@ namespace OKHOSTING.ORM.Operations
 		/// </summary>
 		public readonly List<SelectMember> Members = new List<SelectMember>();
 
-		public OKHOSTING.Sql.Operations.SelectJoinType JoinType { get; set; }
+		public SelectJoinType JoinType { get; set; }
 		
 		/// <summary>
 		/// Alias name of the joined table

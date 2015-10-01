@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{894819BF-EFB8-4A15-A701-1AE5FDC7095F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OKHOSTING.ORM.Tests</RootNamespace>
+    <AssemblyName>OKHOSTING.ORM.Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <HintPath>..\..\src\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BasicTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Model\Address.cs" />
+    <Compile Include="CodeGeneration.cs" />
+    <Compile Include="ValidationTest.cs" />
+    <Compile Include="Model\Country.cs" />
+    <Compile Include="Model\Customer.cs" />
+    <Compile Include="Model\CustomerContact.cs" />
+    <Compile Include="Model\Employee.cs" />
+    <Compile Include="Model\Person.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\OKHOSTING.Core\src\PCL\OKHOSTING.Core\OKHOSTING.Core.csproj">
+      <Project>{3f4502fa-51ea-4cb9-8e50-46f828d240a1}</Project>
+      <Name>OKHOSTING.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\OKHOSTING.Core\src\PCL\OKHOSTING.Data\OKHOSTING.Data.csproj">
+      <Project>{5ba0cbac-63e5-4e01-aeca-67ae3b63503b}</Project>
+      <Name>OKHOSTING.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\OKHOSTING.Sql\src\Net4\OKHOSTING.Sql.Net4.MySql\OKHOSTING.Sql.Net4.MySql.csproj">
+      <Project>{0a304a16-0f65-4ce6-a878-41263293021c}</Project>
+      <Name>OKHOSTING.Sql.Net4.MySql</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\OKHOSTING.Sql\src\Net4\OKHOSTING.Sql.Net4\OKHOSTING.Sql.Net4.csproj">
+      <Project>{dcead90d-4031-4c10-983e-b6e71f4a8b2f}</Project>
+      <Name>OKHOSTING.Sql.Net4</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\OKHOSTING.Sql\src\PCL\OKHOSTING.Sql.MySql\OKHOSTING.Sql.MySql.csproj">
+      <Project>{35ed0ac8-2240-4095-b7cb-60622e515a9c}</Project>
+      <Name>OKHOSTING.Sql.MySql</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\OKHOSTING.Sql\src\PCL\OKHOSTING.Sql\OKHOSTING.Sql.csproj">
+      <Project>{afc2147b-ead8-439b-8ca6-d1bf308064b3}</Project>
+      <Name>OKHOSTING.Sql</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\OKHOSTING.ORM.UI.Web.Forms\OKHOSTING.ORM.UI.Web.Forms.csproj">
+      <Project>{5163d46c-6a38-47cf-b068-c31a95596444}</Project>
+      <Name>OKHOSTING.ORM.UI.Web.Forms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\OKHOSTING.ORM\OKHOSTING.ORM.csproj">
+      <Project>{976ffeb3-e99d-4b0b-9735-98d2bb311986}</Project>
+      <Name>OKHOSTING.ORM</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
