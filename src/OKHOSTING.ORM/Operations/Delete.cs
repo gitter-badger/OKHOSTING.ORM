@@ -15,7 +15,7 @@ namespace OKHOSTING.ORM.Operations
 	{
 		public Delete()
 		{
-			From = typeof(T);
+            DataType = typeof(T);
 		}
 	}
 }

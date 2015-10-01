@@ -19,8 +19,8 @@ namespace OKHOSTING.ORM
 		public override bool ContainsKey(TKey key)
 		{
 			Select<TType> select = new Select<TType>();
-			select.From = DataType;
-			select.Members.Add(select.From.PrimaryKey.First());
+			select.DataType = DataType;
+			select.Members.Add(select.DataType.PrimaryKey.First());
 			select.Where.Add(GetPrimaryKeyFilter(DataType, key));
 
 			return DataBase.Select(select).Count() > 0;
@@ -29,7 +29,7 @@ namespace OKHOSTING.ORM
 		public override IEnumerator<KeyValuePair<TKey, TType>> GetEnumerator()
 		{
 			Select<TType> select = CreateSelect();
-			DataMember pkMember = select.From.PrimaryKey.First();
+			DataMember pkMember = select.DataType.PrimaryKey.First();
 			
 			foreach (TType instance in DataBase.Select(select))
 			{
@@ -51,11 +51,11 @@ namespace OKHOSTING.ORM
 			get 
 			{
 				Select<TType> select = new Select<TType>();
-				select.From = DataType;
-				select.Members.Add(select.From.PrimaryKey.First());
+				select.DataType = DataType;
+				select.Members.Add(select.DataType.PrimaryKey.First());
 
 				List<TKey> keys = new List<TKey>();
-				DataMember pk = select.From.PrimaryKey.First();
+				DataMember pk = select.DataType.PrimaryKey.First();
 
 				foreach(TType instance in DataBase.Select(select))
 				{

@@ -33,7 +33,7 @@ namespace OKHOSTING.ORM.Operations
 
 		public Update()
 		{
-			From = typeof(T);
+            DataType = typeof(T);
 		}
 	}
 }

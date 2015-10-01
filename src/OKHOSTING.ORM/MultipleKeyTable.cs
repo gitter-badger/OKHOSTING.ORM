@@ -12,7 +12,7 @@ namespace OKHOSTING.ORM
 			get 
 			{
 				Select<TType> select = new Select<TType>();
-				select.From = DataType;
+				select.DataType = DataType;
 				
 				foreach (DataMember pk in DataType.PrimaryKey)
 				{

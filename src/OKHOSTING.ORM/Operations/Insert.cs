@@ -28,7 +28,7 @@ namespace OKHOSTING.ORM.Operations
 
 		public Insert()
 		{
-			Into = typeof(T);
+            DataType = typeof(T);
 		}
 	}
 }

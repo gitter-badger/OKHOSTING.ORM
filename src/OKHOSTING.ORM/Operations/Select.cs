@@ -21,9 +21,9 @@ namespace OKHOSTING.ORM.Operations
 		public void AddMember(string memberExpression)
 		{
 			//if this is a native datamember, just add a SelectMember
-			if (From.IsMapped(memberExpression))
+			if (DataType.IsMapped(memberExpression))
 			{
-				DataMember dmember = From[memberExpression];
+				DataMember dmember = DataType[memberExpression];
 
 				//this is a native member of this dataType
 				SelectMember sm = new SelectMember(dmember, dmember.Member.Expression.Replace('.', '_'));
@@ -34,7 +34,7 @@ namespace OKHOSTING.ORM.Operations
 			}
 
 			//see if this is a dataMember from a base type
-			foreach (DataType parent in From.BaseDataTypes.Skip(1))
+			foreach (DataType parent in DataType.BaseDataTypes.Skip(1))
 			{
 				if (!parent.IsMapped(memberExpression))
 				{
@@ -54,7 +54,7 @@ namespace OKHOSTING.ORM.Operations
 					join.Type = parent;
 					join.Alias = parent.InnerType.Name + "_base";
 
-					var childPK = From.PrimaryKey.ToList();
+					var childPK = DataType.PrimaryKey.ToList();
 					var joinPK = join.Type.PrimaryKey.ToList();
 
 					for (int y = 0; y < joinPK.Count; y++)
@@ -83,7 +83,7 @@ namespace OKHOSTING.ORM.Operations
 
 
 			//if the expression was not found as a single datamember, split it in nested members
-			List<System.Reflection.MemberInfo> nestedMemberInfos = MemberExpression.GetMemberInfos(From.InnerType, memberExpression).ToList();
+			List<System.Reflection.MemberInfo> nestedMemberInfos = MemberExpression.GetMemberInfos(DataType.InnerType, memberExpression).ToList();
 
 			//check every part of the expression
 			for (int i = 0; i < nestedMemberInfos.Count; i++)
@@ -101,7 +101,7 @@ namespace OKHOSTING.ORM.Operations
 				currentExpression = currentExpression.Trim('.');
 
 				//if this is a dataMember from a base type, create join for that relationship
-				foreach (DataType parent in From.BaseDataTypes)
+				foreach (DataType parent in DataType.BaseDataTypes)
 				{
 					DataType referencingDataType = isTheFirstOne ? parent : MemberExpression.GetReturnType(nestedMemberInfos[i - 1]);
 
@@ -134,7 +134,7 @@ namespace OKHOSTING.ORM.Operations
 
 								string previousJoinAlias = string.Empty;
 
-								if (isTheFirstOne && parent != From)
+								if (isTheFirstOne && parent != DataType)
 								{
 									previousJoinAlias = parent.InnerType.Name + "_base";
 								}
@@ -223,7 +223,7 @@ namespace OKHOSTING.ORM.Operations
 	{
 		public Select()
 		{
-			From = typeof(T);
+            DataType = typeof(T);
 		}
 
 		public void AddMembers(params System.Linq.Expressions.Expression<Func<T, object>>[] memberExpressions)
