@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 
-namespace OKHOSTING.Sql.ORM.UI.Web.Forms.Templates
+namespace OKHOSTING.ORM.UI.Web.Forms.Templates
 {
 	public static class CodeGenerator
 	{
 		public static void Generate(IEnumerable<DataType> dtypes)
 		{
 			var session = new Dictionary<string, object>();
-			string outputDirectory = Path.Combine(OKHOSTING.Core.DefaultPaths.Base, "Private");
+			string outputDirectory = Path.Combine(OKHOSTING.Core.Net4.DefaultPaths.Base, "Private");
 
 			foreach (DataType dtype in dtypes)
 			{

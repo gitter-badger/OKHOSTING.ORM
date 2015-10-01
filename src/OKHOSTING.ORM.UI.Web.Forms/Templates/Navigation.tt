@@ -1,10 +1,10 @@
 ﻿<#@ template language="C#" #>
 <#@ assembly name="System.Core" #>
-<#@ assembly name="$(ProjectDir)/bin/debug/OKHOSTING.Sql.ORM.dll" #>
+<#@ assembly name="$(ProjectDir)/bin/debug/OKHOSTING.ORM.dll" #>
 <#@ import namespace="System" #>
-<#@ import namespace="OKHOSTING.Sql.ORM" #>
-<#@ parameter name="dtypes" type="System.Collections.Generic.IEnumerable<OKHOSTING.Sql.ORM.DataType>" #> 
-<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Navigation.ascx.cs" Inherits="OKHOSTING.Sql.ORM.UI.Web.Forms.Private.UserControls.Navigation" %>
+<#@ import namespace="OKHOSTING.ORM" #>
+<#@ parameter name="dtypes" type="System.Collections.Generic.IEnumerable<OKHOSTING.ORM.DataType>" #> 
+<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Navigation.ascx.cs" Inherits="OKHOSTING.ORM.UI.Web.Forms.Private.UserControls.Navigation" %>
 <nav class="navbar-default">
 	<ul>
 		<li>

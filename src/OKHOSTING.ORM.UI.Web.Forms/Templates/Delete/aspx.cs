@@ -7,16 +7,16 @@
 //     the code is regenerated.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-namespace OKHOSTING.Sql.ORM.UI.Web.Forms.Templates.Delete
+namespace OKHOSTING.ORM.UI.Web.Forms.Templates.Delete
 {
     using System;
-    using OKHOSTING.Sql.ORM;
+    using OKHOSTING.ORM;
     
     /// <summary>
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Delete\aspx.tt"
+    #line 1 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Delete\aspx.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "14.0.0.0")]
     public partial class aspx : aspxBase
     {
@@ -29,14 +29,14 @@ namespace OKHOSTING.Sql.ORM.UI.Web.Forms.Templates.Delete
             this.Write(" \r\n<%@ Page Title=\"\" Language=\"C#\" MasterPageFile=\"~/Private/PrivateGeneral.maste" +
                     "r\" AutoEventWireup=\"true\" CodeBehind=\"Delete.aspx.cs\" Inherits=\"");
             
-            #line 7 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Delete\aspx.tt"
+            #line 7 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Delete\aspx.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dtype.InnerType.Namespace));
             
             #line default
             #line hidden
             this.Write(".UI.WebForms.");
             
-            #line 7 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Delete\aspx.tt"
+            #line 7 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Delete\aspx.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dtype.InnerType.Name));
             
             #line default
@@ -45,7 +45,7 @@ namespace OKHOSTING.Sql.ORM.UI.Web.Forms.Templates.Delete
                     "\">\r\n</asp:Content>\r\n<asp:Content ID=\"Content2\" ContentPlaceHolderID=\"ContentPlac" +
                     "eHolder1\" runat=\"server\">\r\n\t<h1>Delete ");
             
-            #line 11 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Delete\aspx.tt"
+            #line 11 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Delete\aspx.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dtype.InnerType.Name));
             
             #line default
@@ -60,14 +60,14 @@ namespace OKHOSTING.Sql.ORM.UI.Web.Forms.Templates.Delete
             return this.GenerationEnvironment.ToString();
         }
         
-        #line 1 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Delete\aspx.tt"
+        #line 1 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Delete\aspx.tt"
 
-private global::OKHOSTING.Sql.ORM.DataType _dtypeField;
+private global::OKHOSTING.ORM.DataType _dtypeField;
 
 /// <summary>
 /// Access the dtype parameter of the template.
 /// </summary>
-private global::OKHOSTING.Sql.ORM.DataType dtype
+private global::OKHOSTING.ORM.DataType dtype
 {
     get
     {
@@ -86,7 +86,7 @@ public virtual void Initialize()
 bool dtypeValueAcquired = false;
 if (this.Session.ContainsKey("dtype"))
 {
-    this._dtypeField = ((global::OKHOSTING.Sql.ORM.DataType)(this.Session["dtype"]));
+    this._dtypeField = ((global::OKHOSTING.ORM.DataType)(this.Session["dtype"]));
     dtypeValueAcquired = true;
 }
 if ((dtypeValueAcquired == false))
@@ -94,7 +94,7 @@ if ((dtypeValueAcquired == false))
     object data = global::System.Runtime.Remoting.Messaging.CallContext.LogicalGetData("dtype");
     if ((data != null))
     {
-        this._dtypeField = ((global::OKHOSTING.Sql.ORM.DataType)(data));
+        this._dtypeField = ((global::OKHOSTING.ORM.DataType)(data));
     }
 }
 

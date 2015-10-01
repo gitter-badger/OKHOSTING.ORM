@@ -1,9 +1,9 @@
 ﻿<#@ template language="C#" #>
 <#@ assembly name="System.Core" #>
-<#@ assembly name="$(ProjectDir)/bin/debug/OKHOSTING.Sql.ORM.dll" #>
+<#@ assembly name="$(ProjectDir)/bin/debug/OKHOSTING.ORM.dll" #>
 <#@ import namespace="System" #>
-<#@ import namespace="OKHOSTING.Sql.ORM" #>
-<#@ parameter name="dtype" type="OKHOSTING.Sql.ORM.DataType" #> 
+<#@ import namespace="OKHOSTING.ORM" #>
+<#@ parameter name="dtype" type="OKHOSTING.ORM.DataType" #> 
 <%@ Page Title="" Language="C#" MasterPageFile="~/Private/PrivateGeneral.master" AutoEventWireup="true" CodeBehind="Detail.aspx.cs" Inherits="<#= dtype.InnerType.Namespace #>.UI.WebForms.<#= dtype.InnerType.Name #>.Detail" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>

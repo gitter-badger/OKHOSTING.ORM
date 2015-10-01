@@ -1,7 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
-  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -9,21 +7,20 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{1CB04A41-C378-410A-B421-4F9BF05D54D2}</ProjectGuid>
+    <ProjectGuid>{5163D46C-6A38-47CF-B068-C31A95596444}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>OKHOSTING.ORM.UI.Web.Forms</RootNamespace>
     <AssemblyName>OKHOSTING.ORM.UI.Web.Forms</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -33,6 +30,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -41,32 +39,239 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
+    <Compile Include="Private\Logout.ashx.cs">
+      <DependentUpon>Logout.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Private\UserControls\ForeignKeyPickerAutoComplete.ashx.cs">
+      <DependentUpon>ForeignKeyPickerAutoComplete.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Private\UserControls\Navigation.ascx.cs">
+      <DependentUpon>Navigation.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Private\UserControls\Navigation.ascx.designer.cs">
+      <DependentUpon>Navigation.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Templates\CodeGenerator.cs" />
+    <Compile Include="ForgotPassword.aspx.cs">
+      <DependentUpon>ForgotPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ForgotPassword.aspx.designer.cs">
+      <DependentUpon>ForgotPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="General.Master.cs">
+      <DependentUpon>General.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="General.Master.designer.cs">
+      <DependentUpon>General.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Private\PrivateGeneral.master.cs">
+      <DependentUpon>PrivateGeneral.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Private\PrivateGeneral.master.designer.cs">
+      <DependentUpon>PrivateGeneral.master</DependentUpon>
+    </Compile>
+    <Compile Include="Private\User\ChangePassword.aspx.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Private\User\ChangePassword.aspx.designer.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Private\UserControls\ForeignKeyPicker.ascx.cs">
+      <DependentUpon>ForeignKeyPicker.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Private\UserControls\ForeignKeyPicker.ascx.designer.cs">
+      <DependentUpon>ForeignKeyPicker.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Templates\Navigation.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Navigation.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Private\UserControls\Navigation.ascx" />
+    <Content Include="Resources\css\custom.css" />
+    <Content Include="Resources\css\bootstrap-theme.css" />
+    <Content Include="Resources\css\bootstrap.css" />
+    <Content Include="Resources\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="ForgotPassword.aspx" />
+    <Content Include="Login.aspx" />
+    <Content Include="Templates\Delete\aspx.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>aspx.cs</LastGenOutput>
+    </Content>
+    <Content Include="Templates\Delete\aspx_cs.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>aspx_cs.cs</LastGenOutput>
+    </Content>
+    <Content Include="Templates\Delete\aspx_designer_cs.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>aspx_designer_cs.cs</LastGenOutput>
+    </Content>
+    <Content Include="Templates\Detail\aspx.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>aspx.cs</LastGenOutput>
+    </Content>
+    <Content Include="Templates\Detail\aspx_cs.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>aspx_cs.cs</LastGenOutput>
+    </Content>
+    <Content Include="Templates\Detail\aspx_designer_cs.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>aspx_designer_cs.cs</LastGenOutput>
+    </Content>
+    <Content Include="Templates\Edit\aspx.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>aspx.cs</LastGenOutput>
+    </Content>
+    <Content Include="Templates\Edit\aspx_cs.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>aspx_cs.cs</LastGenOutput>
+    </Content>
+    <Content Include="Templates\Edit\aspx_designer_cs.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>aspx_designer_cs.cs</LastGenOutput>
+    </Content>
+    <Content Include="Global.asax" />
+    <Content Include="Templates\List\aspx.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>aspx.cs</LastGenOutput>
+    </Content>
+    <Content Include="Templates\List\aspx_cs.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>aspx_cs.cs</LastGenOutput>
+    </Content>
+    <Content Include="Templates\List\aspx_designer_cs.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>aspx_designer_cs.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Templates\Delete\aspx.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>aspx.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Templates\Delete\aspx_cs.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>aspx_cs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Templates\Delete\aspx_designer_cs.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>aspx_designer_cs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Templates\Detail\aspx.cs">
+      <DependentUpon>aspx.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Templates\Detail\aspx_cs.cs">
+      <DependentUpon>aspx_cs.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Templates\Detail\aspx_designer_cs.cs">
+      <DependentUpon>aspx_designer_cs.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Templates\Edit\aspx.cs">
+      <DependentUpon>aspx.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Templates\Edit\aspx_cs.cs">
+      <DependentUpon>aspx_cs.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Templates\Edit\aspx_designer_cs.cs">
+      <DependentUpon>aspx_designer_cs.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Templates\List\aspx.cs">
+      <DependentUpon>aspx.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Templates\List\aspx_cs.cs">
+      <DependentUpon>aspx_cs.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Templates\List\aspx_designer_cs.cs">
+      <DependentUpon>aspx_designer_cs.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Private\User\ChangePassword.aspx" />
+    <Content Include="Private\UserControls\ForeignKeyPicker.ascx" />
     <Content Include="packages.config" />
+    <Content Include="Resources\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Resources\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Resources\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Resources\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Resources\img\favicon.ico" />
+    <Content Include="Resources\img\okhosting-logo.png" />
+    <Content Include="Resources\js\bootstrap.min.js" />
+    <Content Include="Resources\js\jquery-1.9.1.min.js" />
+    <Content Include="Templates\Navigation.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>Navigation.cs</LastGenOutput>
+    </Content>
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="General.Master" />
+    <Content Include="Private\PrivateGeneral.master" />
+    <Content Include="Private\UserControls\ForeignKeyPickerAutoComplete.ashx" />
+    <Content Include="Private\Logout.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -75,179 +280,17 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Templates\Delete\aspx.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>aspx1.cs</LastGenOutput>
-    </Content>
-    <Content Include="Templates\Delete\aspx_cs.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>aspx_cs1.cs</LastGenOutput>
-    </Content>
-    <Content Include="Templates\Delete\aspx_designer_cs.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>aspx_designer_cs1.cs</LastGenOutput>
-    </Content>
-    <Content Include="Templates\Detail\aspx.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>aspx1.cs</LastGenOutput>
-    </Content>
-    <Content Include="Templates\Detail\aspx_cs.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>aspx_cs1.cs</LastGenOutput>
-    </Content>
-    <Content Include="Templates\Detail\aspx_designer_cs.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>aspx_designer_cs1.cs</LastGenOutput>
-    </Content>
-    <Content Include="Templates\Edit\aspx.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>aspx1.cs</LastGenOutput>
-    </Content>
-    <Content Include="Templates\Edit\aspx_cs.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>aspx_cs1.cs</LastGenOutput>
-    </Content>
-    <Content Include="Templates\Edit\aspx_designer_cs.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>aspx_designer_cs1.cs</LastGenOutput>
-    </Content>
-    <Content Include="Templates\Execute\aspx.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>aspx1.cs</LastGenOutput>
-    </Content>
-    <Content Include="Templates\Execute\aspx_cs.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>aspx_cs1.cs</LastGenOutput>
-    </Content>
-    <Content Include="Templates\Execute\aspx_designer_cs.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>aspx_designer_cs1.cs</LastGenOutput>
-    </Content>
-    <Content Include="Templates\List\aspx.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>aspx1.cs</LastGenOutput>
-    </Content>
-    <Content Include="Templates\List\aspx_cs.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>aspx_cs1.cs</LastGenOutput>
-    </Content>
-    <Content Include="Templates\List\aspx_designer_cs.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>aspx_designer_cs1.cs</LastGenOutput>
-    </Content>
-    <Content Include="Templates\Navigation.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Navigation1.cs</LastGenOutput>
-    </Content>
-    <Content Include="Web.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Templates\CodeGenerator.cs" />
-    <Compile Include="Templates\Delete\aspx.cs" />
-    <Compile Include="Templates\Delete\aspx1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>aspx.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Templates\Delete\aspx_cs.cs" />
-    <Compile Include="Templates\Delete\aspx_cs1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>aspx_cs.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Templates\Delete\aspx_designer_cs.cs" />
-    <Compile Include="Templates\Delete\aspx_designer_cs1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>aspx_designer_cs.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Templates\Detail\aspx.cs" />
-    <Compile Include="Templates\Detail\aspx1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>aspx.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Templates\Detail\aspx_cs.cs" />
-    <Compile Include="Templates\Detail\aspx_cs1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>aspx_cs.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Templates\Detail\aspx_designer_cs.cs" />
-    <Compile Include="Templates\Detail\aspx_designer_cs1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>aspx_designer_cs.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Templates\Edit\aspx.cs" />
-    <Compile Include="Templates\Edit\aspx1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>aspx.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Templates\Edit\aspx_cs.cs" />
-    <Compile Include="Templates\Edit\aspx_cs1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>aspx_cs.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Templates\Edit\aspx_designer_cs.cs" />
-    <Compile Include="Templates\Edit\aspx_designer_cs1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>aspx_designer_cs.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Templates\Execute\aspx.cs" />
-    <Compile Include="Templates\Execute\aspx1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>aspx.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Templates\Execute\aspx_cs.cs" />
-    <Compile Include="Templates\Execute\aspx_cs1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>aspx_cs.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Templates\Execute\aspx_designer_cs.cs" />
-    <Compile Include="Templates\Execute\aspx_designer_cs1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>aspx_designer_cs.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Templates\List\aspx.cs" />
-    <Compile Include="Templates\List\aspx1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>aspx.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Templates\List\aspx_cs.cs" />
-    <Compile Include="Templates\List\aspx_cs1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>aspx_cs.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Templates\List\aspx_designer_cs.cs" />
-    <Compile Include="Templates\List\aspx_designer_cs1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>aspx_designer_cs.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Templates\Navigation.cs" />
-    <Compile Include="Templates\Navigation1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Navigation.tt</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\..\..\OKHOSTING.Core\src\Net4\OKHOSTING.Core.Net4\OKHOSTING.Core.Net4.csproj">
+      <Project>{46bdaec2-7677-4223-b009-940db478a220}</Project>
+      <Name>OKHOSTING.Core.Net4</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\OKHOSTING.Core\src\PCL\OKHOSTING.Core\OKHOSTING.Core.csproj">
       <Project>{3f4502fa-51ea-4cb9-8e50-46f828d240a1}</Project>
       <Name>OKHOSTING.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\OKHOSTING.Core\src\PCL\OKHOSTING.Cryptography\OKHOSTING.Cryptography.csproj">
+      <Project>{aaf2e2ce-9141-4690-a5e8-873cb66ecc52}</Project>
+      <Name>OKHOSTING.Cryptography</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\OKHOSTING.Core\src\PCL\OKHOSTING.Data\OKHOSTING.Data.csproj">
       <Project>{5ba0cbac-63e5-4e01-aeca-67ae3b63503b}</Project>
@@ -275,9 +318,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>63868</DevelopmentServerPort>
+          <DevelopmentServerPort>62975</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:63868/</IISUrl>
+          <IISUrl>http://localhost:50393/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
@@ -287,13 +330,6 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
-    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
-  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

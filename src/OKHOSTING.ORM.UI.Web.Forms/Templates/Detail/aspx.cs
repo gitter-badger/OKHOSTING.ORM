@@ -7,16 +7,16 @@
 //     the code is regenerated.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-namespace OKHOSTING.Sql.ORM.UI.Web.Forms.Templates.Detail
+namespace OKHOSTING.ORM.UI.Web.Forms.Templates.Detail
 {
     using System;
-    using OKHOSTING.Sql.ORM;
+    using OKHOSTING.ORM;
     
     /// <summary>
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Detail\aspx.tt"
+    #line 1 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Detail\aspx.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "14.0.0.0")]
     public partial class aspx : aspxBase
     {
@@ -29,14 +29,14 @@ namespace OKHOSTING.Sql.ORM.UI.Web.Forms.Templates.Detail
             this.Write(" \r\n<%@ Page Title=\"\" Language=\"C#\" MasterPageFile=\"~/Private/PrivateGeneral.maste" +
                     "r\" AutoEventWireup=\"true\" CodeBehind=\"Detail.aspx.cs\" Inherits=\"");
             
-            #line 7 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Detail\aspx.tt"
+            #line 7 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Detail\aspx.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dtype.InnerType.Namespace));
             
             #line default
             #line hidden
             this.Write(".UI.WebForms.");
             
-            #line 7 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Detail\aspx.tt"
+            #line 7 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Detail\aspx.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dtype.InnerType.Name));
             
             #line default
@@ -45,14 +45,14 @@ namespace OKHOSTING.Sql.ORM.UI.Web.Forms.Templates.Detail
                     "\">\r\n</asp:Content>\r\n<asp:Content ID=\"Content2\" ContentPlaceHolderID=\"ContentPlac" +
                     "eHolder1\" runat=\"server\">\r\n\t\r\n\t<h1>");
             
-            #line 12 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Detail\aspx.tt"
+            #line 12 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Detail\aspx.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dtype.InnerType.Name));
             
             #line default
             #line hidden
             this.Write("\'s detail</h1>\r\n\r\n\t<table>\r\n\t\t");
             
-            #line 15 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Detail\aspx.tt"
+            #line 15 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Detail\aspx.tt"
  
 		foreach(var member in dtype.AllMemberInfos)
 		{
@@ -62,21 +62,21 @@ namespace OKHOSTING.Sql.ORM.UI.Web.Forms.Templates.Detail
             #line hidden
             this.Write("\t\t\t<tr>\r\n\t\t\t\t<td>\r\n\t\t\t\t\t");
             
-            #line 21 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Detail\aspx.tt"
+            #line 21 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Detail\aspx.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(member.Name));
             
             #line default
             #line hidden
             this.Write(":\r\n\t\t\t\t</td>\r\n\t\t\t\t<td>\r\n\t\t\t\t\t<asp:Label runat=\"server\" ID=\"lbl");
             
-            #line 24 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Detail\aspx.tt"
+            #line 24 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Detail\aspx.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(member.Name));
             
             #line default
             #line hidden
             this.Write("\"></asp:Label>\r\n\t\t\t\t</td>\r\n\t\t\t</tr>\r\n\t\t");
             
-            #line 27 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Detail\aspx.tt"
+            #line 27 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Detail\aspx.tt"
 
 		} 
 		
@@ -89,14 +89,14 @@ namespace OKHOSTING.Sql.ORM.UI.Web.Forms.Templates.Detail
             return this.GenerationEnvironment.ToString();
         }
         
-        #line 1 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Detail\aspx.tt"
+        #line 1 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Detail\aspx.tt"
 
-private global::OKHOSTING.Sql.ORM.DataType _dtypeField;
+private global::OKHOSTING.ORM.DataType _dtypeField;
 
 /// <summary>
 /// Access the dtype parameter of the template.
 /// </summary>
-private global::OKHOSTING.Sql.ORM.DataType dtype
+private global::OKHOSTING.ORM.DataType dtype
 {
     get
     {
@@ -115,7 +115,7 @@ public virtual void Initialize()
 bool dtypeValueAcquired = false;
 if (this.Session.ContainsKey("dtype"))
 {
-    this._dtypeField = ((global::OKHOSTING.Sql.ORM.DataType)(this.Session["dtype"]));
+    this._dtypeField = ((global::OKHOSTING.ORM.DataType)(this.Session["dtype"]));
     dtypeValueAcquired = true;
 }
 if ((dtypeValueAcquired == false))
@@ -123,7 +123,7 @@ if ((dtypeValueAcquired == false))
     object data = global::System.Runtime.Remoting.Messaging.CallContext.LogicalGetData("dtype");
     if ((data != null))
     {
-        this._dtypeField = ((global::OKHOSTING.Sql.ORM.DataType)(data));
+        this._dtypeField = ((global::OKHOSTING.ORM.DataType)(data));
     }
 }
 

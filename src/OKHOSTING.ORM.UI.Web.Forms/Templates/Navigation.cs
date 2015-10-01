@@ -7,16 +7,16 @@
 //     the code is regenerated.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-namespace OKHOSTING.Sql.ORM.UI.Web.Forms.Templates
+namespace OKHOSTING.ORM.UI.Web.Forms.Templates
 {
     using System;
-    using OKHOSTING.Sql.ORM;
+    using OKHOSTING.ORM;
     
     /// <summary>
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Navigation.tt"
+    #line 1 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Navigation.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "14.0.0.0")]
     public partial class Navigation : NavigationBase
     {
@@ -27,10 +27,10 @@ namespace OKHOSTING.Sql.ORM.UI.Web.Forms.Templates
         public virtual string TransformText()
         {
             this.Write(" \r\n<%@ Control Language=\"C#\" AutoEventWireup=\"true\" CodeBehind=\"Navigation.ascx.c" +
-                    "s\" Inherits=\"OKHOSTING.Sql.ORM.UI.Web.Forms.Private.UserControls.Navigation\" %>\r" +
-                    "\n<nav class=\"navbar-default\">\r\n\t<ul>\r\n\t\t<li>\r\n\t\t\tData\r\n\t\t\t<ul>\r\n\t\t\t\t");
+                    "s\" Inherits=\"OKHOSTING.ORM.UI.Web.Forms.Private.UserControls.Navigation\" %>\r\n<na" +
+                    "v class=\"navbar-default\">\r\n\t<ul>\r\n\t\t<li>\r\n\t\t\tData\r\n\t\t\t<ul>\r\n\t\t\t\t");
             
-            #line 13 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Navigation.tt"
+            #line 13 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Navigation.tt"
 
 				foreach (var dtype in dtypes)
 				{
@@ -39,14 +39,14 @@ namespace OKHOSTING.Sql.ORM.UI.Web.Forms.Templates
             #line hidden
             this.Write("\t\t\t\t\t<li>\r\n\t\t\t\t\t\t<a href=\"/Private/");
             
-            #line 17 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Navigation.tt"
+            #line 17 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Navigation.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dtype.InnerType.Name));
             
             #line default
             #line hidden
             this.Write(">/List.aspx\">Person</a>\r\n\t\t\t\t\t</li>\r\n\t\t\t\t");
             
-            #line 19 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Navigation.tt"
+            #line 19 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Navigation.tt"
 }
             
             #line default
@@ -57,14 +57,14 @@ namespace OKHOSTING.Sql.ORM.UI.Web.Forms.Templates
             return this.GenerationEnvironment.ToString();
         }
         
-        #line 1 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Navigation.tt"
+        #line 1 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Navigation.tt"
 
-private global::System.Collections.Generic.IEnumerable<OKHOSTING.Sql.ORM.DataType> _dtypesField;
+private global::System.Collections.Generic.IEnumerable<OKHOSTING.ORM.DataType> _dtypesField;
 
 /// <summary>
 /// Access the dtypes parameter of the template.
 /// </summary>
-private global::System.Collections.Generic.IEnumerable<OKHOSTING.Sql.ORM.DataType> dtypes
+private global::System.Collections.Generic.IEnumerable<OKHOSTING.ORM.DataType> dtypes
 {
     get
     {
@@ -83,7 +83,7 @@ public virtual void Initialize()
 bool dtypesValueAcquired = false;
 if (this.Session.ContainsKey("dtypes"))
 {
-    this._dtypesField = ((global::System.Collections.Generic.IEnumerable<OKHOSTING.Sql.ORM.DataType>)(this.Session["dtypes"]));
+    this._dtypesField = ((global::System.Collections.Generic.IEnumerable<OKHOSTING.ORM.DataType>)(this.Session["dtypes"]));
     dtypesValueAcquired = true;
 }
 if ((dtypesValueAcquired == false))
@@ -91,7 +91,7 @@ if ((dtypesValueAcquired == false))
     object data = global::System.Runtime.Remoting.Messaging.CallContext.LogicalGetData("dtypes");
     if ((data != null))
     {
-        this._dtypesField = ((global::System.Collections.Generic.IEnumerable<OKHOSTING.Sql.ORM.DataType>)(data));
+        this._dtypesField = ((global::System.Collections.Generic.IEnumerable<OKHOSTING.ORM.DataType>)(data));
     }
 }
 

@@ -7,18 +7,18 @@
 //     the code is regenerated.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-namespace OKHOSTING.Sql.ORM.UI.Web.Forms.Templates.Edit
+namespace OKHOSTING.ORM.UI.Web.Forms.Templates.Edit
 {
     using System;
-    using OKHOSTING.Sql.ORM;
-    using OKHOSTING.Core.Data;
-    using OKHOSTING.Core.Data.Validation;
+    using OKHOSTING.ORM;
+    using OKHOSTING.Data;
+    using OKHOSTING.Data.Validation;
     
     /// <summary>
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
+    #line 1 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "14.0.0.0")]
     public partial class aspx_cs : aspx_csBase
     {
@@ -29,23 +29,23 @@ namespace OKHOSTING.Sql.ORM.UI.Web.Forms.Templates.Edit
         public virtual string TransformText()
         {
             this.Write("﻿");
-            this.Write(" \r\nusing System;\r\nusing OKHOSTING.Sql.ORM;\r\nusing ");
+            this.Write(" \r\nusing System;\r\nusing OKHOSTING.ORM;\r\nusing ");
             
-            #line 12 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
+            #line 12 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dtype.InnerType.Namespace));
             
             #line default
             #line hidden
-            this.Write(";\r\n\r\nnamespace OKHOSTING.Sql.ORM.UI.Web.Forms.Private.");
+            this.Write(";\r\n\r\nnamespace OKHOSTING.ORM.UI.Web.Forms.Private.");
             
-            #line 14 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
+            #line 14 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dtype.InnerType.Name));
             
             #line default
             #line hidden
             this.Write("\r\n{\r\n\tprotected ");
             
-            #line 16 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
+            #line 16 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dtype.InnerType.Name));
             
             #line default
@@ -53,21 +53,21 @@ namespace OKHOSTING.Sql.ORM.UI.Web.Forms.Templates.Edit
             this.Write(" Instance;\r\n\r\n\tpublic partial class Edit : System.Web.UI.Page\r\n\t{\r\n\t\t\r\n\t\tprotecte" +
                     "d void Page_Load(object sender, EventArgs e)\r\n\t\t{\r\n\t\t\tInstance = new ");
             
-            #line 23 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
+            #line 23 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dtype.InnerType.Name));
             
             #line default
             #line hidden
             this.Write("();\r\n\t\t\tvar dtype = DataType<");
             
-            #line 24 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
+            #line 24 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dtype.InnerType.Name));
             
             #line default
             #line hidden
             this.Write(">.GetMap();\r\n\t\t\t\r\n\t\t\t");
             
-            #line 26 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
+            #line 26 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
 
 			foreach(var dmember in dtype.PrimaryKey)
 			{
@@ -77,35 +77,35 @@ namespace OKHOSTING.Sql.ORM.UI.Web.Forms.Templates.Edit
             #line hidden
             this.Write("\t\t\t\tInstance.");
             
-            #line 30 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
+            #line 30 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dmember.Member.Expression));
             
             #line default
             #line hidden
             this.Write(" = (");
             
-            #line 30 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
+            #line 30 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dmember.Member.ReturnType.FullName));
             
             #line default
             #line hidden
             this.Write(") Core.Data.Converter.ChangeType<");
             
-            #line 30 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
+            #line 30 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dmember.Member.ReturnType.FullName));
             
             #line default
             #line hidden
             this.Write(">(Request.QueryString[\"");
             
-            #line 30 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
+            #line 30 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dmember.Member.Expression));
             
             #line default
             #line hidden
             this.Write("\"]);\r\n\t\t\t");
             
-            #line 31 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
+            #line 31 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
 
 			}
 			
@@ -116,7 +116,7 @@ namespace OKHOSTING.Sql.ORM.UI.Web.Forms.Templates.Edit
                     "PostBack)\r\n\t\t\t{\r\n\t\t\t\treturn;\r\n\t\t\t}\r\n\r\n\t\t\t//set control values on the first load\r" +
                     "\n\t\t\t");
             
-            #line 44 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
+            #line 44 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
 
 			foreach (System.Reflection.MemberInfo member in dtype.AllMemberInfos)
 			{
@@ -130,7 +130,7 @@ namespace OKHOSTING.Sql.ORM.UI.Web.Forms.Templates.Edit
             #line hidden
             this.Write("\t\t\t\t\tstring current");
             
-            #line 52 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
+            #line 52 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(member.Name));
             
             #line default
@@ -138,7 +138,7 @@ namespace OKHOSTING.Sql.ORM.UI.Web.Forms.Templates.Edit
             this.Write("String = Serializer.ToString(Instance);\r\n\t\t\t\t\tforeach (var obj in DataBase.Defaul" +
                     "t.Select<");
             
-            #line 53 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
+            #line 53 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(returnType.Name));
             
             #line default
@@ -146,28 +146,28 @@ namespace OKHOSTING.Sql.ORM.UI.Web.Forms.Templates.Edit
             this.Write(">())\r\n\t\t\t\t\t{\r\n\t\t\t\t\t\tvar item = new ListItem(obj.ToString(), Serializer.ToString(o" +
                     "bj));\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\tif (item.Value == current");
             
-            #line 57 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
+            #line 57 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(member.Name));
             
             #line default
             #line hidden
             this.Write("String)\r\n\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\titem.Selected = true;\r\n\t\t\t\t\t\t}\r\n\r\n\t\t\t\t\t\tctr");
             
-            #line 62 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
+            #line 62 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(member.Name));
             
             #line default
             #line hidden
             this.Write(".Items.Add(item)\r\n\t\t\t\t\t}\r\n\r\n\t\t\t\t\tctr");
             
-            #line 65 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
+            #line 65 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(member.Name));
             
             #line default
             #line hidden
             this.Write(".DataBind();\r\n\t\t\t\t");
             
-            #line 66 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
+            #line 66 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
 
 				}
 				else if (returnType.IsEnum)
@@ -178,14 +178,14 @@ namespace OKHOSTING.Sql.ORM.UI.Web.Forms.Templates.Edit
             #line hidden
             this.Write("\t\t\t\t\tforeach (string name Enum.GetNames(returnType))\r\n\t\t\t\t\t{\r\n\t\t\t\t\t\tctr");
             
-            #line 73 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
+            #line 73 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(member.Name));
             
             #line default
             #line hidden
             this.Write(".Items.Add(name);\r\n\t\t\t\t\t}\r\n\t\t\t\t");
             
-            #line 75 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
+            #line 75 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
 
 				}
 				else if (returnType == typeof(bool))
@@ -196,21 +196,21 @@ namespace OKHOSTING.Sql.ORM.UI.Web.Forms.Templates.Edit
             #line hidden
             this.Write("\t\t\t\t\tctr");
             
-            #line 80 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
+            #line 80 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(member.Name));
             
             #line default
             #line hidden
             this.Write(".Checked = Instance.");
             
-            #line 80 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
+            #line 80 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(member.Name));
             
             #line default
             #line hidden
             this.Write(";\r\n\t\t\t\t");
             
-            #line 81 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
+            #line 81 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
 
 				}
 				else if (returnType == typeof(DateTime))
@@ -221,24 +221,24 @@ namespace OKHOSTING.Sql.ORM.UI.Web.Forms.Templates.Edit
             #line hidden
             this.Write("\t\t\t\t\tctr");
             
-            #line 86 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
+            #line 86 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(member.Name));
             
             #line default
             #line hidden
             this.Write(".Text = Instance.");
             
-            #line 86 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
+            #line 86 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(member.Name));
             
             #line default
             #line hidden
             this.Write(".ToString(\"dd-MM-yyyy hh:mm\");\r\n\t\t\t\t");
             
-            #line 87 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
+            #line 87 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
 
 				}
-				else if (OKHOSTING.Core.Extensions.TypeExtensions.IsNumeric(returnType))
+				else if (OKHOSTING.Core.TypeExtensions.IsNumeric(returnType))
 				{
 				
             
@@ -246,21 +246,21 @@ namespace OKHOSTING.Sql.ORM.UI.Web.Forms.Templates.Edit
             #line hidden
             this.Write("\t\t\t\t\tctr");
             
-            #line 92 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
+            #line 92 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(member.Name));
             
             #line default
             #line hidden
             this.Write(".Text = Instance.");
             
-            #line 92 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
+            #line 92 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(member.Name));
             
             #line default
             #line hidden
             this.Write(".ToString();\r\n\t\t\t\t");
             
-            #line 93 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
+            #line 93 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
 
 				}
 				else if (returnType == typeof(string))
@@ -271,21 +271,21 @@ namespace OKHOSTING.Sql.ORM.UI.Web.Forms.Templates.Edit
             #line hidden
             this.Write("\t\t\t\t\tctr");
             
-            #line 98 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
+            #line 98 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(member.Name));
             
             #line default
             #line hidden
             this.Write(".Text = Instance.");
             
-            #line 98 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
+            #line 98 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(member.Name));
             
             #line default
             #line hidden
             this.Write(";\r\n\t\t\t\t");
             
-            #line 99 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
+            #line 99 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
 
 				}
 				else
@@ -296,14 +296,14 @@ namespace OKHOSTING.Sql.ORM.UI.Web.Forms.Templates.Edit
             #line hidden
             this.Write("\t\t\t\t\t<asp:TextBox runat=\"server\" ID=\"ctr");
             
-            #line 104 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
+            #line 104 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(member.Name));
             
             #line default
             #line hidden
             this.Write("\"></asp:TextBox>\r\n\t\t\t\t");
             
-            #line 105 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
+            #line 105 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
 
 				}
 			}
@@ -313,7 +313,7 @@ namespace OKHOSTING.Sql.ORM.UI.Web.Forms.Templates.Edit
             #line hidden
             this.Write("\t\t}\r\n\r\n\t\tprotected void cmdSave_Click(object sender, EventArgs e)\r\n\t\t{\r\n\t\t\t");
             
-            #line 113 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
+            #line 113 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
  
 			foreach (System.Reflection.MemberInfo member in dtype.AllMemberInfos)
 			{
@@ -327,21 +327,21 @@ namespace OKHOSTING.Sql.ORM.UI.Web.Forms.Templates.Edit
             #line hidden
             this.Write("\t\t\t\t\tInstance.");
             
-            #line 121 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
+            #line 121 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(member.Name));
             
             #line default
             #line hidden
             this.Write(" = Serializer.ToInstance(");
             
-            #line 121 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
+            #line 121 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(member.Name));
             
             #line default
             #line hidden
             this.Write(".SelectedValue);\r\n\t\t\t\t");
             
-            #line 122 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
+            #line 122 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
 
 				}
 				else if(returnType.IsEnum)
@@ -352,14 +352,14 @@ namespace OKHOSTING.Sql.ORM.UI.Web.Forms.Templates.Edit
             #line hidden
             this.Write("\t\t\t\t\t<asp:DropDownList runat=\"server\" id=\"ctr");
             
-            #line 127 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
+            #line 127 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(member.Name));
             
             #line default
             #line hidden
             this.Write("\"></asp:DropDownList>\r\n\t\t\t\t");
             
-            #line 128 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
+            #line 128 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
 
 				}
 				else if(returnType == typeof(bool))
@@ -370,21 +370,21 @@ namespace OKHOSTING.Sql.ORM.UI.Web.Forms.Templates.Edit
             #line hidden
             this.Write("\t\t\t\t\tInstance.");
             
-            #line 133 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
+            #line 133 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(member.Name));
             
             #line default
             #line hidden
             this.Write(" = ctr");
             
-            #line 133 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
+            #line 133 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(member.Name));
             
             #line default
             #line hidden
             this.Write(".Checked;\r\n\t\t\t\t");
             
-            #line 134 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
+            #line 134 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
 
 				}
 				else if(returnType == typeof(DateTime))
@@ -395,17 +395,17 @@ namespace OKHOSTING.Sql.ORM.UI.Web.Forms.Templates.Edit
             #line hidden
             this.Write("\t\t\t\t\t<asp:TextBox TextMode=\"DateTime\" runat=\"server\" ID=\"ctr");
             
-            #line 139 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
+            #line 139 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(member.Name));
             
             #line default
             #line hidden
             this.Write("\"></asp:TextBox>\r\n\t\t\t\t");
             
-            #line 140 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
+            #line 140 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
 
 				}
-				else if(OKHOSTING.Core.Extensions.TypeExtensions.IsNumeric(returnType))
+				else if(OKHOSTING.Core.TypeExtensions.IsNumeric(returnType))
 				{
 				
             
@@ -413,14 +413,14 @@ namespace OKHOSTING.Sql.ORM.UI.Web.Forms.Templates.Edit
             #line hidden
             this.Write("\t\t\t\t\t<asp:TextBox TextMode=\"Number\" runat=\"server\" ID=\"ctr");
             
-            #line 145 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
+            #line 145 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(member.Name));
             
             #line default
             #line hidden
             this.Write("\"></asp:TextBox>\r\n\t\t\t\t");
             
-            #line 146 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
+            #line 146 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
 
 				}
 				else if(returnType == typeof(string))
@@ -431,21 +431,21 @@ namespace OKHOSTING.Sql.ORM.UI.Web.Forms.Templates.Edit
             #line hidden
             this.Write("\t\t\t\t\tInstance.");
             
-            #line 151 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
+            #line 151 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(member.Name));
             
             #line default
             #line hidden
             this.Write(" = ctr");
             
-            #line 151 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
+            #line 151 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(member.Name));
             
             #line default
             #line hidden
             this.Write(".Text;\r\n\t\t\t\t");
             
-            #line 152 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
+            #line 152 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
 
 				}
 				else
@@ -456,21 +456,21 @@ namespace OKHOSTING.Sql.ORM.UI.Web.Forms.Templates.Edit
             #line hidden
             this.Write("\t\t\t\t\tInstance.");
             
-            #line 157 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
+            #line 157 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(member.Name));
             
             #line default
             #line hidden
             this.Write(" = ctr");
             
-            #line 157 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
+            #line 157 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(member.Name));
             
             #line default
             #line hidden
             this.Write(".Text;\r\n\t\t\t\t");
             
-            #line 158 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
+            #line 158 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
 
 				}
 			}
@@ -482,14 +482,14 @@ namespace OKHOSTING.Sql.ORM.UI.Web.Forms.Templates.Edit
             return this.GenerationEnvironment.ToString();
         }
         
-        #line 1 "C:\Desarrollo\OKHOSTING.Sql\src\OKHOSTING.Sql.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
+        #line 1 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Forms\Templates\Edit\aspx_cs.tt"
 
-private global::OKHOSTING.Sql.ORM.DataType _dtypeField;
+private global::OKHOSTING.ORM.DataType _dtypeField;
 
 /// <summary>
 /// Access the dtype parameter of the template.
 /// </summary>
-private global::OKHOSTING.Sql.ORM.DataType dtype
+private global::OKHOSTING.ORM.DataType dtype
 {
     get
     {
@@ -508,7 +508,7 @@ public virtual void Initialize()
 bool dtypeValueAcquired = false;
 if (this.Session.ContainsKey("dtype"))
 {
-    this._dtypeField = ((global::OKHOSTING.Sql.ORM.DataType)(this.Session["dtype"]));
+    this._dtypeField = ((global::OKHOSTING.ORM.DataType)(this.Session["dtype"]));
     dtypeValueAcquired = true;
 }
 if ((dtypeValueAcquired == false))
@@ -516,7 +516,7 @@ if ((dtypeValueAcquired == false))
     object data = global::System.Runtime.Remoting.Messaging.CallContext.LogicalGetData("dtype");
     if ((data != null))
     {
-        this._dtypeField = ((global::OKHOSTING.Sql.ORM.DataType)(data));
+        this._dtypeField = ((global::OKHOSTING.ORM.DataType)(data));
     }
 }
 

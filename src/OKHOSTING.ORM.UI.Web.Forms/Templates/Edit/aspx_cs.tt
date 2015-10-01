@@ -1,17 +1,17 @@
 ﻿﻿<#@ template language="C#" #>
 <#@ assembly name="System.Core" #>
 <#@ assembly name="$(ProjectDir)/bin/debug/OKHOSTING.Core.dll" #>
-<#@ assembly name="$(ProjectDir)/bin/debug/OKHOSTING.Sql.ORM.dll" #>
+<#@ assembly name="$(ProjectDir)/bin/debug/OKHOSTING.ORM.dll" #>
 <#@ import namespace="System" #>
-<#@ import namespace="OKHOSTING.Sql.ORM" #>
-<#@ import namespace="OKHOSTING.Core.Data" #>
-<#@ import namespace="OKHOSTING.Core.Data.Validation" #>
-<#@ parameter name="dtype" type="OKHOSTING.Sql.ORM.DataType" #> 
+<#@ import namespace="OKHOSTING.ORM" #>
+<#@ import namespace="OKHOSTING.Data" #>
+<#@ import namespace="OKHOSTING.Data.Validation" #>
+<#@ parameter name="dtype" type="OKHOSTING.ORM.DataType" #> 
 using System;
-using OKHOSTING.Sql.ORM;
+using OKHOSTING.ORM;
 using <#= dtype.InnerType.Namespace #>;
 
-namespace OKHOSTING.Sql.ORM.UI.Web.Forms.Private.<#= dtype.InnerType.Name #>
+namespace OKHOSTING.ORM.UI.Web.Forms.Private.<#= dtype.InnerType.Name #>
 {
 	protected <#= dtype.InnerType.Name #> Instance;
 
@@ -86,7 +86,7 @@ namespace OKHOSTING.Sql.ORM.UI.Web.Forms.Private.<#= dtype.InnerType.Name #>
 					ctr<#= member.Name  #>.Text = Instance.<#= member.Name #>.ToString("dd-MM-yyyy hh:mm");
 				<#
 				}
-				else if (OKHOSTING.Core.Extensions.TypeExtensions.IsNumeric(returnType))
+				else if (OKHOSTING.Core.TypeExtensions.IsNumeric(returnType))
 				{
 				#>
 					ctr<#= member.Name  #>.Text = Instance.<#= member.Name #>.ToString();
@@ -139,7 +139,7 @@ namespace OKHOSTING.Sql.ORM.UI.Web.Forms.Private.<#= dtype.InnerType.Name #>
 					<asp:TextBox TextMode="DateTime" runat="server" ID="ctr<#= member.Name  #>"></asp:TextBox>
 				<#
 				}
-				else if(OKHOSTING.Core.Extensions.TypeExtensions.IsNumeric(returnType))
+				else if(OKHOSTING.Core.TypeExtensions.IsNumeric(returnType))
 				{
 				#>
 					<asp:TextBox TextMode="Number" runat="server" ID="ctr<#= member.Name  #>"></asp:TextBox>
