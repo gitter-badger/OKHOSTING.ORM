@@ -32,7 +32,10 @@ namespace OKHOSTING.ORM
 		/// </summary>
 		public void Insert()
 		{
-			DataBase.Default.Insert(this);
+            using (var db = DataBase.CreateDataBase())
+            {
+                db.Insert(this);
+            }
 		}
 
 		/// <summary>
@@ -40,7 +43,10 @@ namespace OKHOSTING.ORM
 		/// </summary>
 		public void Update()
 		{
-			DataBase.Default.Update(this);
+            using (var db = DataBase.CreateDataBase())
+            {
+                db.Update(this);
+            }
 		}
 
 		/// <summary>
@@ -48,7 +54,10 @@ namespace OKHOSTING.ORM
 		/// </summary>
 		public void Delete()
 		{
-			DataBase.Default.Delete(this);
+            using (var db = DataBase.CreateDataBase())
+            {
+                db.Delete(this);
+            }
 		}
 
 		/// <summary>
@@ -57,12 +66,15 @@ namespace OKHOSTING.ORM
 		/// <returns>True if the current DataObject was found in the DataBase, false otherwise</returns>
 		public bool Select()
 		{
-			return DataBase.Default.Select(this);
+            using (var db = DataBase.CreateDataBase())
+            {
+                return db.Select(this);
+            }
 		}
 
 		public bool IsSaved()
 		{
-			return DataBase.Default.IsSaved(this);
+			return DataBase.IsSaved(this);
 		}
 
 
@@ -73,7 +85,10 @@ namespace OKHOSTING.ORM
 		/// <returns>Number of loaded objects</returns>
 		public int LoadCollection<TType>(System.Linq.Expressions.Expression<Func<TType, object>> memberExpression) where TType : PersistentClass<TKey>
 		{
-			return DataBase.Default.LoadCollection<TType>((TType) this, memberExpression);
+            using (var db = DataBase.CreateDataBase())
+            {
+                return db.LoadCollection<TType>((TType) this, memberExpression);
+            }
 		}
 
 		#endregion

@@ -11,7 +11,7 @@ using OKHOSTING.Sql.Schema;
 
 namespace OKHOSTING.ORM
 {
-    public class DataBase : IOrmDataBase
+    public class DataBase : IOrmDataBase, IDisposable
     {
         protected readonly Dictionary<Type, object> Tables = new Dictionary<Type, object>();
 
@@ -157,7 +157,7 @@ namespace OKHOSTING.ORM
                 return null;
             }
 
-            args.Result = PrivateSelect(select);
+            args.Result = SelectPrivate(select);
             OnAfterOperation(args);
 
             return (IEnumerable<object>) args.Result;
@@ -166,7 +166,7 @@ namespace OKHOSTING.ORM
         /// <summary>
         /// Private method for select operations, that simplifies event management in the public method
         /// </summary>
-        private IEnumerable<object> PrivateSelect(Select select)
+        private IEnumerable<object> SelectPrivate(Select select)
         {
             Command sql = SqlGenerator.Select(Parse(select));
 
@@ -192,7 +192,7 @@ namespace OKHOSTING.ORM
                 return null;
             }
 
-            args.Result = PrivateSearchInherited(select);
+            args.Result = SearchInheritedPrivate(select);
             OnAfterOperation(args);
 
             return (IEnumerable<object>) args.Result;
@@ -201,7 +201,7 @@ namespace OKHOSTING.ORM
         /// <summary>
         /// Private method for search operations, that simplifies event management in the public method
         /// </summary>
-        private IEnumerable<object> PrivateSearchInherited(Select select)
+        private IEnumerable<object> SearchInheritedPrivate(Select select)
         {
             Command command = new Command();
             List<Tuple<DataType, Select>> selects = new List<Tuple<DataType, Select>>();
@@ -249,24 +249,6 @@ namespace OKHOSTING.ORM
         #endregion
 
         #region Instance & generic operations
-
-        public bool IsSaved<T>(T instance)
-		{
-			DataType dtype = instance.GetType();
-			
-			//see if all primery key members has values
-			foreach (var pk in dtype.PrimaryKey)
-			{
-				var value = pk.Member.GetValue(instance);
-
-				if (!RequiredValidator.HasValue(value) || (Core.TypeExtensions.IsNumeric(pk.Member.ReturnType) && System.Convert.ToInt64(value) == 0))
-				{
-					return false;
-				}
-			}
-
-			return true;
-		}
 
 		/// <summary>
 		/// Inserts the object if it's not saved (does not have a primary key), otherwise it updates it
@@ -1115,12 +1097,7 @@ namespace OKHOSTING.ORM
 
 		#endregion
 
-		#region Protected & static
-
-		/// <summary>
-		/// A default database that will be used from any places and that should be initialized at the very beginning of the app
-		/// </summary>
-		public static DataBase Default { get; set; }
+		#region Tools
 
 		protected Filters.FilterBase GetPrimaryKeyFilter<T>(DataType dtype, T instance)
 		{
@@ -1178,6 +1155,11 @@ namespace OKHOSTING.ORM
 			}
 		}
 
+        public void Dispose()
+        {
+            NativeDataBase.Dispose();
+        }
+
         #endregion
 
         #region Events
@@ -1220,42 +1202,64 @@ namespace OKHOSTING.ORM
         /// <summary>
         /// Delegate used for the database creation. 
         /// </summary>
-        public delegate DataBase CreateDataBaseEventHandler();
+        public delegate DataBase SetupDataBaseEventHandler();
 
         /// <summary>
         /// Subscribe to this event to create the actual database that will be used in your apps, system-wide. Should only have 1 subscriber. If it has more it will return the last subscriber's result
         /// </summary>
-        public static event CreateDataBaseEventHandler CreateDataBase;
+        public static event SetupDataBaseEventHandler Setup;
 
         /// <summary>
         /// Allows you (or plugins) to perform adittional configurations on newly created databases
         /// </summary>
-        public delegate void DataBaseCreatedEventHandler(DataBase dataBase);
+        public delegate void SettingUpDataBaseEventHandler(DataBase dataBase);
 
         /// <summary>
         /// Subscribe to this event to create the actual database that will be used in your projects. Allow for "plugins" to subscribe to dabase events and affect system wide behaviour
         /// </summary>
-        public static event DataBaseCreatedEventHandler DataBaseCreated;
+        public static event SettingUpDataBaseEventHandler SettingUp;
 
         /// <summary>
         /// Will create a ready to use database. 
         /// You should subscribeto Create and (optionally) Created events to return a fully configured database. Then just call this method from everywhere else.
         /// </summary>
-        public static DataBase Create()
+        public static DataBase CreateDataBase()
         {
-            if (DataBase.CreateDataBase == null)
+            if (DataBase.Setup == null)
             {
-                throw new NullReferenceException("DataBase.Create event has not subsrcibed method to actually create a configured DataBase. Subscribe to this event and create your own instance.");
+                throw new NullReferenceException("DataBase.Setup event has not subsrcibed method to actually create a configured DataBase. Subscribe to this event and create your own instance.");
             }
 
-            DataBase db = DataBase.CreateDataBase();
+            DataBase db = DataBase.Setup();
 
-            if (DataBase.DataBaseCreated != null)
+            if (DataBase.SettingUp != null)
             {
-                DataBase.DataBaseCreated(db);
+                DataBase.SettingUp(db);
             }
 
             return db;
+        }
+
+        #endregion
+
+        #region Static methods
+
+        public static bool IsSaved<T>(T instance)
+        {
+            DataType dtype = instance.GetType();
+
+            //see if all primery key members has values
+            foreach (var pk in dtype.PrimaryKey)
+            {
+                var value = pk.Member.GetValue(instance);
+
+                if (!RequiredValidator.HasValue(value) || (Core.TypeExtensions.IsNumeric(pk.Member.ReturnType) && System.Convert.ToInt64(value) == 0))
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         #endregion
