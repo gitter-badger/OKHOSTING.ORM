@@ -295,15 +295,24 @@ namespace OKHOSTING.ORM
 		{
 			var genericDataMemberType = typeof(DataMember<>).MakeGenericType(InnerType);
 
-            ConstructorInfo constructor = genericDataMemberType.GetTypeInfo().DeclaredConstructors.Where(c => c.GetParameters().Length == 0).Single();
+			ConstructorInfo constructor = genericDataMemberType.GetTypeInfo().DeclaredConstructors.Where(c => c.GetParameters().Length == 0).Single();
 			DataMember genericDataMember = (DataMember) constructor.Invoke(null);
-            genericDataMember.Member = new MemberExpression(InnerType, member);
+			genericDataMember.Member = new MemberExpression(InnerType, member);
 
-            DataMembers.Add(genericDataMember);
+			if (column == null)
+			{
+				genericDataMember.CreateColumn();
+			}
+			else
+			{
+				genericDataMember.Column = column;
+			}
+
+			DataMembers.Add(genericDataMember);
 
 			return genericDataMember;
 		}
-
+		
 		/// <summary>
 		/// Returns a string representation of this TypeMapping
 		/// </summary>
@@ -663,10 +672,10 @@ namespace OKHOSTING.ORM
 		/// </summary>
 		public static IEnumerable<System.Reflection.MemberInfo> GetMapableMembers(Type type)
 		{
-            foreach (PropertyInfo memberInfo in type.GetTypeInfo().DeclaredProperties)
-            {
-                //ignore readonly properties and fields, except for collections
-                if (!memberInfo.CanWrite || !memberInfo.CanRead || MemberExpression.IsReadOnly(memberInfo) || MemberExpression.IsCollection(memberInfo))
+			foreach (PropertyInfo memberInfo in type.GetTypeInfo().DeclaredProperties)
+			{
+				//ignore readonly properties and fields, except for collections
+				if (!memberInfo.CanWrite || !memberInfo.CanRead || MemberExpression.IsReadOnly(memberInfo) || MemberExpression.IsCollection(memberInfo))
 				{
 					continue;
 				}
@@ -674,20 +683,20 @@ namespace OKHOSTING.ORM
 				yield return memberInfo;
 			}
 
-            foreach (FieldInfo memberInfo in type.GetTypeInfo().DeclaredFields)
-            {
-                //ignore readonly properties and fields, except for collections
-                if (MemberExpression.IsReadOnly(memberInfo) && !MemberExpression.IsCollection(memberInfo))
-                {
-                    continue;
-                }
+			foreach (FieldInfo memberInfo in type.GetTypeInfo().DeclaredFields)
+			{
+				//ignore readonly properties and fields, except for collections
+				if (MemberExpression.IsReadOnly(memberInfo) && !MemberExpression.IsCollection(memberInfo))
+				{
+					continue;
+				}
 
-                yield return memberInfo;
-            }
-        }
+				yield return memberInfo;
+			}
+		}
 
-        #endregion
-    }
+		#endregion
+	}
 
 	/// <summary>
 	/// A Type that is mapped to a database Table

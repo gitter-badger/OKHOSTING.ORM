@@ -11,7 +11,7 @@ namespace OKHOSTING.ORM.Operations
 	/// A select SQL query
 	/// </summary>
 	public class Select : Operation
-    {
+	{
 		public SelectLimit Limit { get; set; }
 		public readonly List<SelectMember> Members = new List<SelectMember>();
 		public readonly List<SelectJoin> Joins = new List<SelectJoin>();
@@ -223,7 +223,7 @@ namespace OKHOSTING.ORM.Operations
 	{
 		public Select()
 		{
-            DataType = typeof(T);
+			DataType = typeof(T);
 		}
 
 		public void AddMembers(params System.Linq.Expressions.Expression<Func<T, object>>[] memberExpressions)

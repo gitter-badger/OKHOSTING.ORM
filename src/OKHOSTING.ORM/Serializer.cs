@@ -196,7 +196,7 @@ namespace OKHOSTING.ORM
 			if (dmembers == null)
 			{
 				dmembers = dtype.AllDataMembers;
-            }
+			}
 
 			//deserialize values
 			foreach (DataMember dmember in dmembers)

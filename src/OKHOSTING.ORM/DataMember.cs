@@ -171,7 +171,7 @@ namespace OKHOSTING.ORM
 
 			Type genericDataTypeType = typeof(DataMember<>).MakeGenericType(memberExpression.DataType.InnerType);
 
-            ConstructorInfo constructor = genericDataTypeType.GetTypeInfo().DeclaredConstructors.Where(c => c.GetParameters().Length == 0).Single();
+			ConstructorInfo constructor = genericDataTypeType.GetTypeInfo().DeclaredConstructors.Where(c => c.GetParameters().Length == 0).Single();
 
 			DataMember<T> genericMember = (DataMember<T>) constructor.Invoke(null);
 			genericMember.Column = memberExpression.Column;

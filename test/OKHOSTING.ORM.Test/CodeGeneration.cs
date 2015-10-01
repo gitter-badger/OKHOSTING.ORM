@@ -5,14 +5,14 @@ using System.Collections.Generic;
 
 namespace OKHOSTING.ORM.Tests
 {
-    [TestClass]
-    public class CodeGeneration
+	[TestClass]
+	public class CodeGeneration
 	{
-        public class MyTestClass
-        {
-        }
+		public class MyTestClass
+		{
+		}
 
-        [TestMethod]
+		[TestMethod]
 		public void GenerateWebForms()
 		{
 			Type[] types = new Type[] { typeof(Person), typeof(Employee), typeof(Customer), typeof(CustomerContact), typeof(Address), typeof(Country) };

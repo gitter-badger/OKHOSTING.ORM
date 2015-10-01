@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace OKHOSTING.ORM.Operations
 {
 	public class Update : Operation
-    {
+	{
 		public Update()
 		{
 		}
@@ -33,7 +33,7 @@ namespace OKHOSTING.ORM.Operations
 
 		public Update()
 		{
-            DataType = typeof(T);
+			DataType = typeof(T);
 		}
 	}
 }

@@ -17,13 +17,13 @@ namespace OKHOSTING.ORM.UI.Web.Forms.Templates
 				if (!Directory.Exists(directoryPath))
 				{
 					Directory.CreateDirectory(directoryPath);
-                }
+				}
 				
 				//Delete
 				var deleteAspx = new Delete.aspx();
 				deleteAspx.Session = session;
 				deleteAspx.Initialize();
-                File.WriteAllText(Path.Combine(directoryPath, "Delete.aspx"), deleteAspx.TransformText());
+				File.WriteAllText(Path.Combine(directoryPath, "Delete.aspx"), deleteAspx.TransformText());
 
 				var deleteAspxCs = new Delete.aspx_cs();
 				deleteAspxCs.Session = session;
@@ -82,15 +82,15 @@ namespace OKHOSTING.ORM.UI.Web.Forms.Templates
 				listAspxDesignerCs.Session = session;
 				listAspxDesignerCs.Initialize();
 				File.WriteAllText(Path.Combine(directoryPath, "List.aspx.designer.cs"), listAspxDesignerCs.TransformText());
-            }
+			}
 
-            //Navigation
-            session["dtypes"] = dtypes;
+			//Navigation
+			session["dtypes"] = dtypes;
 
-            var navigation = new Navigation();
-            navigation.Session = session;
-            navigation.Initialize();
-            File.WriteAllText(Path.Combine(outputDirectory, "Navigation.aspx"), navigation.TransformText());
-        }
-    }
+			var navigation = new Navigation();
+			navigation.Session = session;
+			navigation.Initialize();
+			File.WriteAllText(Path.Combine(outputDirectory, "Navigation.aspx"), navigation.TransformText());
+		}
+	}
 }

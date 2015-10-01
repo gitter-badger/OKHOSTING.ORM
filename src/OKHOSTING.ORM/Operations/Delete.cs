@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace OKHOSTING.ORM.Operations
 {
 	public class Delete : Operation
-    {
+	{
 		public readonly List<Filters.FilterBase> Where = new List<Filters.FilterBase>();
 	}
 
@@ -15,7 +15,7 @@ namespace OKHOSTING.ORM.Operations
 	{
 		public Delete()
 		{
-            DataType = typeof(T);
+			DataType = typeof(T);
 		}
 	}
 }
