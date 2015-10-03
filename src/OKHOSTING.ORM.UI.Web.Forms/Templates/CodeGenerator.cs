@@ -90,7 +90,7 @@ namespace OKHOSTING.ORM.UI.Web.Forms.Templates
 			var navigation = new Navigation();
 			navigation.Session = session;
 			navigation.Initialize();
-			File.WriteAllText(Path.Combine(outputDirectory, "Navigation.aspx"), navigation.TransformText());
+			//File.WriteAllText(Path.Combine(outputDirectory, "Navigation.aspx"), navigation.TransformText());
 		}
 	}
 }

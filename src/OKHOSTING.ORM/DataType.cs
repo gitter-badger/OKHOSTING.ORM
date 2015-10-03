@@ -17,6 +17,10 @@ namespace OKHOSTING.ORM
 		{
 		}
 
+		public DataType(Type innerType) : this(innerType, null)
+		{
+		}
+
 		public DataType(Type innerType, Table table)
 		{
 			if (innerType == null)
@@ -34,10 +38,6 @@ namespace OKHOSTING.ORM
 			{
 				Table = table;
 			}
-		}
-
-		public DataType(Type innerType): this(innerType, null)
-		{
 		}
 
 		#region Properties
@@ -155,14 +155,14 @@ namespace OKHOSTING.ORM
 			{
 				foreach (DataType parent in BaseDataTypes)
 				{
-					foreach (var member in parent.MemberInfos)
+					foreach (var member in GetMapableMembers(parent.InnerType))
 					{
 						//Do not duplicate the primary key by omitting base classes primary keys
 						if (DataMember.IsPrimaryKey(member) && parent != this)
 						{
 							continue;
 						}
-
+						
 						yield return member;
 					}
 				}
@@ -675,7 +675,7 @@ namespace OKHOSTING.ORM
 			foreach (PropertyInfo memberInfo in type.GetTypeInfo().DeclaredProperties)
 			{
 				//ignore readonly properties and fields, except for collections
-				if (!memberInfo.CanWrite || !memberInfo.CanRead || MemberExpression.IsReadOnly(memberInfo) || MemberExpression.IsCollection(memberInfo))
+				if (memberInfo.SetMethod == null || !memberInfo.SetMethod.IsPublic || !memberInfo.CanWrite || !memberInfo.CanRead || MemberExpression.IsReadOnly(memberInfo) || MemberExpression.IsCollection(memberInfo))
 				{
 					continue;
 				}
@@ -686,7 +686,7 @@ namespace OKHOSTING.ORM
 			foreach (FieldInfo memberInfo in type.GetTypeInfo().DeclaredFields)
 			{
 				//ignore readonly properties and fields, except for collections
-				if (MemberExpression.IsReadOnly(memberInfo) && !MemberExpression.IsCollection(memberInfo))
+				if (!memberInfo.IsPublic || MemberExpression.IsReadOnly(memberInfo) || MemberExpression.IsCollection(memberInfo))
 				{
 					continue;
 				}

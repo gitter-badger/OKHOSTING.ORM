@@ -17,7 +17,7 @@ namespace OKHOSTING.ORM.UI.Web.Forms.Private.<#= dtype.InnerType.Name #>
 		
 		protected void Page_Load(object sender, EventArgs e)
 		{
-			DataType dtype = Converter.ToDataType(Request[¨dtype"]);
+			DataType dtype = Converter.ToDataType(Request["dtype"]);
 			grdList.DataSource = DataBase.Default.Select(dtype);
 		}
 	}
