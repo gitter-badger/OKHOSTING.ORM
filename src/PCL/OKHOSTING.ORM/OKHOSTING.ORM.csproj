@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{976FFEB3-E99D-4B0B-9735-98D2BB311986}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OKHOSTING.ORM</RootNamespace>
+    <AssemblyName>OKHOSTING.ORM</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile>Profile259</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .NET Framework is automatically included -->
+    <ProjectReference Include="..\..\..\..\OKHOSTING.Core\src\PCL\OKHOSTING.Core\OKHOSTING.Core.csproj">
+      <Project>{3F4502FA-51EA-4CB9-8E50-46F828D240A1}</Project>
+      <Name>OKHOSTING.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\OKHOSTING.Core\src\PCL\OKHOSTING.Cryptography\OKHOSTING.Cryptography.csproj">
+      <Project>{AAF2E2CE-9141-4690-A5E8-873CB66ECC52}</Project>
+      <Name>OKHOSTING.Cryptography</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\OKHOSTING.Core\src\PCL\OKHOSTING.Data\OKHOSTING.Data.csproj">
+      <Project>{5BA0CBAC-63E5-4E01-AECA-67AE3B63503B}</Project>
+      <Name>OKHOSTING.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\OKHOSTING.Sql\src\PCL\OKHOSTING.Sql\OKHOSTING.Sql.csproj">
+      <Project>{AFC2147B-EAD8-439B-8CA6-D1BF308064B3}</Project>
+      <Name>OKHOSTING.Sql</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Operations\OperationEventArgs.cs" />
+    <Compile Include="Conversions\ConverterBase.cs" />
+    <Compile Include="Conversions\DataMemberConverter.cs" />
+    <Compile Include="Conversions\DataTypeConverter.cs" />
+    <Compile Include="Conversions\EncryptBinary.cs" />
+    <Compile Include="Conversions\EncryptString.cs" />
+    <Compile Include="Conversions\IConverter.cs" />
+    <Compile Include="Conversions\Json.cs" />
+    <Compile Include="Conversions\ListConverter.cs" />
+    <Compile Include="Conversions\Lowercase.cs" />
+    <Compile Include="Conversions\Trim.cs" />
+    <Compile Include="Conversions\TypeConverter.cs" />
+    <Compile Include="Conversions\Uppercase.cs" />
+    <Compile Include="DataBase.cs" />
+    <Compile Include="DataMember.cs" />
+    <Compile Include="DataType.cs" />
+    <Compile Include="Filters\AndFilter.cs" />
+    <Compile Include="Filters\CompareFilter.cs" />
+    <Compile Include="Filters\CustomFilter.cs" />
+    <Compile Include="Filters\FilterBase.cs" />
+    <Compile Include="Filters\FilterEventArgs.cs" />
+    <Compile Include="Filters\FilterEventHandler.cs" />
+    <Compile Include="Filters\InFilter.cs" />
+    <Compile Include="Filters\LikeFilter.cs" />
+    <Compile Include="Filters\LogicalOperatorFilter.cs" />
+    <Compile Include="Filters\MemberCompareFilter.cs" />
+    <Compile Include="Filters\MemberFilter.cs" />
+    <Compile Include="Filters\OrFilter.cs" />
+    <Compile Include="Filters\RangeFilter.cs" />
+    <Compile Include="Filters\ValueCompareFilter.cs" />
+    <Compile Include="MultipleKeyTable.cs" />
+    <Compile Include="Operations\Delete.cs" />
+    <Compile Include="Operations\Insert.cs" />
+    <Compile Include="Operations\Operation.cs" />
+    <Compile Include="Operations\OrderBy.cs" />
+    <Compile Include="Operations\Select.cs" />
+    <Compile Include="Operations\SelectAggregate.cs" />
+    <Compile Include="Operations\SelectAggregateFunction.cs" />
+    <Compile Include="Operations\SelectAggregateMember.cs" />
+    <Compile Include="Operations\SelectJoin.cs" />
+    <Compile Include="Operations\SelectJoinType.cs" />
+    <Compile Include="Operations\SelectLimit.cs" />
+    <Compile Include="Operations\SelectMember.cs" />
+    <Compile Include="Operations\Update.cs" />
+    <Compile Include="PersistentClass.cs" />
+    <Compile Include="PersistentProxy.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Serializer.cs" />
+    <Compile Include="Table.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

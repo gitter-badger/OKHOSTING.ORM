@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -91,14 +91,13 @@
       <Project>{afc2147b-ead8-439b-8ca6-d1bf308064b3}</Project>
       <Name>OKHOSTING.Sql</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\OKHOSTING.ORM.UI.Web.Forms\OKHOSTING.ORM.UI.Web.Forms.csproj">
-      <Project>{5163d46c-6a38-47cf-b068-c31a95596444}</Project>
-      <Name>OKHOSTING.ORM.UI.Web.Forms</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\OKHOSTING.ORM\OKHOSTING.ORM.csproj">
+    <ProjectReference Include="..\..\src\PCL\OKHOSTING.ORM\OKHOSTING.ORM.csproj">
       <Project>{976ffeb3-e99d-4b0b-9735-98d2bb311986}</Project>
       <Name>OKHOSTING.ORM</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
