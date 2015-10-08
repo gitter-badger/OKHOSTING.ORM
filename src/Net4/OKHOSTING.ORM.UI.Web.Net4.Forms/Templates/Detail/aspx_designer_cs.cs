@@ -16,7 +16,7 @@ namespace OKHOSTING.ORM.UI.Web.Net4.Forms.Templates.Detail
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Detail\aspx_designer_cs.tt"
+    #line 1 "C:\Desarrollo\OKHOSTING.ORM\src\Net4\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Detail\aspx_designer_cs.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "14.0.0.0")]
     public partial class aspx_designer_cs : aspx_designer_csBase
     {
@@ -28,14 +28,14 @@ namespace OKHOSTING.ORM.UI.Web.Net4.Forms.Templates.Detail
         {
             this.Write(" \r\nnamespace OKHOSTING.ORM.UI.Web.Forms.Private.");
             
-            #line 7 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Detail\aspx_designer_cs.tt"
+            #line 7 "C:\Desarrollo\OKHOSTING.ORM\src\Net4\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Detail\aspx_designer_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dtype.InnerType.Name));
             
             #line default
             #line hidden
             this.Write("\r\n\t\r\n\tpublic partial class Detail {\r\n\t\t");
             
-            #line 10 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Detail\aspx_designer_cs.tt"
+            #line 10 "C:\Desarrollo\OKHOSTING.ORM\src\Net4\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Detail\aspx_designer_cs.tt"
  
 		foreach(var member in dtype.AllMemberInfos)
 		{
@@ -45,14 +45,14 @@ namespace OKHOSTING.ORM.UI.Web.Net4.Forms.Templates.Detail
             #line hidden
             this.Write("\t\t\tprotected global::System.Web.UI.WebControls.Label lbl");
             
-            #line 14 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Detail\aspx_designer_cs.tt"
+            #line 14 "C:\Desarrollo\OKHOSTING.ORM\src\Net4\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Detail\aspx_designer_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(member.Name));
             
             #line default
             #line hidden
             this.Write(";\r\n\t\t");
             
-            #line 15 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Detail\aspx_designer_cs.tt"
+            #line 15 "C:\Desarrollo\OKHOSTING.ORM\src\Net4\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Detail\aspx_designer_cs.tt"
 
 		} 
 		
@@ -63,7 +63,7 @@ namespace OKHOSTING.ORM.UI.Web.Net4.Forms.Templates.Detail
             return this.GenerationEnvironment.ToString();
         }
         
-        #line 1 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Detail\aspx_designer_cs.tt"
+        #line 1 "C:\Desarrollo\OKHOSTING.ORM\src\Net4\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Detail\aspx_designer_cs.tt"
 
 private global::OKHOSTING.ORM.DataType _dtypeField;
 

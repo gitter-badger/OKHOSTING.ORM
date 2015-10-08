@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 
-namespace OKHOSTING.ORM.UI.Web.Forms.Templates
+namespace OKHOSTING.ORM.UI.Web.Net4.Forms.Templates
 {
 	public static class CodeGenerator
 	{
@@ -87,9 +87,9 @@ namespace OKHOSTING.ORM.UI.Web.Forms.Templates
 			//Navigation
 			session["dtypes"] = dtypes;
 
-			var navigation = new Navigation();
-			navigation.Session = session;
-			navigation.Initialize();
+			//var navigation = new Navigation();
+			//navigation.Session = session;
+			//navigation.Initialize();
 			//File.WriteAllText(Path.Combine(outputDirectory, "Navigation.aspx"), navigation.TransformText());
 		}
 	}

@@ -17,7 +17,7 @@ namespace OKHOSTING.ORM.UI.Web.Net4.Forms.Templates.Edit
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Edit\aspx.tt"
+    #line 1 "C:\Desarrollo\OKHOSTING.ORM\src\Net4\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Edit\aspx.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "14.0.0.0")]
     public partial class aspx : aspxBase
     {
@@ -30,14 +30,14 @@ namespace OKHOSTING.ORM.UI.Web.Net4.Forms.Templates.Edit
             this.Write(" \r\n<%@ Page Title=\"\" Language=\"C#\" MasterPageFile=\"~/Private/PrivateGeneral.maste" +
                     "r\" AutoEventWireup=\"true\" CodeBehind=\"Edit.aspx.cs\" Inherits=\"");
             
-            #line 9 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Edit\aspx.tt"
+            #line 9 "C:\Desarrollo\OKHOSTING.ORM\src\Net4\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Edit\aspx.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dtype.InnerType.Namespace));
             
             #line default
             #line hidden
             this.Write(".UI.WebForms.");
             
-            #line 9 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Edit\aspx.tt"
+            #line 9 "C:\Desarrollo\OKHOSTING.ORM\src\Net4\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Edit\aspx.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dtype.InnerType.Name));
             
             #line default
@@ -46,14 +46,14 @@ namespace OKHOSTING.ORM.UI.Web.Net4.Forms.Templates.Edit
                     "\r\n</asp:Content>\r\n<asp:Content ID=\"Content2\" ContentPlaceHolderID=\"ContentPlaceH" +
                     "older1\" runat=\"server\">\r\n\t\r\n\t<h1>Edit ");
             
-            #line 14 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Edit\aspx.tt"
+            #line 14 "C:\Desarrollo\OKHOSTING.ORM\src\Net4\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Edit\aspx.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dtype.InnerType.Name));
             
             #line default
             #line hidden
             this.Write("</h1>\r\n\r\n\t<table>\r\n\t\t");
             
-            #line 17 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Edit\aspx.tt"
+            #line 17 "C:\Desarrollo\OKHOSTING.ORM\src\Net4\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Edit\aspx.tt"
  
 		foreach (System.Reflection.MemberInfo member in dtype.AllMemberInfos)
 		{
@@ -63,14 +63,14 @@ namespace OKHOSTING.ORM.UI.Web.Net4.Forms.Templates.Edit
             #line hidden
             this.Write("\t\t\t<tr>\r\n\t\t\t\t<td>\r\n\t\t\t\t\t");
             
-            #line 23 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Edit\aspx.tt"
+            #line 23 "C:\Desarrollo\OKHOSTING.ORM\src\Net4\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Edit\aspx.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(RequiredValidator.IsRequired(member)? "<b>" + member.Name + "</b>" : member.Name));
             
             #line default
             #line hidden
             this.Write(":\r\n\t\t\t\t</td>\r\n\t\t\t\t<td>\r\n\t\t\t\t\t");
             
-            #line 26 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Edit\aspx.tt"
+            #line 26 "C:\Desarrollo\OKHOSTING.ORM\src\Net4\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Edit\aspx.tt"
  
 					Type returnType = MemberExpression.GetReturnType(member);
 
@@ -82,14 +82,14 @@ namespace OKHOSTING.ORM.UI.Web.Net4.Forms.Templates.Edit
             #line hidden
             this.Write("\t\t\t\t\t\t<asp:DropDownList runat=\"server\" id=\"ctr");
             
-            #line 32 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Edit\aspx.tt"
+            #line 32 "C:\Desarrollo\OKHOSTING.ORM\src\Net4\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Edit\aspx.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(member.Name));
             
             #line default
             #line hidden
             this.Write("\"></asp:DropDownList>\r\n\t\t\t\t\t");
             
-            #line 33 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Edit\aspx.tt"
+            #line 33 "C:\Desarrollo\OKHOSTING.ORM\src\Net4\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Edit\aspx.tt"
 
 					}
 					else if(returnType.IsEnum)
@@ -100,14 +100,14 @@ namespace OKHOSTING.ORM.UI.Web.Net4.Forms.Templates.Edit
             #line hidden
             this.Write("\t\t\t\t\t\t<asp:DropDownList runat=\"server\" id=\"ctr");
             
-            #line 38 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Edit\aspx.tt"
+            #line 38 "C:\Desarrollo\OKHOSTING.ORM\src\Net4\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Edit\aspx.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(member.Name));
             
             #line default
             #line hidden
             this.Write("\"></asp:DropDownList>\r\n\t\t\t\t\t");
             
-            #line 39 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Edit\aspx.tt"
+            #line 39 "C:\Desarrollo\OKHOSTING.ORM\src\Net4\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Edit\aspx.tt"
 
 					}
 					else if (returnType == typeof(bool))
@@ -118,14 +118,14 @@ namespace OKHOSTING.ORM.UI.Web.Net4.Forms.Templates.Edit
             #line hidden
             this.Write("\t\t\t\t\t\t<asp:CheckBox runat=\"server\" id=\"ctr");
             
-            #line 44 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Edit\aspx.tt"
+            #line 44 "C:\Desarrollo\OKHOSTING.ORM\src\Net4\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Edit\aspx.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(member.Name));
             
             #line default
             #line hidden
             this.Write("\"></asp:CheckBox>\r\n\t\t\t\t\t");
             
-            #line 45 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Edit\aspx.tt"
+            #line 45 "C:\Desarrollo\OKHOSTING.ORM\src\Net4\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Edit\aspx.tt"
 
 					}
 					else if(returnType == typeof(DateTime))
@@ -136,14 +136,14 @@ namespace OKHOSTING.ORM.UI.Web.Net4.Forms.Templates.Edit
             #line hidden
             this.Write("\t\t\t\t\t\t<asp:TextBox TextMode=\"DateTime\" runat=\"server\" ID=\"ctr");
             
-            #line 50 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Edit\aspx.tt"
+            #line 50 "C:\Desarrollo\OKHOSTING.ORM\src\Net4\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Edit\aspx.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(member.Name));
             
             #line default
             #line hidden
             this.Write("\"></asp:TextBox>\r\n\t\t\t\t\t");
             
-            #line 51 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Edit\aspx.tt"
+            #line 51 "C:\Desarrollo\OKHOSTING.ORM\src\Net4\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Edit\aspx.tt"
 
 					}
 					else if(OKHOSTING.Core.TypeExtensions.IsNumeric(returnType))
@@ -154,14 +154,14 @@ namespace OKHOSTING.ORM.UI.Web.Net4.Forms.Templates.Edit
             #line hidden
             this.Write("\t\t\t\t\t\t<asp:TextBox TextMode=\"Number\" runat=\"server\" ID=\"ctr");
             
-            #line 56 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Edit\aspx.tt"
+            #line 56 "C:\Desarrollo\OKHOSTING.ORM\src\Net4\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Edit\aspx.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(member.Name));
             
             #line default
             #line hidden
             this.Write("\"></asp:TextBox>\r\n\t\t\t\t\t");
             
-            #line 57 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Edit\aspx.tt"
+            #line 57 "C:\Desarrollo\OKHOSTING.ORM\src\Net4\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Edit\aspx.tt"
 
 					}
 					else if(returnType == typeof(string))
@@ -173,21 +173,21 @@ namespace OKHOSTING.ORM.UI.Web.Net4.Forms.Templates.Edit
             #line hidden
             this.Write("\t\t\t\t\t\t<asp:TextBox runat=\"server\" ID=\"ctr");
             
-            #line 63 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Edit\aspx.tt"
+            #line 63 "C:\Desarrollo\OKHOSTING.ORM\src\Net4\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Edit\aspx.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(member.Name));
             
             #line default
             #line hidden
             this.Write("\" ");
             
-            #line 63 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Edit\aspx.tt"
+            #line 63 "C:\Desarrollo\OKHOSTING.ORM\src\Net4\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Edit\aspx.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(maxLenght.HasValue? "MaxLenght=" + maxLenght : string.Empty));
             
             #line default
             #line hidden
             this.Write("></asp:TextBox>\r\n\t\t\t\t\t");
             
-            #line 64 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Edit\aspx.tt"
+            #line 64 "C:\Desarrollo\OKHOSTING.ORM\src\Net4\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Edit\aspx.tt"
 
 					}
 					else
@@ -198,14 +198,14 @@ namespace OKHOSTING.ORM.UI.Web.Net4.Forms.Templates.Edit
             #line hidden
             this.Write("\t\t\t\t\t\t<asp:TextBox runat=\"server\" ID=\"ctr");
             
-            #line 69 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Edit\aspx.tt"
+            #line 69 "C:\Desarrollo\OKHOSTING.ORM\src\Net4\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Edit\aspx.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(member.Name));
             
             #line default
             #line hidden
             this.Write("\"></asp:TextBox>\r\n\t\t\t\t\t");
             
-            #line 70 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Edit\aspx.tt"
+            #line 70 "C:\Desarrollo\OKHOSTING.ORM\src\Net4\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Edit\aspx.tt"
 
 					}
 
@@ -217,14 +217,14 @@ namespace OKHOSTING.ORM.UI.Web.Net4.Forms.Templates.Edit
             #line hidden
             this.Write("\t\t\t\t\t\t<asp:RequiredFieldValidator runat=\"server\" ControlToValidate=\"ctr");
             
-            #line 76 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Edit\aspx.tt"
+            #line 76 "C:\Desarrollo\OKHOSTING.ORM\src\Net4\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Edit\aspx.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(member.Name));
             
             #line default
             #line hidden
             this.Write("\" Display=\"Static\" Text=\"Required\" />\r\n\t\t\t\t\t");
             
-            #line 77 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Edit\aspx.tt"
+            #line 77 "C:\Desarrollo\OKHOSTING.ORM\src\Net4\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Edit\aspx.tt"
  
 					}
 					
@@ -233,7 +233,7 @@ namespace OKHOSTING.ORM.UI.Web.Net4.Forms.Templates.Edit
             #line hidden
             this.Write("\t\t\t\t</td>\r\n\t\t\t</tr>\r\n\t\t");
             
-            #line 82 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Edit\aspx.tt"
+            #line 82 "C:\Desarrollo\OKHOSTING.ORM\src\Net4\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Edit\aspx.tt"
 
 		} 
 		
@@ -247,7 +247,7 @@ namespace OKHOSTING.ORM.UI.Web.Net4.Forms.Templates.Edit
             return this.GenerationEnvironment.ToString();
         }
         
-        #line 1 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Edit\aspx.tt"
+        #line 1 "C:\Desarrollo\OKHOSTING.ORM\src\Net4\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Edit\aspx.tt"
 
 private global::OKHOSTING.ORM.DataType _dtypeField;
 

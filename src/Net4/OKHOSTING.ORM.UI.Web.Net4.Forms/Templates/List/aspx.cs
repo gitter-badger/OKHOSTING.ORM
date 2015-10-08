@@ -16,7 +16,7 @@ namespace OKHOSTING.ORM.UI.Web.Net4.Forms.Templates.List
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\List\aspx.tt"
+    #line 1 "C:\Desarrollo\OKHOSTING.ORM\src\Net4\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\List\aspx.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "14.0.0.0")]
     public partial class aspx : aspxBase
     {
@@ -29,14 +29,14 @@ namespace OKHOSTING.ORM.UI.Web.Net4.Forms.Templates.List
             this.Write(" \r\n<%@ Page Title=\"\" Language=\"C#\" MasterPageFile=\"~/Private/PrivateGeneral.maste" +
                     "r\" AutoEventWireup=\"true\" CodeBehind=\"List.aspx.cs\" Inherits=\"");
             
-            #line 7 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\List\aspx.tt"
+            #line 7 "C:\Desarrollo\OKHOSTING.ORM\src\Net4\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\List\aspx.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dtype.InnerType.Namespace));
             
             #line default
             #line hidden
             this.Write(".UI.WebForms.");
             
-            #line 7 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\List\aspx.tt"
+            #line 7 "C:\Desarrollo\OKHOSTING.ORM\src\Net4\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\List\aspx.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dtype.InnerType.Name));
             
             #line default
@@ -45,7 +45,7 @@ namespace OKHOSTING.ORM.UI.Web.Net4.Forms.Templates.List
                     "\r\n</asp:Content>\r\n<asp:Content ID=\"Content2\" ContentPlaceHolderID=\"ContentPlaceH" +
                     "older1\" runat=\"server\">\r\n\t\r\n\t<h1>List of ");
             
-            #line 12 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\List\aspx.tt"
+            #line 12 "C:\Desarrollo\OKHOSTING.ORM\src\Net4\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\List\aspx.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dtype.InnerType.Name));
             
             #line default
@@ -53,7 +53,7 @@ namespace OKHOSTING.ORM.UI.Web.Net4.Forms.Templates.List
             this.Write("</h1>\r\n\t\r\n\t<asp:GridView ID=\"grdList\" runat=\"server\" AutoGenerateColumns=\"false\">" +
                     "\r\n\t\t<Columns>\r\n\t\t\t\r\n\t\t\t");
             
-            #line 17 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\List\aspx.tt"
+            #line 17 "C:\Desarrollo\OKHOSTING.ORM\src\Net4\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\List\aspx.tt"
  
 			foreach (System.Reflection.MemberInfo member in dtype.AllMemberInfos)
 			{
@@ -63,21 +63,21 @@ namespace OKHOSTING.ORM.UI.Web.Net4.Forms.Templates.List
             #line hidden
             this.Write("\t\t\t\t<asp:BoundField DataField=\"");
             
-            #line 21 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\List\aspx.tt"
+            #line 21 "C:\Desarrollo\OKHOSTING.ORM\src\Net4\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\List\aspx.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(member.Name));
             
             #line default
             #line hidden
             this.Write("\" HeaderText=\"");
             
-            #line 21 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\List\aspx.tt"
+            #line 21 "C:\Desarrollo\OKHOSTING.ORM\src\Net4\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\List\aspx.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(member.Name));
             
             #line default
             #line hidden
             this.Write("\" />\r\n\t\t\t");
             
-            #line 22 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\List\aspx.tt"
+            #line 22 "C:\Desarrollo\OKHOSTING.ORM\src\Net4\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\List\aspx.tt"
  
 			}
 			
@@ -86,27 +86,27 @@ namespace OKHOSTING.ORM.UI.Web.Net4.Forms.Templates.List
             #line hidden
             this.Write("\t\t\t<asp:TemplateField>\r\n\t\t\t\t<ItemTemplate>\r\n\t\t\t\t\t<a href=\"Detail.aspx?");
             
-            #line 27 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\List\aspx.tt"
+            #line 27 "C:\Desarrollo\OKHOSTING.ORM\src\Net4\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\List\aspx.tt"
  foreach(DataMember pk in dtype.PrimaryKey) {
             
             #line default
             #line hidden
             
-            #line 27 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\List\aspx.tt"
+            #line 27 "C:\Desarrollo\OKHOSTING.ORM\src\Net4\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\List\aspx.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(pk));
             
             #line default
             #line hidden
             this.Write("=<%# DataBinder.Eval(Container.DataItem, \"");
             
-            #line 27 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\List\aspx.tt"
+            #line 27 "C:\Desarrollo\OKHOSTING.ORM\src\Net4\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\List\aspx.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(pk));
             
             #line default
             #line hidden
             this.Write("\") %>&");
             
-            #line 27 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\List\aspx.tt"
+            #line 27 "C:\Desarrollo\OKHOSTING.ORM\src\Net4\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\List\aspx.tt"
 }
             
             #line default
@@ -114,27 +114,27 @@ namespace OKHOSTING.ORM.UI.Web.Net4.Forms.Templates.List
             this.Write("\">Details</a>\r\n\t\t\t\t</ItemTemplate>\r\n\t\t\t</asp:TemplateField>\r\n\t\t\t<asp:TemplateFiel" +
                     "d>\r\n\t\t\t\t<ItemTemplate>\r\n\t\t\t\t\t<a href=\"Delete.aspx?");
             
-            #line 32 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\List\aspx.tt"
+            #line 32 "C:\Desarrollo\OKHOSTING.ORM\src\Net4\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\List\aspx.tt"
  foreach(DataMember pk in dtype.PrimaryKey) {
             
             #line default
             #line hidden
             
-            #line 32 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\List\aspx.tt"
+            #line 32 "C:\Desarrollo\OKHOSTING.ORM\src\Net4\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\List\aspx.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(pk));
             
             #line default
             #line hidden
             this.Write("=<%# DataBinder.Eval(Container.DataItem, \"");
             
-            #line 32 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\List\aspx.tt"
+            #line 32 "C:\Desarrollo\OKHOSTING.ORM\src\Net4\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\List\aspx.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(pk));
             
             #line default
             #line hidden
             this.Write("\") %>&");
             
-            #line 32 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\List\aspx.tt"
+            #line 32 "C:\Desarrollo\OKHOSTING.ORM\src\Net4\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\List\aspx.tt"
 }
             
             #line default
@@ -144,7 +144,7 @@ namespace OKHOSTING.ORM.UI.Web.Net4.Forms.Templates.List
             return this.GenerationEnvironment.ToString();
         }
         
-        #line 1 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\List\aspx.tt"
+        #line 1 "C:\Desarrollo\OKHOSTING.ORM\src\Net4\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\List\aspx.tt"
 
 private global::OKHOSTING.ORM.DataType _dtypeField;
 

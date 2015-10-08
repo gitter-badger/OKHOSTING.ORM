@@ -7,16 +7,18 @@
 //     the code is regenerated.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-namespace OKHOSTING.ORM.UI.Web.Net4.Forms.Templates
+namespace OKHOSTING.ORM.UI.Web.Net4.Forms
 {
+    using System.Linq;
+    using System.Text;
+    using System.Collections.Generic;
     using System;
-    using OKHOSTING.ORM;
     
     /// <summary>
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Navigation.tt"
+    #line 1 "C:\Desarrollo\OKHOSTING.ORM\src\Net4\OKHOSTING.ORM.UI.Web.Net4.Forms\Navigation.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "14.0.0.0")]
     public partial class Navigation : NavigationBase
     {
@@ -26,83 +28,8 @@ namespace OKHOSTING.ORM.UI.Web.Net4.Forms.Templates
         /// </summary>
         public virtual string TransformText()
         {
-            this.Write(" \r\n<%@ Control Language=\"C#\" AutoEventWireup=\"true\" CodeBehind=\"Navigation.ascx.c" +
-                    "s\" Inherits=\"OKHOSTING.ORM.UI.Web.Forms.Private.UserControls.Navigation\" %>\r\n<na" +
-                    "v class=\"navbar-default\">\r\n\t<ul>\r\n\t\t<li>\r\n\t\t\tData\r\n\t\t\t<ul>\r\n\t\t\t\t");
-            
-            #line 13 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Navigation.tt"
-
-				foreach (var dtype in dtypes)
-				{
-            
-            #line default
-            #line hidden
-            this.Write("\t\t\t\t\t<li>\r\n\t\t\t\t\t\t<a href=\"/Private/");
-            
-            #line 17 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Navigation.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(dtype.InnerType.Name));
-            
-            #line default
-            #line hidden
-            this.Write(">/List.aspx\">Person</a>\r\n\t\t\t\t\t</li>\r\n\t\t\t\t");
-            
-            #line 19 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Navigation.tt"
-}
-            
-            #line default
-            #line hidden
-            this.Write("\t\t\t</ul>\r\n\t\t</li>\r\n\t\t<li>\r\n\t\t\tUser\r\n\t\t\t<ul>\r\n\t\t\t\t<li>\r\n\t\t\t\t\t<a href=\"/Private/Use" +
-                    "r/ChangePassword.aspx\">Change password</a>\r\n\t\t\t\t</li>\r\n\t\t\t\t<li>\r\n\t\t\t\t\t<a href=\"/" +
-                    "Private/Logout.aspx\">Logout</a>\r\n\t\t\t\t</li>\r\n\t\t\t</ul>\r\n\t\t</li>\r\n\t</ul>\r\n</nav>\r\n");
             return this.GenerationEnvironment.ToString();
         }
-        
-        #line 1 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Navigation.tt"
-
-private global::System.Collections.Generic.IEnumerable<OKHOSTING.ORM.DataType> _dtypesField;
-
-/// <summary>
-/// Access the dtypes parameter of the template.
-/// </summary>
-private global::System.Collections.Generic.IEnumerable<OKHOSTING.ORM.DataType> dtypes
-{
-    get
-    {
-        return this._dtypesField;
-    }
-}
-
-
-/// <summary>
-/// Initialize the template
-/// </summary>
-public virtual void Initialize()
-{
-    if ((this.Errors.HasErrors == false))
-    {
-bool dtypesValueAcquired = false;
-if (this.Session.ContainsKey("dtypes"))
-{
-    this._dtypesField = ((global::System.Collections.Generic.IEnumerable<OKHOSTING.ORM.DataType>)(this.Session["dtypes"]));
-    dtypesValueAcquired = true;
-}
-if ((dtypesValueAcquired == false))
-{
-    object data = global::System.Runtime.Remoting.Messaging.CallContext.LogicalGetData("dtypes");
-    if ((data != null))
-    {
-        this._dtypesField = ((global::System.Collections.Generic.IEnumerable<OKHOSTING.ORM.DataType>)(data));
-    }
-}
-
-
-    }
-}
-
-
-        
-        #line default
-        #line hidden
     }
     
     #line default

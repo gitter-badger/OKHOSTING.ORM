@@ -16,7 +16,7 @@ namespace OKHOSTING.ORM.UI.Web.Net4.Forms.Templates.List
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\List\aspx_cs.tt"
+    #line 1 "C:\Desarrollo\OKHOSTING.ORM\src\Net4\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\List\aspx_cs.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "14.0.0.0")]
     public partial class aspx_cs : aspx_csBase
     {
@@ -28,21 +28,21 @@ namespace OKHOSTING.ORM.UI.Web.Net4.Forms.Templates.List
         {
             this.Write(" \r\nusing System;\r\nusing OKHOSTING.ORM;\r\nusing ");
             
-            #line 9 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\List\aspx_cs.tt"
+            #line 9 "C:\Desarrollo\OKHOSTING.ORM\src\Net4\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\List\aspx_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dtype.InnerType.Namespace));
             
             #line default
             #line hidden
             this.Write(";\r\n\r\nnamespace OKHOSTING.ORM.UI.Web.Forms.Private.");
             
-            #line 11 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\List\aspx_cs.tt"
+            #line 11 "C:\Desarrollo\OKHOSTING.ORM\src\Net4\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\List\aspx_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dtype.InnerType.Name));
             
             #line default
             #line hidden
             this.Write("\r\n{\r\n\tprotected ");
             
-            #line 13 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\List\aspx_cs.tt"
+            #line 13 "C:\Desarrollo\OKHOSTING.ORM\src\Net4\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\List\aspx_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dtype.InnerType.Name));
             
             #line default
@@ -62,7 +62,7 @@ namespace OKHOSTING.ORM.UI.Web.Net4.Forms.Templates.List
             return this.GenerationEnvironment.ToString();
         }
         
-        #line 1 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\List\aspx_cs.tt"
+        #line 1 "C:\Desarrollo\OKHOSTING.ORM\src\Net4\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\List\aspx_cs.tt"
 
 private global::OKHOSTING.ORM.DataType _dtypeField;
 

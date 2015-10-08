@@ -16,7 +16,7 @@ namespace OKHOSTING.ORM.UI.Web.Net4.Forms.Templates.Delete
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Delete\aspx.tt"
+    #line 1 "C:\Desarrollo\OKHOSTING.ORM\src\Net4\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Delete\aspx.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "14.0.0.0")]
     public partial class aspx : aspxBase
     {
@@ -29,14 +29,14 @@ namespace OKHOSTING.ORM.UI.Web.Net4.Forms.Templates.Delete
             this.Write(" \r\n<%@ Page Title=\"\" Language=\"C#\" MasterPageFile=\"~/Private/PrivateGeneral.maste" +
                     "r\" AutoEventWireup=\"true\" CodeBehind=\"Delete.aspx.cs\" Inherits=\"");
             
-            #line 7 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Delete\aspx.tt"
+            #line 7 "C:\Desarrollo\OKHOSTING.ORM\src\Net4\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Delete\aspx.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dtype.InnerType.Namespace));
             
             #line default
             #line hidden
             this.Write(".UI.WebForms.");
             
-            #line 7 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Delete\aspx.tt"
+            #line 7 "C:\Desarrollo\OKHOSTING.ORM\src\Net4\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Delete\aspx.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dtype.InnerType.Name));
             
             #line default
@@ -45,7 +45,7 @@ namespace OKHOSTING.ORM.UI.Web.Net4.Forms.Templates.Delete
                     "\">\r\n</asp:Content>\r\n<asp:Content ID=\"Content2\" ContentPlaceHolderID=\"ContentPlac" +
                     "eHolder1\" runat=\"server\">\r\n\t<h1>Delete ");
             
-            #line 11 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Delete\aspx.tt"
+            #line 11 "C:\Desarrollo\OKHOSTING.ORM\src\Net4\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Delete\aspx.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dtype.InnerType.Name));
             
             #line default
@@ -60,7 +60,7 @@ namespace OKHOSTING.ORM.UI.Web.Net4.Forms.Templates.Delete
             return this.GenerationEnvironment.ToString();
         }
         
-        #line 1 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Delete\aspx.tt"
+        #line 1 "C:\Desarrollo\OKHOSTING.ORM\src\Net4\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Delete\aspx.tt"
 
 private global::OKHOSTING.ORM.DataType _dtypeField;
 

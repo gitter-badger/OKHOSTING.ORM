@@ -16,7 +16,7 @@ namespace OKHOSTING.ORM.UI.Web.Net4.Forms.Templates.Delete
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Delete\aspx_designer_cs.tt"
+    #line 1 "C:\Desarrollo\OKHOSTING.ORM\src\Net4\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Delete\aspx_designer_cs.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "14.0.0.0")]
     public partial class aspx_designer_cs : aspx_designer_csBase
     {
@@ -28,7 +28,7 @@ namespace OKHOSTING.ORM.UI.Web.Net4.Forms.Templates.Delete
         {
             this.Write(" \r\nnamespace OKHOSTING.ORM.UI.Web.Forms.Private.");
             
-            #line 7 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Delete\aspx_designer_cs.tt"
+            #line 7 "C:\Desarrollo\OKHOSTING.ORM\src\Net4\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Delete\aspx_designer_cs.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dtype.InnerType.Name));
             
             #line default
@@ -60,7 +60,7 @@ namespace OKHOSTING.ORM.UI.Web.Net4.Forms.Templates.Delete
             return this.GenerationEnvironment.ToString();
         }
         
-        #line 1 "C:\Desarrollo\OKHOSTING.ORM\src\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Delete\aspx_designer_cs.tt"
+        #line 1 "C:\Desarrollo\OKHOSTING.ORM\src\Net4\OKHOSTING.ORM.UI.Web.Net4.Forms\Templates\Delete\aspx_designer_cs.tt"
 
 private global::OKHOSTING.ORM.DataType _dtypeField;
 
