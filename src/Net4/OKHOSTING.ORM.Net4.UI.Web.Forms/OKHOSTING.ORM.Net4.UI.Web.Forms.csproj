@@ -73,11 +73,6 @@
     <Compile Include="General.Master.designer.cs">
       <DependentUpon>General.Master</DependentUpon>
     </Compile>
-    <Compile Include="Navigation.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Navigation.tt</DependentUpon>
-    </Compile>
     <Compile Include="Templates\CodeGenerator.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -85,10 +80,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Navigation.tt">
-      <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>Navigation.cs</LastGenOutput>
-    </Content>
     <Content Include="Resources\css\custom.css" />
     <Content Include="Resources\css\bootstrap-theme.css" />
     <Content Include="Resources\css\bootstrap.css" />
