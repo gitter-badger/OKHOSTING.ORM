@@ -1,0 +1,96 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="$(ProjectDir)/bin/debug/OKHOSTING.Core.dll" #>
+<#@ assembly name="$(ProjectDir)/bin/debug/OKHOSTING.ORM.dll" #>
+<#@ import namespace="System" #>
+<#@ import namespace="OKHOSTING.ORM" #>
+<#@ import namespace="OKHOSTING.Data.Validation" #>
+<#@ parameter name="dtype" type="OKHOSTING.ORM.DataType" #> 
+<%@ Page Title="" Language="C#" MasterPageFile="~/Private/PrivateGeneral.master" AutoEventWireup="true" CodeBehind="Edit.aspx.cs" Inherits="<#= dtype.InnerType.Namespace #>.UI.WebForms.<#= dtype.InnerType.Name #>.Edit" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+	
+	<h1>Edit <#= dtype.InnerType.Name #></h1>
+
+	<table>
+		<# 
+		foreach (System.Reflection.MemberInfo member in dtype.AllMemberInfos)
+		{
+		#>
+			<tr>
+				<td>
+					<#= RequiredValidator.IsRequired(member)? "<b>" + member.Name + "</b>" : member.Name #>:
+				</td>
+				<td>
+					<# 
+					Type returnType = MemberExpression.GetReturnType(member);
+
+					if (dtype.IsForeignKey(member))
+					{
+					#>
+						<asp:DropDownList runat="server" id="ctr<#= member.Name #>"></asp:DropDownList>
+					<#
+					}
+					else if(returnType.IsEnum)
+					{
+					#>
+						<asp:DropDownList runat="server" id="ctr<#= member.Name #>"></asp:DropDownList>
+					<#
+					}
+					else if (returnType == typeof(bool))
+					{
+					#>
+						<asp:CheckBox runat="server" id="ctr<#= member.Name  #>"></asp:CheckBox>
+					<#
+					}
+					else if(returnType == typeof(DateTime))
+					{
+					#>
+						<asp:TextBox TextMode="DateTime" runat="server" ID="ctr<#= member.Name #>"></asp:TextBox>
+					<#
+					}
+					else if(OKHOSTING.Core.TypeExtensions.IsNumeric(returnType))
+					{
+					#>
+						<asp:TextBox TextMode="Number" runat="server" ID="ctr<#= member.Name #>"></asp:TextBox>
+					<#
+					}
+					else if(returnType == typeof(string))
+					{
+						uint? maxLenght = StringLengthValidator.GetMaxLenght(member);
+					#>
+						<asp:TextBox runat="server" ID="ctr<#= member.Name #>" <#= maxLenght.HasValue? "MaxLenght=" + maxLenght : string.Empty #>></asp:TextBox>
+					<#
+					}
+					else
+					{
+					#>
+						<asp:TextBox runat="server" ID="ctr<#= member.Name #>"></asp:TextBox>
+					<#
+					}
+
+					if(RequiredValidator.IsRequired(member))
+					{
+					#>
+						<asp:RequiredFieldValidator runat="server" ControlToValidate="ctr<#= member.Name #>" Display="Static" Text="Required" />
+					<# 
+					}
+					#>
+				</td>
+			</tr>
+		<#
+		} 
+		#>
+		<tr>
+			<td colspan="2">
+				<asp:Button runat="server" ID="cmdSave" Text="Save" OnClick="cmdSave_Click" />
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<a href="List.aspx">Cancel</a>
+			</td>
+		</tr>
+	</table>
+</asp:Content>

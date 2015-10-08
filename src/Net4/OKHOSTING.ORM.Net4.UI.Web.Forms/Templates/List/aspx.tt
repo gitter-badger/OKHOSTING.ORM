@@ -1,0 +1,37 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="$(ProjectDir)/bin/debug/OKHOSTING.ORM.dll" #>
+<#@ import namespace="System" #>
+<#@ import namespace="OKHOSTING.ORM" #>
+<#@ parameter name="dtype" type="OKHOSTING.ORM.DataType" #> 
+<%@ Page Title="" Language="C#" MasterPageFile="~/Private/PrivateGeneral.master" AutoEventWireup="true" CodeBehind="List.aspx.cs" Inherits="<#= dtype.InnerType.Namespace #>.UI.WebForms.<#= dtype.InnerType.Name #>.List" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+	
+	<h1>List of <#= dtype.InnerType.Name #></h1>
+	
+	<asp:GridView ID="grdList" runat="server" AutoGenerateColumns="false">
+		<Columns>
+			
+			<# 
+			foreach (System.Reflection.MemberInfo member in dtype.AllMemberInfos)
+			{
+			#>
+				<asp:BoundField DataField="<#= member.Name #>" HeaderText="<#= member.Name #>" />
+			<# 
+			}
+			#>
+			<asp:TemplateField>
+				<ItemTemplate>
+					<a href="Detail.aspx?<# foreach(DataMember pk in dtype.PrimaryKey) {#><#= pk #>=<%# DataBinder.Eval(Container.DataItem, "<#= pk #>") %>&<#}#>">Details</a>
+				</ItemTemplate>
+			</asp:TemplateField>
+			<asp:TemplateField>
+				<ItemTemplate>
+					<a href="Delete.aspx?<# foreach(DataMember pk in dtype.PrimaryKey) {#><#= pk #>=<%# DataBinder.Eval(Container.DataItem, "<#= pk #>") %>&<#}#>">Delete</a>
+				</ItemTemplate>
+			</asp:TemplateField>
+		</Columns>
+	</asp:GridView>
+</asp:Content>
