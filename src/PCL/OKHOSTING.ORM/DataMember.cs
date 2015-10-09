@@ -1,4 +1,5 @@
-﻿using OKHOSTING.Data.Validation;
+﻿using static OKHOSTING.Core.TypeExtensions;
+using OKHOSTING.Data.Validation;
 using OKHOSTING.Sql.Schema;
 using System;
 using System.Collections.Generic;
@@ -117,7 +118,7 @@ namespace OKHOSTING.ORM
 			return Member.Expression;
 		}
 
-		public static bool IsPrimaryKey(System.Reflection.MemberInfo memberInfo)
+		public static bool IsPrimaryKey(MemberInfo memberInfo)
 		{
 			return memberInfo.Name.ToString().ToLower() == "id" || memberInfo.CustomAttributes.Where(att => att.AttributeType.Name.ToLower().Contains("key")).Count() > 0;
 		}

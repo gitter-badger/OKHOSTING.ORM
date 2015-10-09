@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using OKHOSTING.Data.Validation;
 using OKHOSTING.Sql;
 using OKHOSTING.Sql.Schema;
+using static OKHOSTING.Core.TypeExtensions;
+using System.Reflection;
 
 namespace OKHOSTING.ORM
 {
@@ -127,7 +128,7 @@ namespace OKHOSTING.ORM
 		/// Returns the list of immediate members that are mapped to the database, including foreign keys.
 		/// This does not contains inherited members except for the primary key
 		/// </summary>
-		public IEnumerable<System.Reflection.MemberInfo> MemberInfos
+		public IEnumerable<MemberInfo> MemberInfos
 		{
 			get
 			{
@@ -149,7 +150,7 @@ namespace OKHOSTING.ORM
 		/// Returns the list of immediate members that are mapped to the database, including foreign keys.
 		/// This do contains all inherited members 
 		/// </summary>
-		public IEnumerable<System.Reflection.MemberInfo> AllMemberInfos
+		public IEnumerable<MemberInfo> AllMemberInfos
 		{
 			get
 			{
@@ -259,13 +260,13 @@ namespace OKHOSTING.ORM
 		/// Returns a list of members that are foreign keys of this datatype, across all DataTypes registered
 		/// </summary>
 		/// <returns></returns>
-		public IEnumerable<System.Reflection.MemberInfo> InboundForeingKeys
+		public IEnumerable<MemberInfo> InboundForeingKeys
 		{
 			get
 			{
 				foreach (DataType dtype in AllDataTypes)
 				{
-					foreach (System.Reflection.MemberInfo member in dtype.MemberInfos)
+					foreach (MemberInfo member in dtype.MemberInfos)
 					{
 						//Validating if the dataType has a Base Class
 						if (MemberExpression.GetReturnType(member).Equals(InnerType) && dtype.IsForeignKey(member))
@@ -324,7 +325,7 @@ namespace OKHOSTING.ORM
 		/// <summary>
 		/// Returns true if a member is properly mapped to be stored as a foreign key, with the primary key fully mapped
 		/// </summary>
-		public bool IsForeignKey(System.Reflection.MemberInfo member)
+		public bool IsForeignKey(MemberInfo member)
 		{
 			System.Type type = MemberExpression.GetReturnType(member);
 			
@@ -466,6 +467,23 @@ namespace OKHOSTING.ORM
 			return GetMap(type);
 		}
 
+		/// <summary>
+		/// Indicates if a type is a collection of items
+		/// </summary>
+		/// <remarks>
+		/// String and byte[] are not considered collections from the ORM point of view since they get stored as atomic values in a single column with no necessary serialization
+		/// </remarks>
+		public static bool IsCollection(Type type)
+		{
+			//ignore strings and byte array since they are not considered "Collections" from the ORM point of view
+			if (type.Equals(typeof(string)) && !type.Equals(typeof(byte[])))
+			{
+				return false;
+			}
+
+			return type.IsCollection();
+		}
+
 		public static bool IsMapped(Type type)
 		{
 			return AllDataTypes.Where(m => m.InnerType.Equals(type)).Count() > 0;
@@ -587,11 +605,17 @@ namespace OKHOSTING.ORM
 				}
 
 				//map non primary key members now
-				foreach (var memberInfo in GetMapableMembers(dtype.InnerType).Where(m => !DataMember.IsPrimaryKey(m) && !MemberExpression.IsCollection(m)))
+				foreach (var memberInfo in GetMapableMembers(dtype.InnerType).Where(m => !DataMember.IsPrimaryKey(m)))
 				{
 					Type returnType = MemberExpression.GetReturnType(memberInfo);
 
-					//its a persistent type, with it's own table, map primary keys
+					//is this a collection of a mapped type? if so, ignore since this must be a 1-1, 1-many or many-many relationship and must be mapped somewhere else
+					if (DataType.IsCollection(returnType) && IsMapped(returnType.GetCollectionItemType()))
+					{
+						continue;
+					}
+
+					//its a persistent type, with it's own table, map as a foreign key with one or more columns for the primary key
 					if (IsMapped(returnType))
 					{
 						//we asume this datatype is already mapped along with it's primery key
@@ -668,14 +692,23 @@ namespace OKHOSTING.ORM
 
 		/// <summary>
 		/// Returns a collection of members that are mapable, 
-		/// meaning they are fields or properties, public, non read-only, and non-static
+		/// meaning they are fields or properties, public, non read-only, and non-static. 
+        /// Does not include inherited members except for the primary keys, which should be mapped with every DataType.
+		/// Does include collection members.
 		/// </summary>
-		public static IEnumerable<System.Reflection.MemberInfo> GetMapableMembers(Type type)
+		public static IEnumerable<MemberInfo> GetMapableMembers(Type type)
 		{
-			foreach (PropertyInfo memberInfo in type.GetTypeInfo().DeclaredProperties)
+			//look for mappable properties
+			foreach (PropertyInfo memberInfo in type.GetAllMemberInfos().Where(m => m is PropertyInfo))
 			{
-				//ignore readonly properties and fields, except for collections
-				if (memberInfo.SetMethod == null || !memberInfo.SetMethod.IsPublic || !memberInfo.CanWrite || !memberInfo.CanRead || MemberExpression.IsReadOnly(memberInfo) || MemberExpression.IsCollection(memberInfo))
+				//ignore readonly properties and fields
+				if (memberInfo.SetMethod == null || !memberInfo.SetMethod.IsPublic || !memberInfo.CanWrite || !memberInfo.CanRead || MemberExpression.IsReadOnly(memberInfo) || MemberExpression.IsIndexer(memberInfo))
+				{
+					continue;
+				}
+
+				//only return an inherited member if it is a primary key
+				if (memberInfo.DeclaringType != type && !DataMember.IsPrimaryKey(memberInfo))
 				{
 					continue;
 				}
@@ -683,10 +716,17 @@ namespace OKHOSTING.ORM
 				yield return memberInfo;
 			}
 
-			foreach (FieldInfo memberInfo in type.GetTypeInfo().DeclaredFields)
+			//look for mappable fields
+			foreach (FieldInfo memberInfo in type.GetAllMemberInfos().Where(m => m is FieldInfo))
 			{
 				//ignore readonly properties and fields, except for collections
-				if (!memberInfo.IsPublic || MemberExpression.IsReadOnly(memberInfo) || MemberExpression.IsCollection(memberInfo))
+				if (!memberInfo.IsPublic || MemberExpression.IsReadOnly(memberInfo))
+				{
+					continue;
+				}
+
+				//only return an inherited member if it is a primary key
+				if (memberInfo.DeclaringType != type && !DataMember.IsPrimaryKey(memberInfo))
 				{
 					continue;
 				}
