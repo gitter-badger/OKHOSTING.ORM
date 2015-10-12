@@ -15,7 +15,7 @@ namespace OKHOSTING.ORM.Operations
 		/// <summary>
 		/// Aggregate function to use for calculate the column
 		/// </summary>
-		public OKHOSTING.Sql.Operations.SelectAggregateFunction AggregateFunction;
+		public SelectAggregateFunction AggregateFunction;
 
 		/// <summary>
 		/// Speficy if the DISTINCT modifier must be applied
@@ -28,8 +28,7 @@ namespace OKHOSTING.ORM.Operations
 		/// <param name="dataValue">
 		/// DataMember for build the field definition
 		/// </param>
-		public SelectAggregateMember(DataMember member)
-			: this(member, OKHOSTING.Sql.Operations.SelectAggregateFunction.None) 
+		public SelectAggregateMember(DataMember member): this(member, SelectAggregateFunction.None) 
 		{ 
 		}
 
@@ -42,7 +41,7 @@ namespace OKHOSTING.ORM.Operations
 		/// <param name="aggregateFunction">
 		/// Aggregate function to use for calculate the column
 		/// </param>
-		public SelectAggregateMember(DataMember member, OKHOSTING.Sql.Operations.SelectAggregateFunction aggregateFunction) : this(member, aggregateFunction, string.Empty) { }
+		public SelectAggregateMember(DataMember member, SelectAggregateFunction aggregateFunction) : this(member, aggregateFunction, string.Empty) { }
 
 		/// <summary>
 		/// Constructs the AggegateSelectField
@@ -56,7 +55,7 @@ namespace OKHOSTING.ORM.Operations
 		/// <param name="alias">
 		/// Alias name of the resulting field
 		/// </param>
-		public SelectAggregateMember(DataMember member, OKHOSTING.Sql.Operations.SelectAggregateFunction aggregateFunction, string alias) : this(member, aggregateFunction, alias, false) { }
+		public SelectAggregateMember(DataMember member, SelectAggregateFunction aggregateFunction, string alias) : this(member, aggregateFunction, alias, false) { }
 
 		/// <summary>
 		/// Constructs the AggegateSelectField
@@ -73,8 +72,7 @@ namespace OKHOSTING.ORM.Operations
 		/// <param name="alias">
 		/// Alias name of the resulting field
 		/// </param>
-		public SelectAggregateMember(DataMember member, OKHOSTING.Sql.Operations.SelectAggregateFunction aggregateFunction, string alias, bool distinct)
-			: base(member, alias)
+		public SelectAggregateMember(DataMember member, SelectAggregateFunction aggregateFunction, string alias, bool distinct): base(member, alias)
 		{
 			AggregateFunction = aggregateFunction;
 			Distinct = distinct;

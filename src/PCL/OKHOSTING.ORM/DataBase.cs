@@ -163,6 +163,41 @@ namespace OKHOSTING.ORM
 			return (IEnumerable<object>) args.Result;
 		}
 
+		public IEnumerable<object> SearchInherited(Select select)
+		{
+			OperationEventArgs args = new OperationEventArgs(select);
+			OnBeforeOperation(args);
+
+			if (args.Cancel)
+			{
+				return null;
+			}
+
+			args.Result = SearchInheritedPrivate(select);
+			OnAfterOperation(args);
+
+			return (IEnumerable<object>) args.Result;
+		}
+
+		public object SelectScalar(Select select)
+		{
+			OperationEventArgs args = new OperationEventArgs(select);
+			OnBeforeOperation(args);
+
+			if (args.Cancel)
+			{
+				return null;
+			}
+
+			Command sql = SqlGenerator.Select(Parse(select));
+			args.Result = NativeDataBase.GetScalar(sql);
+			OnAfterOperation(args);
+
+			return args.Result;
+		}
+
+		//private 
+
 		/// <summary>
 		/// Private method for select operations, that simplifies event management in the public method
 		/// </summary>
@@ -180,22 +215,6 @@ namespace OKHOSTING.ORM
 					yield return instance;
 				}
 			}
-		}
-
-		public IEnumerable<object> SearchInherited(Select select)
-		{
-			OperationEventArgs args = new OperationEventArgs(select);
-			OnBeforeOperation(args);
-
-			if (args.Cancel)
-			{
-				return null;
-			}
-
-			args.Result = SearchInheritedPrivate(select);
-			OnAfterOperation(args);
-
-			return (IEnumerable<object>) args.Result;
 		}
 
 		/// <summary>

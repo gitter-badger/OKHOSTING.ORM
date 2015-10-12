@@ -11,12 +11,12 @@ namespace OKHOSTING.ORM.Operations
 	public class SelectLimit
 	{
 		/// <summary>
-		/// Starting 0-basex index for the list you want to select
+		/// Starting 0-based index for the list you want to select
 		/// </summary>
 		public int From { get; set; }
 
 		/// <summary>
-		/// Finishing 0-basex index for the list you want to select
+		/// Finishing 0-based index for the list you want to select
 		/// </summary>
 		public int To { get; set; }
 

@@ -5,6 +5,10 @@ using OKHOSTING.ORM.Operations;
 
 namespace OKHOSTING.ORM
 {
+	/// <summary>
+	/// Allows to access multiple-primary-key ORM objects in a Dictionary way
+	/// </summary>
+	/// <typeparam name="TType">Type of object that will be stored</typeparam>
 	public class MultipleKeyTable<TType>: Table<object[], TType>
 	{
 		public override ICollection<object[]> Keys

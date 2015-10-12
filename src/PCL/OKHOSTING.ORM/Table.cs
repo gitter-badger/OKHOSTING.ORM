@@ -6,6 +6,11 @@ using OKHOSTING.ORM.Filters;
 
 namespace OKHOSTING.ORM
 {
+	/// <summary>
+	/// Allows to access ORM objects in a Dictionary way
+	/// </summary>
+	/// <typeparam name="TKey">Type of the primary key</typeparam>
+	/// <typeparam name="TType">Type of object that will be stored</typeparam>
 	public class Table<TKey, TType>: Data.DictionaryBase<TKey, TType>
 	{
 		public DataBase DataBase { get; set; }

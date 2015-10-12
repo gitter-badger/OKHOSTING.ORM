@@ -100,16 +100,17 @@ namespace OKHOSTING.ORM
 		{
 			get
 			{
+				//return primary key first
+				foreach (DataMember dmember in PrimaryKey)
+				{
+					yield return dmember;
+				}
+
+				//return the rest of the members now
 				foreach (DataType parent in BaseDataTypes)
 				{
-					foreach (DataMember dmember in parent.DataMembers)
+					foreach (DataMember dmember in parent.DataMembers.Where(dm => !dm.Column.IsPrimaryKey))
 					{
-						//Do not duplicate the primary key by omitting base classes primary keys
-						if (parent != this && dmember.Column.IsPrimaryKey)
-						{
-							continue;
-						}
-
 						yield return dmember;
 					}
 				}
