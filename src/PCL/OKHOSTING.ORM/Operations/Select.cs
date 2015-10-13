@@ -45,14 +45,14 @@ namespace OKHOSTING.ORM.Operations
 				DataMember dmember = parent[memberExpression];
 
 				//create join for child-parent relationship
-				SelectJoin join = Joins.Where(j => j.Type == parent && j.Alias == parent.InnerType.Name + "_base").SingleOrDefault();
+				SelectJoin join = Joins.Where(j => j.Type == parent && j.Alias == parent.Name + "_base").SingleOrDefault();
 
 				if (join == null)
 				{
 					join = new SelectJoin();
 					join.JoinType = SelectJoinType.Inner;
 					join.Type = parent;
-					join.Alias = parent.InnerType.Name + "_base";
+					join.Alias = parent.Name + "_base";
 
 					var childPK = DataType.PrimaryKey.ToList();
 					var joinPK = join.Type.PrimaryKey.ToList();
@@ -136,7 +136,7 @@ namespace OKHOSTING.ORM.Operations
 
 								if (isTheFirstOne && parent != DataType)
 								{
-									previousJoinAlias = parent.InnerType.Name + "_base";
+									previousJoinAlias = parent.Name + "_base";
 								}
 								else
 								{

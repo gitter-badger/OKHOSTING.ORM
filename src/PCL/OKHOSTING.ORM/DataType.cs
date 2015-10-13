@@ -370,7 +370,7 @@ namespace OKHOSTING.ORM
 		/// </summary>
 		public void CreateTable()
 		{
-			Table = new Table(InnerType.Name);
+			Table = new Table(Name);
 
 			foreach (DataMember dm in DataMembers)
 			{

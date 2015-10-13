@@ -93,7 +93,7 @@ namespace OKHOSTING.ORM
 			//null values
 			if (value == null) return null;
 
-			return value.InnerType.FullName;
+			return value.FullName;
 		}
 
 		/// <summary>

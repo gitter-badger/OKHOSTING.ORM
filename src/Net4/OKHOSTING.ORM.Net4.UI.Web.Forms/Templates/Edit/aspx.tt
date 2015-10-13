@@ -6,12 +6,12 @@
 <#@ import namespace="OKHOSTING.ORM" #>
 <#@ import namespace="OKHOSTING.Data.Validation" #>
 <#@ parameter name="dtype" type="OKHOSTING.ORM.DataType" #> 
-<%@ Page Title="" Language="C#" MasterPageFile="~/Private/PrivateGeneral.master" AutoEventWireup="true" CodeBehind="Edit.aspx.cs" Inherits="<#= dtype.InnerType.Namespace #>.UI.WebForms.<#= dtype.InnerType.Name #>.Edit" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Private/PrivateGeneral.master" AutoEventWireup="true" CodeBehind="Edit.aspx.cs" Inherits="<#= dtype.InnerType.Namespace #>.UI.WebForms.<#= dtype.Name #>.Edit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 	
-	<h1>Edit <#= dtype.InnerType.Name #></h1>
+	<h1>Edit <#= dtype.Name #></h1>
 
 	<table>
 		<# 

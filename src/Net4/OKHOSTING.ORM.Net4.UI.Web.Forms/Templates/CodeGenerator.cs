@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 
-namespace OKHOSTING.ORM.UI.Web.Net4.Forms.Templates
+namespace OKHOSTING.ORM.Net4.UI.Web.Forms.Templates
 {
 	public static class CodeGenerator
 	{
@@ -12,7 +12,7 @@ namespace OKHOSTING.ORM.UI.Web.Net4.Forms.Templates
 			foreach (DataType dtype in dtypes)
 			{
 				session["dtype"] = dtype;
-				string directoryPath = Path.Combine(outputDirectory, dtype.InnerType.Name);
+				string directoryPath = Path.Combine(outputDirectory, dtype.Name);
 
 				if (!Directory.Exists(directoryPath))
 				{

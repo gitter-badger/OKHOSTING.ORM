@@ -4,12 +4,12 @@
 <#@ import namespace="System" #>
 <#@ import namespace="OKHOSTING.ORM" #>
 <#@ parameter name="dtype" type="OKHOSTING.ORM.DataType" #> 
-<%@ Page Title="" Language="C#" MasterPageFile="~/Private/PrivateGeneral.master" AutoEventWireup="true" CodeBehind="Detail.aspx.cs" Inherits="<#= dtype.InnerType.Namespace #>.UI.WebForms.<#= dtype.InnerType.Name #>.Detail" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Private/PrivateGeneral.master" AutoEventWireup="true" CodeBehind="Detail.aspx.cs" Inherits="<#= dtype.InnerType.Namespace #>.UI.WebForms.<#= dtype.Name #>.Detail" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 	
-	<h1><#= dtype.InnerType.Name #>'s detail</h1>
+	<h1><#= dtype.Name #>'s detail</h1>
 
 	<table>
 		<# 

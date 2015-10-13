@@ -8,9 +8,9 @@ using System;
 using OKHOSTING.ORM;
 using <#= dtype.InnerType.Namespace #>;
 
-namespace OKHOSTING.ORM.UI.Web.Forms.Private.<#= dtype.InnerType.Name #>
+namespace OKHOSTING.ORM.UI.Web.Forms.Private.<#= dtype.Name #>
 {
-	protected <#= dtype.InnerType.Name #> Instance;
+	protected <#= dtype.Name #> Instance;
 
 	public partial class Delete : System.Web.UI.Page
 	{
@@ -21,7 +21,7 @@ namespace OKHOSTING.ORM.UI.Web.Forms.Private.<#= dtype.InnerType.Name #>
 
 		protected void cmdDelete_Click(object sender, EventArgs e)
 		{
-			Instance = new <#= dtype.InnerType.Name #>();
+			Instance = new <#= dtype.Name #>();
 			
 			<#
 			foreach(var dmember in dtype.PrimaryKey)

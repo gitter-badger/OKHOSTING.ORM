@@ -4,7 +4,7 @@
 <#@ import namespace="System" #>
 <#@ import namespace="OKHOSTING.ORM" #>
 <#@ parameter name="dtype" type="OKHOSTING.ORM.DataType" #> 
-namespace OKHOSTING.ORM.UI.Web.Forms.Private.<#= dtype.InnerType.Name #>
+namespace OKHOSTING.ORM.UI.Web.Forms.Private.<#= dtype.Name #>
 	
 	public partial class Detail {
 		<# 

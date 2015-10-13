@@ -8,9 +8,9 @@ using System;
 using OKHOSTING.ORM;
 using <#= dtype.InnerType.Namespace #>;
 
-namespace OKHOSTING.ORM.UI.Web.Forms.Private.<#= dtype.InnerType.Name #>
+namespace OKHOSTING.ORM.UI.Web.Forms.Private.<#= dtype.Name #>
 {
-	protected <#= dtype.InnerType.Name #> Instance;
+	protected <#= dtype.Name #> Instance;
 
 	public partial class List : System.Web.UI.Page
 	{

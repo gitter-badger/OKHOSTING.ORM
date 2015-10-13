@@ -206,10 +206,6 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Templates\Navigation.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Navigation2.cs</LastGenOutput>
-    </Content>
     <Content Include="Web.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
