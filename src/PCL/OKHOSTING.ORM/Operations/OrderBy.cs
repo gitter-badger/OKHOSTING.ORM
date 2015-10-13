@@ -30,14 +30,14 @@ namespace OKHOSTING.ORM.Operations
 		/// <summary>
 		/// Creates a new instance
 		/// </summary>
-		protected OrderBy(DataMember orderBy): this(orderBy, SortDirection.Ascending)
+		public OrderBy(DataMember orderBy): this(orderBy, SortDirection.Ascending)
 		{
 		}
 
 		/// <summary>
 		/// Creates a new instance
 		/// </summary>
-		protected OrderBy(DataMember member, SortDirection direction)
+		public OrderBy(DataMember member, SortDirection direction)
 		{
 			this.Member = member;
 			this.Direction = direction;

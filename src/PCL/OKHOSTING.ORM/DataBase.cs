@@ -27,8 +27,10 @@ namespace OKHOSTING.ORM
 
 		#region Properties
 
+		[RequiredValidator]
 		public Sql.DataBase NativeDataBase { get; set; }
 
+		[RequiredValidator]
 		public SqlGeneratorBase SqlGenerator { get; set; }
 
 		public Table<TKey, T> Table<TKey, T>()
