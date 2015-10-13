@@ -1015,7 +1015,7 @@ namespace OKHOSTING.ORM
 
 		protected Sql.Operations.SelectAggregateColumn Parse(SelectAggregateMember aggregateMember)
 		{
-			return new Sql.Operations.SelectAggregateColumn(aggregateMember.DataMember.Column, aggregateMember.AggregateFunction, aggregateMember.Alias, aggregateMember.Distinct);
+            return new Sql.Operations.SelectAggregateColumn(aggregateMember.DataMember.Column, Parse(aggregateMember.AggregateFunction), aggregateMember.Alias, aggregateMember.Distinct);
 		}
 
 		protected Sql.Operations.OrderBy Parse(OrderBy orderBy)
@@ -1074,6 +1074,11 @@ namespace OKHOSTING.ORM
 		protected Sql.Operations.SelectJoinType Parse(SelectJoinType joinType)
 		{
 			return (Sql.Operations.SelectJoinType) Enum.Parse(typeof(Sql.Operations.SelectJoinType), joinType.ToString());
+		}
+
+		protected Sql.Operations.SelectAggregateFunction Parse(SelectAggregateFunction joinType)
+		{
+			return (Sql.Operations.SelectAggregateFunction) Enum.Parse(typeof(Sql.Operations.SelectAggregateFunction), joinType.ToString());
 		}
 
 		protected Sql.Operations.Select Parse(Select select, Sql.Operations.Select native)

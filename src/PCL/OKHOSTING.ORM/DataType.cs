@@ -155,16 +155,17 @@ namespace OKHOSTING.ORM
 		{
 			get
 			{
+				//return primary key first
+				foreach (var member in MemberInfos.Where(dm => DataMember.IsPrimaryKey(dm)))
+				{
+					yield return member;
+				}
+
+				//return the rest of members now
 				foreach (DataType parent in BaseDataTypes)
 				{
-					foreach (var member in GetMapableMembers(parent.InnerType))
+					foreach (var member in parent.MemberInfos.Where(dm => !DataMember.IsPrimaryKey(dm)))
 					{
-						//Do not duplicate the primary key by omitting base classes primary keys
-						if (DataMember.IsPrimaryKey(member) && parent != this)
-						{
-							continue;
-						}
-						
 						yield return member;
 					}
 				}
