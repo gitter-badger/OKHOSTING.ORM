@@ -57,6 +57,22 @@ namespace OKHOSTING.ORM
 		/// </summary>
 		public Table Table { get; set; }
 
+		public string Name
+		{
+			get
+			{
+				return InnerType.GetFriendlyName();
+			}
+		}
+
+		public string FullName
+		{
+			get
+			{
+				return InnerType.Namespace + "." + InnerType.GetFriendlyName();
+			}
+		}
+
 		public DataType BaseDataType
 		{
 			get
@@ -321,7 +337,7 @@ namespace OKHOSTING.ORM
 		/// </summary>
 		public override string ToString()
 		{
-			return InnerType.FullName;
+			return FullName;
 		}
 
 		/// <summary>
