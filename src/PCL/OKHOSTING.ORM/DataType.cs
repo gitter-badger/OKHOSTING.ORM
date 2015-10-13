@@ -69,7 +69,7 @@ namespace OKHOSTING.ORM
 		{
 			get
 			{
-				return InnerType.Namespace + "." + InnerType.GetFriendlyName();
+				return InnerType.GetFriendlyFullName();
 			}
 		}
 
