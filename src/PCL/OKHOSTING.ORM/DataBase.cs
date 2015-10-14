@@ -987,7 +987,7 @@ namespace OKHOSTING.ORM
 			
 			if (select is SelectAggregate)
 			{
-				return Parse((SelectAggregate)select);
+				return Parse((SelectAggregate) select);
 			}
 
 			return Parse(select, new OKHOSTING.Sql.Operations.Select());
@@ -1000,7 +1000,7 @@ namespace OKHOSTING.ORM
 				return null;
 			}
 			
-			var native = (OKHOSTING.Sql.Operations.SelectAggregate)Parse(select, new OKHOSTING.Sql.Operations.SelectAggregate());
+			var native = (OKHOSTING.Sql.Operations.SelectAggregate) Parse(select, new OKHOSTING.Sql.Operations.SelectAggregate());
 
 			foreach (SelectAggregateMember agregateMember in select.AggregateMembers)
 			{

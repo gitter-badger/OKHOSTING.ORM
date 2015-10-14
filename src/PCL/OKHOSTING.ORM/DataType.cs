@@ -370,7 +370,7 @@ namespace OKHOSTING.ORM
 		/// </summary>
 		public void CreateTable()
 		{
-			Table = new Table(Name);
+			Table = new Table(FullName.Replace('.', '_').Replace('<', '_').Replace('>', '_'));
 
 			foreach (DataMember dm in DataMembers)
 			{
@@ -569,6 +569,7 @@ namespace OKHOSTING.ORM
 		{
 			//we will store here all types that are actually persistent
 			List<DataType> persistentTypes = new List<DataType>();
+			Random random = new Random();
 
 			//map primary keys first, so we allow to foreign keys and inheritance to be correctly mapped
 			foreach (Type type in types)
@@ -587,8 +588,7 @@ namespace OKHOSTING.ORM
 					continue;
 				}
 
-				Table table = new Table(type.Name);
-				DataType dtype = new DataType(type, table);
+				DataType dtype = new DataType(type);
 				AllDataTypes.Add(dtype);
 
 				foreach (var memberInfo in pk)
@@ -608,7 +608,7 @@ namespace OKHOSTING.ORM
 					ForeignKey foreignKey = new ForeignKey();
 					foreignKey.Table = dtype.Table;
 					foreignKey.RemoteTable = dtype.BaseDataType.Table;
-					foreignKey.Name = "FK_" + dtype.Table.Name + "_" + dtype.BaseDataType.Table.Name;
+					foreignKey.Name = "FK_" + dtype.Name + "_" + dtype.BaseDataType.Name + "_" + random.Next();
 
 					//we asume that primary keys on parent and child tables have the same number and order of related columns
 					for (int i = 0; i < dtype.PrimaryKey.Count(); i++)
@@ -642,7 +642,7 @@ namespace OKHOSTING.ORM
 						ForeignKey foreignKey = new ForeignKey();
 						foreignKey.Table = dtype.Table;
 						foreignKey.RemoteTable = returnDataType.Table;
-						foreignKey.Name = "FK_" + dtype.Table.Name + "_" + memberInfo.Name;
+						foreignKey.Name = "FK_" + dtype.Name + "_" + memberInfo.Name + "_" + random.Next();
 
 						foreach (DataMember pk in returnDataType.PrimaryKey.ToList())
 						{
@@ -841,7 +841,7 @@ namespace OKHOSTING.ORM
 			}
 
 			var genericDataTypeType = typeof(DataType<>).MakeGenericType(dtype.InnerType);
-			var constructor = genericDataTypeType.GetTypeInfo().DeclaredConstructors.Where(c => c.GetParameters().Length == 0).Single();
+			var constructor = genericDataTypeType.GetTypeInfo().DeclaredConstructors.Where(c => c.GetParameters().Length == 1).Single();
 
 			DataType genericDataType = (DataType) constructor.Invoke(new object[] { dtype.Table });
 

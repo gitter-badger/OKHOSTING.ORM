@@ -163,20 +163,21 @@ namespace OKHOSTING.ORM
 		{
 		}
 
-		public static DataMember<T> ToGeneric(DataMember memberExpression)
+		public static DataMember<T> ToGeneric(DataMember dmember)
 		{
-			if (memberExpression is DataMember<T>)
+			if (dmember is DataMember<T>)
 			{
-				return (DataMember<T>) memberExpression;
+				return (DataMember<T>) dmember;
 			}
 
-			Type genericDataTypeType = typeof(DataMember<>).MakeGenericType(memberExpression.DataType.InnerType);
+			Type genericDataTypeType = typeof(DataMember<>).MakeGenericType(dmember.DataType.InnerType);
 
 			ConstructorInfo constructor = genericDataTypeType.GetTypeInfo().DeclaredConstructors.Where(c => c.GetParameters().Length == 0).Single();
 
 			DataMember<T> genericMember = (DataMember<T>) constructor.Invoke(null);
-			genericMember.Column = memberExpression.Column;
-			genericMember.Converter = memberExpression.Converter;
+			genericMember.Member = dmember.Member;
+			genericMember.Column = dmember.Column;
+			genericMember.Converter = dmember.Converter;
 
 			return genericMember;
 		}
