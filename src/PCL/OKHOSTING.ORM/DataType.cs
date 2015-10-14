@@ -720,7 +720,15 @@ namespace OKHOSTING.ORM
 			foreach (PropertyInfo memberInfo in type.GetAllMemberInfos().Where(m => m is PropertyInfo))
 			{
 				//ignore readonly properties and fields
-				if (memberInfo.SetMethod == null || !memberInfo.SetMethod.IsPublic || !memberInfo.CanWrite || !memberInfo.CanRead || MemberExpression.IsReadOnly(memberInfo) || MemberExpression.IsIndexer(memberInfo))
+				if (memberInfo.GetMethod == null || memberInfo.SetMethod == null || !memberInfo.SetMethod.IsPublic || !memberInfo.CanWrite || !memberInfo.CanRead || MemberExpression.IsReadOnly(memberInfo) || MemberExpression.IsIndexer(memberInfo))
+				{
+					continue;
+				}
+
+				//ignore "overwrite" properties to avoid duplicates with parent declarations
+				MethodInfo baseVirtualMethod = memberInfo.GetMethod.GetRuntimeBaseDefinition();
+                
+				if (baseVirtualMethod != null && baseVirtualMethod.DeclaringType != memberInfo.GetMethod.DeclaringType)
 				{
 					continue;
 				}
