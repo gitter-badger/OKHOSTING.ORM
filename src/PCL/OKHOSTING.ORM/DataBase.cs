@@ -227,8 +227,17 @@ namespace OKHOSTING.ORM
 			Command command = new Command();
 			List<Tuple<DataType, Select>> selects = new List<Tuple<DataType, Select>>();
 
+			//we will search all subtypes
+			List<DataType> subTypes = select.DataType.SubDataTypesRecursive.ToList();
+
+			//but if this class is not abstract, we should also search this particular type
+			if (!select.DataType.InnerType.GetTypeInfo().IsAbstract)
+			{
+				subTypes.Insert(0, select.DataType);
+			}
+
 			//Crossing the DataTypes
-			foreach (DataType subType in select.DataType.SubDataTypesRecursive)
+			foreach (DataType subType in subTypes)
 			{
 				//create a copy of the select but for the subtype
 				Select subSelect = new Select();
