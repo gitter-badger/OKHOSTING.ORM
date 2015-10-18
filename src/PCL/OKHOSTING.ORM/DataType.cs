@@ -149,7 +149,7 @@ namespace OKHOSTING.ORM
 		{
 			get
 			{
-				foreach (var member in GetMapableMembers(InnerType))
+				foreach (var member in GetMappableMembers(InnerType))
 				{
 					if (this.IsMapped(member.Name))
 					{
@@ -551,7 +551,7 @@ namespace OKHOSTING.ORM
 
 			DataType dtype = new DataType(type, table);
 
-			foreach (var memberInfo in GetMapableMembers(type))
+			foreach (var memberInfo in GetMappableMembers(type))
 			{
 				if (dtype.Table.Columns.Where(c => c.Name == memberInfo.Name).Count() > 0)
 				{
@@ -581,7 +581,7 @@ namespace OKHOSTING.ORM
 				}
 
 				//ignore types with no primary key
-				var pk = GetMapableMembers(type).Where(m => DataMember.IsPrimaryKey(m));
+				var pk = GetMappableMembers(type).Where(m => DataMember.IsPrimaryKey(m));
 
 				if (pk.Count() == 0)
 				{
@@ -623,7 +623,7 @@ namespace OKHOSTING.ORM
 				}
 
 				//map non primary key members now
-				foreach (var memberInfo in GetMapableMembers(dtype.InnerType).Where(m => !DataMember.IsPrimaryKey(m)))
+				foreach (var memberInfo in GetMappableMembers(dtype.InnerType).Where(m => !DataMember.IsPrimaryKey(m)))
 				{
 					Type returnType = MemberExpression.GetReturnType(memberInfo);
 
@@ -711,10 +711,10 @@ namespace OKHOSTING.ORM
 		/// <summary>
 		/// Returns a collection of members that are mapable, 
 		/// meaning they are fields or properties, public, non read-only, and non-static. 
-        /// Does not include inherited members except for the primary keys, which should be mapped with every DataType.
+		/// Does not include inherited members except for the primary keys, which should be mapped with every DataType.
 		/// Does include collection members.
 		/// </summary>
-		public static IEnumerable<MemberInfo> GetMapableMembers(Type type)
+		public static IEnumerable<MemberInfo> GetMappableMembers(Type type)
 		{
 			//look for mappable properties
 			foreach (PropertyInfo memberInfo in type.GetAllMemberInfos().Where(m => m is PropertyInfo))
@@ -727,7 +727,7 @@ namespace OKHOSTING.ORM
 
 				//ignore "overwrite" properties to avoid duplicates with parent declarations
 				MethodInfo baseVirtualMethod = memberInfo.GetMethod.GetRuntimeBaseDefinition();
-                
+				
 				if (baseVirtualMethod != null && baseVirtualMethod.DeclaringType != memberInfo.GetMethod.DeclaringType)
 				{
 					continue;

@@ -3,11 +3,11 @@ using OKHOSTING.Data.Validation;
 using OKHOSTING.ORM.Filters;
 using OKHOSTING.ORM.Operations;
 using OKHOSTING.Sql;
+using OKHOSTING.Sql.Schema;
 using System;
 using System.Reflection;
 using System.Collections.Generic;
 using System.Linq;
-using OKHOSTING.Sql.Schema;
 
 namespace OKHOSTING.ORM
 {
@@ -297,13 +297,13 @@ namespace OKHOSTING.ORM
 		}
 
 		/// <summary>
-		/// Returns a value indicating if the specified DataObject exists on the DataBase (based on its primary key)
+		/// Returns a value indicating if the specified Object exists on the DataBase (based on its primary key)
 		/// </summary>
 		/// <param name="dobj">
-		/// DataObject to be searched in the DataBase
+		/// Object to be searched in the DataBase
 		/// </param>
 		/// <returns>
-		/// True if the DataObject exists, False otherwise
+		/// True if the Object exists, False otherwise
 		/// </returns>
 		public bool Exist<T>(T instance)
 		{
@@ -313,12 +313,12 @@ namespace OKHOSTING.ORM
 		}
 
 		/// <summary>
-		/// Returns a value indicating if the specified DataObject exists (based on its primary key)
+		/// Returns a value indicating if the specified Object exists (based on its primary key)
 		/// as a specific DataType
 		/// </summary>
 		/// <remarks>
-		/// Use this method to see if a DataObject exists in the Database as a base class.
-		/// A DataObject could exist in the DataBase as a base class, but not as the final class.
+		/// Use this method to see if a Object exists in the Database as a base class.
+		/// A Object could exist in the DataBase as a base class, but not as the final class.
 		/// </remarks>
 		/// <example>
 		///	Class Dog inherits from Class Animal. In your Database, you have an Animal with Id = 5, 
@@ -330,13 +330,13 @@ namespace OKHOSTING.ORM
 		///	DataBase.Current.Exist(dog, typeof(Animal));	//will return true
 		/// </example>
 		/// <param name="dobj">
-		/// DataObject to be searched in the DataBase
+		/// Object to be searched in the DataBase
 		/// </param>
 		/// <param name="dtype">
 		/// DataType (must be a base class of dobj) that will be searched in the DataBase
 		/// </param>
 		/// <returns>
-		/// True if the DataObject exists as the specified DataType, False otherwise
+		/// True if the Object exists as the specified DataType, False otherwise
 		/// </returns>
 		public bool Exist<T>(DataType dtype, T instance)
 		{
@@ -356,7 +356,7 @@ namespace OKHOSTING.ORM
 			//look for unsaved foreign keys to insert
 			foreach (var parent in dtype.BaseDataTypes)
 			{
-				foreach (var member in DataType.GetMapableMembers(parent.InnerType))
+				foreach (var member in DataType.GetMappableMembers(parent.InnerType))
 				{
 					var returnType = MemberExpression.GetReturnType(member);
 
@@ -381,7 +381,7 @@ namespace OKHOSTING.ORM
 			}
 
 			//look for unsaved collections
-			foreach (var member in DataType.GetMapableMembers(dtype.InnerType))
+			foreach (var member in DataType.GetMappableMembers(dtype.InnerType))
 			{
 				var returnType = MemberExpression.GetReturnType(member);
 
@@ -522,6 +522,37 @@ namespace OKHOSTING.ORM
 			}
 		}
 
+		/// <summary>
+		/// Works for single column primary keys only
+		/// </summary>
+		public TType SelectById<TType, TKey>(TKey key) where TKey : IComparable
+		{
+			DataType<TType> dtype = DataType<TType>.GetMap();
+			return Select<TType>((DataMember<TType>) dtype.PrimaryKey.First(), key).FirstOrDefault();
+		}
+
+		/// <summary>
+		/// Works for single and multiple column primary keys
+		/// </summary>
+		/// <remarks>
+		/// Key must be composed of elements that support IComparable
+		/// </remarks>
+		public TType SelectById<TType>(object[] key)
+		{
+			DataType<TType> dtype = DataType<TType>.GetMap();
+			DataMember[] primaryKey = dtype.PrimaryKey.ToArray();
+
+			Select<TType> select = new Select<TType>();
+			select.AddMembers(dtype.AllDataMembers);
+
+			for (int i = 0; i < primaryKey.Length; i++)
+			{
+				select.Where.Add(new ValueCompareFilter(primaryKey[i], (IComparable) key[i]));
+			}
+
+			return Select(select).FirstOrDefault();
+		}
+
 		public IEnumerable<T> Select<T>(Select<T> select)
 		{
 			foreach (object result in Select((Select) select))
@@ -557,7 +588,7 @@ namespace OKHOSTING.ORM
 			return Select(select);
 		}
 
-		public IEnumerable<T> SearchInherited<T>(Select<T> select)
+		public IEnumerable<T> SelectInherited<T>(Select<T> select)
 		{
 			foreach (object item in SearchInherited((Select) select))
 			{
@@ -565,7 +596,7 @@ namespace OKHOSTING.ORM
 			}
 		}
 
-		public IEnumerable<T> SearchInherited<T>(T instance)
+		public IEnumerable<T> SelectInherited<T>(T instance)
 		{
 			Select select = new Select();
 			select.DataType = instance.GetType();
@@ -1026,7 +1057,7 @@ namespace OKHOSTING.ORM
 
 		protected Sql.Operations.SelectAggregateColumn Parse(SelectAggregateMember aggregateMember)
 		{
-            return new Sql.Operations.SelectAggregateColumn(aggregateMember.DataMember.Column, Parse(aggregateMember.AggregateFunction), aggregateMember.Alias, aggregateMember.Distinct);
+			return new Sql.Operations.SelectAggregateColumn(aggregateMember.DataMember.Column, Parse(aggregateMember.AggregateFunction), aggregateMember.Alias, aggregateMember.Distinct);
 		}
 
 		protected Sql.Operations.OrderBy Parse(OrderBy orderBy)
@@ -1139,7 +1170,61 @@ namespace OKHOSTING.ORM
 
 		#region Tools
 
-		protected Filters.FilterBase GetPrimaryKeyFilter<T>(DataType dtype, T instance)
+		/// <summary>
+		/// Do a generical search of the entities with the specified DataType
+		/// searching in all it DataMembers the specified string with the like 
+		/// pattern. This search can use an excessive amount of system resources
+		/// reason why it's use is recommended only for small sets of data
+		/// </summary>
+		/// <param name="search">
+		/// String that will be searched
+		/// </param>
+		/// <param name="dmembers">
+		/// DataMembers that will be included in the select operation and where search might be performed
+		/// </param>
+		/// <returns>
+		/// Select operation with all neccesary joins and filters to do the search
+		/// </returns>
+		public virtual Select<T> CreateSearch<T>(string search, IEnumerable<DataMember> dmembers)
+		{
+			if (string.IsNullOrWhiteSpace(search))
+			{
+				throw new ArgumentNullException("search");
+			}
+
+			//Local Vars
+			Select<T> select = new Operations.Select<T>();
+			DataType dtype = DataType<T>.GetMap();
+
+			if (dmembers == null || dmembers.Count() == 0)
+			{
+				dmembers = dtype.AllDataMembers;
+			}
+
+			select.AddMembers(dmembers);
+
+			//Validating if the dtype argument is null
+			if (dtype == null) throw new ArgumentNullException("dtype", "Argument cannot be null");
+
+			//Creating the Or logical filters for the Query
+			OrFilter or = GetSearchFilter(dtype, search, dmembers, null);
+
+			//Searching in all outbound foreign keys included in dmembers
+			foreach (DataMember dmember in dmembers.Where(dm => DataType.IsMapped(dm.Member.ReturnType)))
+			{
+				DataType dmemberType = DataType.GetMap(dmember.Member.ReturnType);
+
+				//Creating the Or Logical filter with the DataType of the aggregate Object
+				string joinAlias = dmember.Member.Expression.Replace('.', '_');
+				SelectJoin foreignJoin = select.Joins.Where(j => j.Type == dmemberType && j.Alias == joinAlias).Single();
+
+				select.Where.Add(GetSearchFilter(dmember.Member.ReturnType, search, foreignJoin.Members.Select(m => m.DataMember), joinAlias));
+			}
+
+			return select;
+		}
+
+		protected FilterBase GetPrimaryKeyFilter<T>(DataType dtype, T instance)
 		{
 			Filters.AndFilter filter = new Filters.AndFilter();
 			var primaryKeys = dtype.PrimaryKey.ToList();
@@ -1155,6 +1240,80 @@ namespace OKHOSTING.ORM
 			}
 
 			return filter;
+		}
+
+		/// <summary>
+		/// Return an Or Logical filter with the structure 
+		/// "DataMember1 like '%' + filter + '%' or DataMember2 like '%' + filter + '%' or ..."
+		/// with all the DataMembers of the specified DataType
+		/// </summary>
+		/// <param name="type">
+		/// DataType used to create the filter
+		/// </param>
+		/// <param name="search">
+		/// String used as Like Pattern on the filter
+		/// </param>
+		/// <returns>
+		/// Or Logical filter with the structure 
+		/// "DataMember1 like '%' + filter + '%' or DataMember2 like '%' + filter + '%' or ..."
+		/// with all the DataMembers of the specified DataType
+		/// </returns>
+		protected OrFilter GetSearchFilter(DataType type, string search, IEnumerable<DataMember> dmembers, string typeAlias)
+		{
+			//Creating Or Logic Filter
+			OrFilter or = new OrFilter();
+
+			//Crossing the DataMembers on dmembers 
+			foreach (DataMember dmember in dmembers)
+			{
+				//LIKE filter for a string value
+				if (dmember.Member.ReturnType.Equals(typeof(string)))
+				{
+					//Creating Like filter and adding to Or Filter
+					var filter = new LikeFilter(dmember, "%" + search + "%");
+					filter.TypeAlias = typeAlias;
+
+					or.InnerFilters.Add(filter);
+				}
+
+				//Compare filter for a numeric value
+				else if (Core.TypeExtensions.IsNumeric(dmember.Member.ReturnType))
+				{
+					//integral value
+					if (Core.TypeExtensions.IsIntegral(dmember.Member.ReturnType))
+					{
+						int pattern;
+
+						if (Int32.TryParse(search, out pattern))
+						{
+							var filter = new ValueCompareFilter(dmember, pattern, CompareOperator.Equal);
+							filter.TypeAlias = typeAlias;
+
+							or.InnerFilters.Add(filter);
+						}
+					}
+
+					//decimal value
+					else
+					{
+						decimal pattern;
+
+						if (decimal.TryParse(search, out pattern))
+						{
+							var filter = new ValueCompareFilter(dmember, pattern, CompareOperator.Equal);
+							filter.TypeAlias = typeAlias;
+
+							or.InnerFilters.Add(filter);
+						}
+					}
+				}
+			}
+
+			//Establishing Or logical filter to null if dont have inner filters
+			if (or.InnerFilters.Count == 0) or = null;
+
+			//Return Or Logical Filter
+			return or;
 		}
 
 		protected void ParseFromSelect<T>(Select select, IDataReader dataReader, T instance)

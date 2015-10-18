@@ -39,7 +39,7 @@ namespace OKHOSTING.ORM
 		}
 
 		/// <summary>
-		/// Updates the current DataObject from the DataBase
+		/// Updates the current Object from the DataBase
 		/// </summary>
 		public void Update()
 		{
@@ -50,7 +50,7 @@ namespace OKHOSTING.ORM
 		}
 
 		/// <summary>
-		/// Deletes the current DataObject from the DataBase
+		/// Deletes the current Object from the DataBase
 		/// </summary>
 		public void Delete()
 		{
@@ -61,9 +61,9 @@ namespace OKHOSTING.ORM
 		}
 
 		/// <summary>
-		/// Loads the current DataObject from the DataBase
+		/// Loads the current Object from the DataBase
 		/// </summary>
-		/// <returns>True if the current DataObject was found in the DataBase, false otherwise</returns>
+		/// <returns>True if the current Object was found in the DataBase, false otherwise</returns>
 		public bool Select()
 		{
 			using (var db = DataBase.CreateDataBase())

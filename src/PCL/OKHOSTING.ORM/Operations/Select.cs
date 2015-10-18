@@ -105,7 +105,7 @@ namespace OKHOSTING.ORM.Operations
 				{
 					DataType referencingDataType = isTheFirstOne ? parent : MemberExpression.GetReturnType(nestedMemberInfos[i - 1]);
 
-					//this is not a native or inherited DataMember, so we must detect the nested members and create the respective joins
+					//if this is not a native or inherited DataMember, so we must detect the nested members and create the respective joins
 					if (!isTheLastOne && DataType.IsMapped(MemberExpression.GetReturnType(memberInfo)))
 					{
 						DataType foreignDataType = MemberExpression.GetReturnType(memberInfo);
@@ -128,7 +128,7 @@ namespace OKHOSTING.ORM.Operations
 							if (foreignJoin == null)
 							{
 								foreignJoin = new SelectJoin();
-								foreignJoin.JoinType = SelectJoinType.Inner;
+								foreignJoin.JoinType = SelectJoinType.Left;
 								foreignJoin.Type = foreignDataType;
 								foreignJoin.Alias = currentExpression.Replace('.', '_');
 
@@ -176,6 +176,7 @@ namespace OKHOSTING.ORM.Operations
 						SelectJoin foreignJoin = Joins.Where(j => j.Type == referencingDataType && j.Alias == currentExpression.Replace("." + memberInfo.Name, string.Empty).Replace('.', '_')).SingleOrDefault();
 						SelectMember sm = new SelectMember(dmember, currentExpression.Replace('.', '_'));
 						foreignJoin.Members.Add(sm);
+
 						break;
 					}
 				}

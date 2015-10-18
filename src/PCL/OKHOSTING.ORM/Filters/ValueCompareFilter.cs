@@ -8,7 +8,7 @@ using OKHOSTING.Data;
 namespace OKHOSTING.ORM.Filters
 {
 	/// <summary>
-	/// Compare a DataValue with a value
+	/// Compare a DataMember with a value
 	/// </summary>
 	public class ValueCompareFilter : CompareFilter
 	{
