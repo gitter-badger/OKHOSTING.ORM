@@ -165,7 +165,7 @@ namespace OKHOSTING.ORM
 			return (IEnumerable<object>) args.Result;
 		}
 
-		public IEnumerable<object> SearchInherited(Select select)
+		public IEnumerable<object> SelectInherited(Select select)
 		{
 			OperationEventArgs args = new OperationEventArgs(select);
 			OnBeforeOperation(args);
@@ -175,7 +175,7 @@ namespace OKHOSTING.ORM
 				return null;
 			}
 
-			args.Result = SearchInheritedPrivate(select);
+			args.Result = SelectInheritedPrivate(select);
 			OnAfterOperation(args);
 
 			return (IEnumerable<object>) args.Result;
@@ -222,7 +222,7 @@ namespace OKHOSTING.ORM
 		/// <summary>
 		/// Private method for search operations, that simplifies event management in the public method
 		/// </summary>
-		private IEnumerable<object> SearchInheritedPrivate(Select select)
+		private IEnumerable<object> SelectInheritedPrivate(Select select)
 		{
 			Command command = new Command();
 			List<Tuple<DataType, Select>> selects = new List<Tuple<DataType, Select>>();
@@ -590,7 +590,7 @@ namespace OKHOSTING.ORM
 
 		public IEnumerable<T> SelectInherited<T>(Select<T> select)
 		{
-			foreach (object item in SearchInherited((Select) select))
+			foreach (object item in SelectInherited((Select) select))
 			{
 				yield return (T) item;
 			}
@@ -602,7 +602,7 @@ namespace OKHOSTING.ORM
 			select.DataType = instance.GetType();
 			select.Where.Add(GetPrimaryKeyFilter(select.DataType, instance)); //Creating Primary Key filter
 
-			foreach (var item in SearchInherited(select))
+			foreach (var item in SelectInherited(select))
 			{
 				yield return (T) item;
 			}
@@ -652,7 +652,7 @@ namespace OKHOSTING.ORM
 			}
 
 			//get list of objects
-			var result = SearchInherited(select).ToList();
+			var result = SelectInherited(select).ToList();
 
 			//if the list is an array, try to "set"
 			if (memberReturnType.IsArray)
@@ -1224,7 +1224,7 @@ namespace OKHOSTING.ORM
 			return select;
 		}
 
-		protected FilterBase GetPrimaryKeyFilter<T>(DataType dtype, T instance)
+		public FilterBase GetPrimaryKeyFilter<T>(DataType dtype, T instance)
 		{
 			Filters.AndFilter filter = new Filters.AndFilter();
 			var primaryKeys = dtype.PrimaryKey.ToList();
@@ -1240,6 +1240,11 @@ namespace OKHOSTING.ORM
 			}
 
 			return filter;
+		}
+
+		public void Dispose()
+		{
+			NativeDataBase.Dispose();
 		}
 
 		/// <summary>
@@ -1352,11 +1357,6 @@ namespace OKHOSTING.ORM
 					}
 				}
 			}
-		}
-
-		public void Dispose()
-		{
-			NativeDataBase.Dispose();
 		}
 
 		#endregion
