@@ -1,8 +1,6 @@
-﻿using static OKHOSTING.Core.TypeExtensions;
-using OKHOSTING.Data.Validation;
+﻿using OKHOSTING.Data.Validation;
 using OKHOSTING.Sql.Schema;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
@@ -98,8 +96,8 @@ namespace OKHOSTING.ORM
 			{
 				Table = DataType.Table,
 				Name = Member.Expression.Replace('.', '_'),
-				DbType = OKHOSTING.Sql.DbTypeMapper.Parse(MemberExpression.GetReturnType(finalMember)),
-				IsNullable = !Data.Validation.RequiredValidator.IsRequired(finalMember),
+				DbType = Sql.DbTypeMapper.Parse(MemberExpression.GetReturnType(finalMember)),
+				IsNullable = !RequiredValidator.IsRequired(finalMember),
 				IsPrimaryKey = IsPrimaryKey(finalMember),
 			};
 
@@ -107,7 +105,7 @@ namespace OKHOSTING.ORM
 
 			if (Column.IsString)
 			{
-				Column.Length = Data.Validation.StringLengthValidator.GetMaxLenght(finalMember);
+				Column.Length = StringLengthValidator.GetMaxLenght(finalMember);
 			}
 
 			DataType.Table.Columns.Add(Column);
