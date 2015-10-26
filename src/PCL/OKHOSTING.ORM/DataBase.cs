@@ -1418,6 +1418,10 @@ namespace OKHOSTING.ORM
 		/// </summary>
 		public static event SettingUpDataBaseEventHandler SettingUp;
 
+		#endregion
+
+		#region Static methods
+
 		/// <summary>
 		/// Will create a ready to use database. 
 		/// You should subscribeto Create and (optionally) Created events to return a fully configured database. Then just call this method from everywhere else.
@@ -1438,10 +1442,6 @@ namespace OKHOSTING.ORM
 
 			return db;
 		}
-
-		#endregion
-
-		#region Static methods
 
 		public static bool IsSaved<T>(T instance)
 		{
