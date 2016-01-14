@@ -1,6 +1,7 @@
 ﻿using OKHOSTING.Data.Validation;
 using OKHOSTING.Sql.Schema;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
@@ -65,6 +66,20 @@ namespace OKHOSTING.ORM
 		/// Conversions to apply when writing yo or reading from the database
 		/// </summary>
 		public Conversions.ConverterBase Converter { get; set; }
+
+		/// <summary>
+		/// Returns the validators that this DataMember has defined.
+		/// </summary>
+		/// <remarks>
+		/// This is just a filtered list of validators from DataType.Validators where the validators are MemberValidator and it's member equalis this.Member
+		/// </remarks>
+		public IEnumerable<ValidatorBase> Validators
+		{
+			get
+			{
+				return DataType.Validators.Where(v => v is MemberValidator && ((MemberValidator) v).Member == this.Member);
+			}
+		}
 
 		public object GetValueForColumn(object obj)
 		{
