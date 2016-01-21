@@ -296,6 +296,18 @@ namespace OKHOSTING.ORM
 			}
 		}
 
+		/// <summary>
+		/// Returns a list of members of this DataType that are foreign keys
+		/// </summary>
+		/// <returns></returns>
+		public IEnumerable<MemberInfo> OutboundForeingKeys
+		{
+			get
+			{
+				return MemberInfos.Where(m => IsForeignKey(m));
+			}
+		}
+
 		#endregion
 
 		#region Methods

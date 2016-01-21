@@ -21,6 +21,11 @@ namespace OKHOSTING.ORM.UI
 		/// </summary>
 		protected readonly List<object> PrimaryKeys = new List<object>();
 
+		/// <summary>
+		/// Cache of value, so we dont read it from database more than necessary
+		/// </summary>
+		protected object ValueCache;
+
 		public DataObjectListPickerField(DataType dtype)
 		{
 			if (dtype == null)
@@ -35,20 +40,26 @@ namespace OKHOSTING.ORM.UI
 		{
 			get
 			{
-				using (DataBase db = DataBase.CreateDataBase())
+				if (ValueCache == null)
 				{
-					if (DataType.PrimaryKey.Count() == 1)
+					using (DataBase db = DataBase.CreateDataBase())
 					{
-						return db.SelectById(DataType, (IComparable) PrimaryKeys[ValueControl.SelectedIndex]);
-					}
-					else
-					{
-						return db.SelectById(DataType, (IComparable[]) PrimaryKeys[ValueControl.SelectedIndex]);
+						if (DataType.PrimaryKey.Count() == 1)
+						{
+							ValueCache = db.SelectById(DataType, (IComparable)PrimaryKeys[ValueControl.SelectedIndex]);
+						}
+						else
+						{
+							ValueCache = db.SelectById(DataType, (IComparable[])PrimaryKeys[ValueControl.SelectedIndex]);
+						}
 					}
 				}
+
+				return ValueCache;
 			}
 			set
 			{
+				ValueCache = value; //cache the object itself
 				ValueControl.Value = value.ToString();
 			}
 		}
@@ -67,7 +78,7 @@ namespace OKHOSTING.ORM.UI
 		protected override void CreateValueControl()
 		{
 			base.CreateValueControl();
-
+			ValueControl.ValueChanged += ValueControl_ValueChanged;
 			PrimaryKeys.Clear();
 
 			using (DataBase db = DataBase.CreateDataBase())
@@ -101,6 +112,11 @@ namespace OKHOSTING.ORM.UI
 					}
 				}
 			}
+		}
+
+		private void ValueControl_ValueChanged(object sender, string e)
+		{
+			ValueCache = null; //empty cache so we re-read the value from DB
 		}
 	}
 }

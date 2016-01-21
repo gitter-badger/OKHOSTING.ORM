@@ -1,7 +1,9 @@
 ﻿using OKHOSTING.Data.Validation;
+using OKHOSTING.UI;
 using OKHOSTING.UI.Controls.Forms;
 using System;
 using System.Linq;
+using System.Reflection;
 
 namespace OKHOSTING.ORM.UI
 {
@@ -13,21 +15,22 @@ namespace OKHOSTING.ORM.UI
 		/// <summary>
 		/// Creates a field for a DataMember
 		/// </summary>
-		public void AddFieldFrom(DataMember member)
+		public void AddFieldFrom(MemberInfo member)
 		{
 			//if there's no values defined, exit
 			if (member == null) throw new ArgumentNullException(nameof(member));
 
 			//field
 			FormField field;
+			Type returnType = MemberExpression.GetReturnType(member);
 
 			//String
-			if (member.Member.ReturnType.Equals(typeof(string)))
+			if (returnType.Equals(typeof(string)))
 			{
 				field = new StringField();
 
 				//set max lenght, if defined
-				int maxLenght = (int)StringLengthValidator.GetMaxLength(member.Member.FinalMemberInfo);
+				int maxLenght = (int) StringLengthValidator.GetMaxLength(member);
 
 				if (maxLenght == 0)
 				{
@@ -35,20 +38,20 @@ namespace OKHOSTING.ORM.UI
 				}
 				else
 				{
-					((StringField)field).MaxLenght = maxLenght;
+					((StringField) field).MaxLenght = maxLenght;
 				}
 
 				//set regular expression validation, if defined
-				var regex = member.Member.FinalMemberInfo.CustomAttributes.Where(att => att.AttributeType.Equals(typeof(RegexValidator))).SingleOrDefault();
+				var regex = member.CustomAttributes.Where(att => att.AttributeType.Equals(typeof(RegexValidator))).SingleOrDefault();
 
 				if (regex != null)
 				{
-					((StringField)field).RegularExpression = (string)regex.ConstructorArguments[0].Value;
+					((StringField) field).RegularExpression = (string) regex.ConstructorArguments[0].Value;
 				}
 			}
 
 			//DataType
-			else if (member.Member.ReturnType.Equals(typeof(DataType)))
+			else if (returnType.Equals(typeof(DataType)))
 			{
 				field = new DataTypeField();
 			}
@@ -56,15 +59,14 @@ namespace OKHOSTING.ORM.UI
 			//otherwise delegate to the static method to create the field from the return type
 			else
 			{
-				field = CreateFieldFrom(member.Member.ReturnType);
+				field = CreateFieldFrom(returnType);
 			}
 
-			field.Name = member.Member.Expression;
+			field.Name = member.Name;
 			field.Container = this;
-			field.Required = RequiredValidator.IsRequired(member.Member.FinalMemberInfo);
-			field.CaptionControl.Text = new System.Resources.ResourceManager(member.DataType.InnerType).GetString(member.DataType.FullName.Replace('.', '_') + '_' + member.Member.Expression.Replace('.', '_'));
-			if (member.Column.IsPrimaryKey) field.SortOrder = 0;
-
+			field.Required = RequiredValidator.IsRequired(member);
+			field.CaptionControl.Text = Translator.Translate(member);
+			//if (member.Column.IsPrimaryKey) field.SortOrder = 0;
 
 			//add to fields collection
 			Fields.Add(field);

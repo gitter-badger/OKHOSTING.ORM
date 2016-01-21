@@ -1,8 +1,12 @@
-﻿using static OKHOSTING.Core.TypeExtensions;
+﻿using OKHOSTING.Data;
+using OKHOSTING.Data.Validation;
 using OKHOSTING.ORM.Filters;
 using OKHOSTING.UI.Controls.Forms;
 using System;
+using System.Linq;
 using System.Collections.Generic;
+using System.Reflection;
+using static OKHOSTING.Core.TypeExtensions;
 
 namespace OKHOSTING.ORM.UI
 {
@@ -15,21 +19,26 @@ namespace OKHOSTING.ORM.UI
 		/// Copies all values entered by the user to a DavaValueInstance collection
 		/// </summary>
 		/// <param name="members">Collection where values will be copied to</param>
-		public IEnumerable<Filter> GetFiltersFrom(IEnumerable<DataMember> members)
+		public Filter GetFilterFor(MemberInfo member)
 		{
 			//validate arguments
-			if (members == null) throw new ArgumentNullException("members");
+			if (member == null) throw new ArgumentNullException(nameof(member));
 
 			//filters
 			Filter filter = null;
 
-			//create filters
-			foreach (DataMember dvalue in members)
+			DataType dtype = member.DeclaringType;
+			Type returnType = MemberExpression.GetReturnType(member);
+
+			//is this a single value member? (not a foreign key?)
+			if (dtype.IsMapped(member.Name))
 			{
-				#region range filter
+				DataMember dmember = dtype[member.Name];
+
+				#region Range filter
 
 				//if it's a datetime or a numeric field, create range filter
-				if (dvalue.ValueType.Equals(typeof(DateTime)) || dvalue.ValueType.IsNumeric())
+				if (returnType.Equals(typeof(DateTime)) || returnType.IsNumeric())
 				{
 					//realted fields
 					FormField fieldMin = null, fieldMax = null;
@@ -37,112 +46,128 @@ namespace OKHOSTING.ORM.UI
 					//search corresponding field for this DataValueInstance
 					foreach (FormField f in Fields)
 					{
-						if (f.Id == dvalue.Name + "_0") fieldMin = f;
-						if (f.Id == dvalue.Name + "_1") fieldMax = f;
+						if (f.Name == member.Name + "_0") fieldMin = f;
+						if (f.Name == member.Name + "_1") fieldMax = f;
 					}
 
-					//if no controls where found, continue
-					if (fieldMin == null && fieldMax == null) continue;
+					//if no controls where found, return no filter
+					if (fieldMin == null && fieldMax == null)
+					{
+						return null;
+					}
 
-					//if no value was set, continue to the next field
-					if (NullValues.IsNull(fieldMin.Value) && NullValues.IsNull(fieldMax.Value)) continue;
+					//if no value was set, return no filter
+					if (!RequiredValidator.HasValue(fieldMin.Value) && !RequiredValidator.HasValue(fieldMax.Value))
+					{
+						return null;
+					}
 
 					//if both values are set, create range filter
-					if (!NullValues.IsNull(fieldMin.Value) && !NullValues.IsNull(fieldMax.Value))
+					if (RequiredValidator.HasValue(fieldMin.Value) && RequiredValidator.HasValue(fieldMax.Value))
 					{
-						filter = new RangeFilter(dvalue, (IComparable)fieldMin.Value, (IComparable)fieldMax.Value);
+						filter = new RangeFilter(dmember, (IComparable) fieldMin.Value, (IComparable) fieldMax.Value);
 					}
 
 					//only min value is defined
-					else if (!NullValues.IsNull(fieldMin.Value))
+					else if (RequiredValidator.HasValue(fieldMin.Value))
 					{
-						filter = new ValueCompareFilter(dvalue, (IComparable)fieldMin.Value, CompareOperator.GreaterThanEqual);
+						filter = new ValueCompareFilter(dmember, (IComparable) fieldMin.Value, CompareOperator.GreaterThanEqual);
 					}
 
 					//only max value is defined
-					else if (!NullValues.IsNull(fieldMax.Value))
+					else if (RequiredValidator.HasValue(fieldMax.Value))
 					{
-						filter = new ValueCompareFilter(dvalue, (IComparable)fieldMax.Value, CompareOperator.LessThanEqual);
+						filter = new ValueCompareFilter(dmember, (IComparable) fieldMax.Value, CompareOperator.LessThanEqual);
 					}
 				}
 
 				#endregion
 
-				#region single value filter
+				#region Single value filter
 
 				//create single value filter
 				else
 				{
 					//realted fields
-					FormField field = null;
+					FormField field = Fields.Where(f => f.Name == member.Name).SingleOrDefault();
 
-					//search corresponding field for this DataValueInstance
-					foreach (FormField f in Fields)
+					//if field not found, return no filter
+					if (field == null)
 					{
-						if (f.Id == dvalue.Name) field = f;
+						return null;
 					}
 
-					//if field not found, continue
-					if (field == null) continue;
-
-					//if no value was set, continue to the next field
-					if (NullValues.IsNull(field.Value)) continue;
+					//if no value was set, return no filter
+					if (!RequiredValidator.HasValue(field.Value))
+					{
+						return null;
+					}
 
 					//if its a string, make a LIKE filter
 					else if (field.ValueType.Equals(typeof(string)))
 					{
-						filter = new LikeFilter(dvalue, "%" + field.Value + "%");
-					}
-
-					//if it's a dataobject, create a foreign key filter
-					else if (DataType.IsDataObject(field.ValueType))
-					{
-						filter = new ForeignKeyFilter(dvalue, (DataObject)field.Value);
+						filter = new LikeFilter(dmember, "%" + field.Value + "%");
 					}
 
 					//otherwise create a compare filter
 					else
 					{
-						filter = new ValueCompareFilter(dvalue, (IComparable)field.Value, CompareOperator.Equal);
+						filter = new ValueCompareFilter(dmember, (IComparable) field.Value, CompareOperator.Equal);
 					}
 				}
 
 				#endregion
+			}
+			//this is a foreign key
+			else if (DataType.IsMapped(returnType) && dtype.IsForeignKey(member))
+			{
+				//realted fields
+				FormField field = Fields.Where(f => f.Name == member.Name).SingleOrDefault();
+				
+				//if field not found, return no filter
+				if (field == null)
+				{
+					return null;
+				}
 
-				//if filter is not null, add to filter collection and continue
-				if (filter != null) filters.Add(filter);
-				filter = null;
+				//if no value was set, return no filter
+				if (!RequiredValidator.HasValue(field.Value))
+				{
+					return null;
+				}
+
+				filter = new ForeignKeyFilter(dtype, member, field.Value);
 			}
 
-			//return generated filters
-			return filters;
+			return filter;
 		}
 
 		/// <summary>
 		/// Creates a field for a DataMember
 		/// </summary>
-		public void AddFieldsFrom(DataMember member)
+		public void AddFieldsFrom(MemberInfo member)
 		{
 			//if there's no values defined, exit
 			if (member == null) throw new ArgumentNullException(nameof(member));
 
 			//field
 			FormField fieldMin, fieldMax;
+			Type returnType = MemberExpression.GetReturnType(member);
 
 			//DateTime and numeric, create range fields
-			if (member.Member.ReturnType.Equals(typeof(DateTime)) || member.Member.ReturnType.IsNumeric())
+			if (returnType.Equals(typeof(DateTime)) || returnType.IsNumeric())
 			{
 				//create fields
-				fieldMin = ObjectForm.CreateFieldFrom(member.Member.ReturnType);
-				fieldMax = ObjectForm.CreateFieldFrom(member.Member.ReturnType);
+				fieldMin = ObjectForm.CreateFieldFrom(returnType);
+				fieldMax = ObjectForm.CreateFieldFrom(returnType);
 
 				//set id
 				fieldMin.Name += "_0";
 				fieldMax.Name += "_1";
 
 				//labels
-				fieldMin.CaptionControl.Text += OKHOSTING.UI.Translator.Translate(this.GetType(), this.GetType().GetFriendlyFullName() + "_Min");
-				fieldMax.CaptionControl.Text += OKHOSTING.UI.Translator.Translate(this.GetType(), "OKHOSTING.ORM.UI.FilterDataForm.Max"] + ")";
+				fieldMin.CaptionControl.Text += Resources.Strings.OKHOSTING_ORM_UI_FilterDataForm_Min;
+				fieldMax.CaptionControl.Text += Resources.Strings.OKHOSTING_ORM_UI_FilterDataForm_Max;
 
 				//set container
 				fieldMin.Container = this;
@@ -156,16 +181,6 @@ namespace OKHOSTING.ORM.UI
 				fieldMin.TableWide = false;
 				fieldMax.TableWide = false;
 
-				//order
-				if (member.Column.IsPrimaryKey)
-				{
-					fieldMin.SortOrder = fieldMax.SortOrder = 0;
-				}
-				else
-				{
-					fieldMin.SortOrder = fieldMax.SortOrder = 1;
-				}
-
 				//add
 				Fields.Add(fieldMin);
 				Fields.Add(fieldMax);
@@ -174,11 +189,8 @@ namespace OKHOSTING.ORM.UI
 			else
 			{
 				//create field
-				fieldMin = ObjectForm.CreateFieldFrom(member.Member.ReturnType);
+				fieldMin = ObjectForm.CreateFieldFrom(returnType);
 
-				//enable all fields
-				fieldMin.Enabled = true;
-				
 				//set container
 				fieldMin.Container = this;
 
@@ -188,10 +200,6 @@ namespace OKHOSTING.ORM.UI
 				//set to false always
 				fieldMin.TableWide = false;
 
-				//order
-				if (member.IsPrimaryKey) fieldMin.SortOrder = 0;
-				else fieldMin.SortOrder = 1;
-
 				//add
 				Fields.Add(fieldMin);
 			}
@@ -200,21 +208,22 @@ namespace OKHOSTING.ORM.UI
 		/// <summary>
 		/// Returns the fields that corresponds to this DataMember
 		/// </summary>
-		public List<FormField> GetFieldsFor(DataMember dvalue)
+		public List<FormField> GetFieldsFor(MemberInfo member)
 		{
 			//found fields
 			FormField fieldMin = null, fieldMax = null;
+			Type returnType = MemberExpression.GetReturnType(member);
 
 			//if there's no values defined, exit
-			if (dvalue == null) throw new ArgumentNullException("dvalue");
+			if (member == null) throw new ArgumentNullException("dvalue");
 
-			if (dvalue.ValueType.Equals(typeof(DateTime)) || dvalue.ValueType.IsNumeric())
+			if (returnType.Equals(typeof(DateTime)) || returnType.IsNumeric())
 			{
 				//search corresponding field for this DataMember
 				foreach (FormField f in Fields)
 				{
-					if (f.Id == dvalue.Name + "_0") fieldMin = f;
-					if (f.Id == dvalue.Name + "_1") fieldMax = f;
+					if (f.Name == member.Name + "_0") fieldMin = f;
+					if (f.Name == member.Name + "_1") fieldMax = f;
 				}
 				
 				if (fieldMin != null && fieldMax != null) return new List<FormField>() { fieldMin, fieldMax };
@@ -224,7 +233,7 @@ namespace OKHOSTING.ORM.UI
 				//search corresponding field for this DataMember
 				foreach (FormField f in Fields)
 				{
-					if (f.Id == dvalue.Name) return new List<FormField>() { f };
+					if (f.Name == member.Name) return new List<FormField>() { f };
 				}
 			}
 

@@ -53,6 +53,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Filters\ForeignKeyFilter.cs" />
     <Compile Include="Operations\OperationEventArgs.cs" />
     <Compile Include="Conversions\ConverterBase.cs" />
     <Compile Include="Conversions\DataMemberConverter.cs" />

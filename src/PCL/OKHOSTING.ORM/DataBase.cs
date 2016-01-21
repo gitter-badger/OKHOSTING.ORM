@@ -212,7 +212,6 @@ namespace OKHOSTING.ORM
 			return Select(select);
 		}
 
-
 		public IEnumerable<object> SelectInherited(Select select)
 		{
 			OperationEventArgs args = new OperationEventArgs(select);

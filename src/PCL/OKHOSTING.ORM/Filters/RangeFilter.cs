@@ -1,8 +1,4 @@
 using System;
-using System.Xml.Serialization;
-using System.Xml.Schema;
-using System.Xml;
-using System.IO;
 
 namespace OKHOSTING.ORM.Filters
 {
@@ -11,6 +7,13 @@ namespace OKHOSTING.ORM.Filters
 	/// </summary>
 	public class RangeFilter: MemberFilter
 	{
+		public RangeFilter(DataMember member, IComparable minValue, IComparable maxValue)
+		{
+			Member = member;
+			MinValue = minValue;
+			MaxValue = maxValue;
+		}
+
 		/// <summary>
 		/// Minimum value of the allowed range
 		/// </summary>

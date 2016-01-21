@@ -15,7 +15,7 @@ namespace OKHOSTING.ORM.Filters
 		/// <summary>
 		/// Value for comparison
 		/// </summary>
-		public IComparable ValueToCompare;
+		public IComparable ValueToCompare { get; set; }
 
 		public ValueCompareFilter()
 		{
