@@ -15,7 +15,7 @@ namespace OKHOSTING.ORM.UI
 		/// <summary>
 		/// Creates a field for a DataMember
 		/// </summary>
-		public void AddFieldFrom(MemberInfo member)
+		public void AddField(MemberInfo member)
 		{
 			//if there's no values defined, exit
 			if (member == null) throw new ArgumentNullException(nameof(member));
@@ -59,7 +59,7 @@ namespace OKHOSTING.ORM.UI
 			//otherwise delegate to the static method to create the field from the return type
 			else
 			{
-				field = CreateFieldFrom(returnType);
+				field = CreateField(returnType);
 			}
 
 			field.Name = member.Name;
@@ -75,7 +75,7 @@ namespace OKHOSTING.ORM.UI
 		/// <summary>
 		/// Returns the field that corresponds to this DataMember
 		/// </summary>
-		public FormField GetFieldFor(DataMember member)
+		public FormField GetField(DataMember member)
 		{
 			//if there's no values defined, exit
 			if (member == null) throw new ArgumentNullException(nameof(member));
@@ -89,7 +89,7 @@ namespace OKHOSTING.ORM.UI
 		/// <summary>
 		/// Creates a field that will contain a value of a specific type
 		/// </summary>
-		public static FormField CreateFieldFrom(Type type)
+		public static FormField CreateField(Type type)
 		{
 			//validate arguments
 			if (type == null) throw new ArgumentNullException("type");

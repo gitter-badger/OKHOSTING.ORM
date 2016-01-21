@@ -19,7 +19,7 @@ namespace OKHOSTING.ORM.UI
 		/// Adds a field for every argument that the DataMethos needs in order to be invoked
 		/// </summary>
 		/// <param name="method">DataMethod which parameters will be used as fields</param>
-		public override void AddFieldsFrom(MethodInfo method)
+		public override void AddFields(MethodInfo method)
 		{
 			if (method == null) throw new ArgumentNullException("dmethod");
 			uint order = 0;
@@ -29,7 +29,7 @@ namespace OKHOSTING.ORM.UI
 			{
 				FormField field;
 
-				field = ObjectForm.CreateFieldFrom(param.ParameterType);
+				field = ObjectForm.CreateField(param.ParameterType);
 				
 				//set common values
 				field.Container = this;

@@ -19,7 +19,7 @@ namespace OKHOSTING.ORM.UI
 		/// Copies all values entered by the user to a DavaValueInstance collection
 		/// </summary>
 		/// <param name="members">Collection where values will be copied to</param>
-		public Filter GetFilterFor(MemberInfo member)
+		public Filter GetFilter(MemberInfo member)
 		{
 			//validate arguments
 			if (member == null) throw new ArgumentNullException(nameof(member));
@@ -145,7 +145,7 @@ namespace OKHOSTING.ORM.UI
 		/// <summary>
 		/// Creates a field for a DataMember
 		/// </summary>
-		public void AddFieldsFrom(MemberInfo member)
+		public void AddFields(MemberInfo member)
 		{
 			//if there's no values defined, exit
 			if (member == null) throw new ArgumentNullException(nameof(member));
@@ -158,8 +158,8 @@ namespace OKHOSTING.ORM.UI
 			if (returnType.Equals(typeof(DateTime)) || returnType.IsNumeric())
 			{
 				//create fields
-				fieldMin = ObjectForm.CreateFieldFrom(returnType);
-				fieldMax = ObjectForm.CreateFieldFrom(returnType);
+				fieldMin = ObjectForm.CreateField(returnType);
+				fieldMax = ObjectForm.CreateField(returnType);
 
 				//set id
 				fieldMin.Name += "_0";
@@ -189,7 +189,7 @@ namespace OKHOSTING.ORM.UI
 			else
 			{
 				//create field
-				fieldMin = ObjectForm.CreateFieldFrom(returnType);
+				fieldMin = ObjectForm.CreateField(returnType);
 
 				//set container
 				fieldMin.Container = this;
@@ -208,7 +208,7 @@ namespace OKHOSTING.ORM.UI
 		/// <summary>
 		/// Returns the fields that corresponds to this DataMember
 		/// </summary>
-		public List<FormField> GetFieldsFor(MemberInfo member)
+		public List<FormField> GetFields(MemberInfo member)
 		{
 			//found fields
 			FormField fieldMin = null, fieldMax = null;
