@@ -17,12 +17,12 @@ namespace OKHOSTING.ORM.Filters
 		/// Collection of conditions or filters that will be merged 
 		/// with the And operator
 		/// </param>
-		public AndFilter(List<FilterBase> innerFilters) : base(innerFilters, LogicalOperator.And) { }
+		public AndFilter(List<Filter> innerFilters) : base(innerFilters, LogicalOperator.And) { }
 
 		/// <summary>
 		/// Constructs the class
 		/// </summary>
-		public AndFilter() : this(new List<FilterBase>()) { }
+		public AndFilter() : this(new List<Filter>()) { }
 
 		/// <summary>
 		/// Constructs the class

@@ -14,13 +14,13 @@ namespace OKHOSTING.ORM.Filters
 	/// Base class for filters that contains a collection of filters and
 	/// that compares them with a logical operator
 	/// </summary>
-	public class LogicalOperatorFilter : FilterBase
+	public class LogicalOperatorFilter : Filter
 	{ 
 		/// <summary>
 		/// Collection of conditions or filters that will be merged 
 		/// with the and operator
 		/// </summary>
-		public readonly List<FilterBase> InnerFilters;
+		public readonly List<Filter> InnerFilters;
 
 		/// <summary>
 		/// Logical operator used in the filter
@@ -30,7 +30,7 @@ namespace OKHOSTING.ORM.Filters
 		/// <summary>
 		/// Constructs the filter
 		/// </summary>
-		public LogicalOperatorFilter(List<FilterBase> innerFilters) : this(innerFilters, LogicalOperator.And) { }
+		public LogicalOperatorFilter(List<Filter> innerFilters) : this(innerFilters, LogicalOperator.And) { }
 
 		/// <summary>
 		/// Constructs the filter
@@ -42,7 +42,7 @@ namespace OKHOSTING.ORM.Filters
 		/// Collection of conditions or filters that will be merged 
 		/// with the and operator
 		/// </param>
-		public LogicalOperatorFilter(List<FilterBase> innerFilters, LogicalOperator logicalOperator)
+		public LogicalOperatorFilter(List<Filter> innerFilters, LogicalOperator logicalOperator)
 		{
 			InnerFilters = innerFilters;
 			LogicalOperator = logicalOperator;

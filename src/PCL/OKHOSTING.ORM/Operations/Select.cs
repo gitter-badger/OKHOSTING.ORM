@@ -15,7 +15,7 @@ namespace OKHOSTING.ORM.Operations
 		public SelectLimit Limit { get; set; }
 		public readonly List<SelectMember> Members = new List<SelectMember>();
 		public readonly List<SelectJoin> Joins = new List<SelectJoin>();
-		public readonly List<Filters.FilterBase> Where = new List<Filters.FilterBase>();
+		public readonly List<Filters.Filter> Where = new List<Filters.Filter>();
 		public readonly List<OrderBy> OrderBy = new List<OrderBy>();
 
 		public void AddMember(string memberExpression)

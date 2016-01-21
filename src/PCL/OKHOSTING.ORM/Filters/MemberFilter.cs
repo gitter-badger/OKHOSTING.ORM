@@ -8,7 +8,7 @@ namespace OKHOSTING.ORM.Filters
 	/// <summary>
 	/// Represents a filter based on a value of a object (Field or Property)
 	/// </summary>
-	public abstract class MemberFilter : FilterBase
+	public abstract class MemberFilter : Filter
 	{
 		/// <summary>
 		/// DataMember used to filter

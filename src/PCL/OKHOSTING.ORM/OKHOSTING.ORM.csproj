@@ -72,7 +72,7 @@
     <Compile Include="Filters\AndFilter.cs" />
     <Compile Include="Filters\CompareFilter.cs" />
     <Compile Include="Filters\CustomFilter.cs" />
-    <Compile Include="Filters\FilterBase.cs" />
+    <Compile Include="Filters\Filter.cs" />
     <Compile Include="Filters\FilterEventArgs.cs" />
     <Compile Include="Filters\FilterEventHandler.cs" />
     <Compile Include="Filters\InFilter.cs" />

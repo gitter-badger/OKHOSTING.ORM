@@ -16,11 +16,11 @@ namespace OKHOSTING.ORM.Filters
 		/// Collection of conditions or filters that will be merged 
 		/// with the Or operator
 		/// </param>
-		public OrFilter() : base(new List<FilterBase>(), OKHOSTING.Data.LogicalOperator.Or)
+		public OrFilter() : base(new List<Filter>(), OKHOSTING.Data.LogicalOperator.Or)
 		{
 		}
 		
-		public OrFilter(List<FilterBase> innerFilters) : base(innerFilters, OKHOSTING.Data.LogicalOperator.Or) 
+		public OrFilter(List<Filter> innerFilters) : base(innerFilters, OKHOSTING.Data.LogicalOperator.Or) 
 		{ 
 		}
 	}

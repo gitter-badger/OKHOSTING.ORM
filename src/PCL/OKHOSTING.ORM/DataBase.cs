@@ -165,6 +165,54 @@ namespace OKHOSTING.ORM
 			return (IEnumerable<object>) args.Result;
 		}
 
+		/// <summary>
+		/// Selects an object from it's Id. Works for single column primary keys only.
+		/// </summary>
+		public object SelectById(DataType dtype, IComparable id)
+		{
+			return Select(dtype.PrimaryKey.Single(), id);
+		}
+
+		/// <summary>
+		/// Selects an object from it's Id. 
+		/// Works for single and multiple column primary keys
+		/// </summary>
+		/// <remarks>
+		/// Key must be composed of elements that support IComparable
+		/// </remarks>
+		public object SelectById(DataType dtype, IComparable[] key)
+		{
+			DataMember[] primaryKey = dtype.PrimaryKey.ToArray();
+
+			Select select = new Select();
+			select.DataType = dtype;
+			select.AddMembers(dtype.AllDataMembers);
+
+			for (int i = 0; i < primaryKey.Length; i++)
+			{
+				select.Where.Add(new ValueCompareFilter(primaryKey[i], key[i]));
+			}
+
+			return Select(select).FirstOrDefault();
+		}
+
+		/// <summary>
+		/// Returns a list of objects filtered by one of the members
+		/// </summary>
+		/// <param name="member">DataMember that will be evaluated for filtering</param>
+		/// <param name="value">Value that the DataMember must match</param>
+		/// <returns>List of filtered objects</returns>
+		public IEnumerable<object> Select(DataMember member, IComparable value)
+		{
+			Select select = new Select();
+			select.DataType = member.DataType;
+			select.AddMembers(select.DataType.AllDataMembers);
+			select.Where.Add(new ValueCompareFilter(member, value));
+
+			return Select(select);
+		}
+
+
 		public IEnumerable<object> SelectInherited(Select select)
 		{
 			OperationEventArgs args = new OperationEventArgs(select);
@@ -537,7 +585,7 @@ namespace OKHOSTING.ORM
 		/// <remarks>
 		/// Key must be composed of elements that support IComparable
 		/// </remarks>
-		public TType SelectById<TType>(object[] key)
+		public TType SelectById<TType>(IComparable[] key)
 		{
 			DataType<TType> dtype = DataType<TType>.GetMap();
 			DataMember[] primaryKey = dtype.PrimaryKey.ToArray();
@@ -547,7 +595,7 @@ namespace OKHOSTING.ORM
 
 			for (int i = 0; i < primaryKey.Length; i++)
 			{
-				select.Where.Add(new ValueCompareFilter(primaryKey[i], (IComparable) key[i]));
+				select.Where.Add(new ValueCompareFilter(primaryKey[i], key[i]));
 			}
 
 			return Select(select).FirstOrDefault();
@@ -800,7 +848,7 @@ namespace OKHOSTING.ORM
 
 		#region Filter parsing
 
-		protected Sql.Filters.FilterBase Parse(FilterBase filter)
+		protected Sql.Filters.FilterBase Parse(Filter filter)
 		{
 			//Validating if there are filters defined
 			if (filter == null) return null;
@@ -935,7 +983,7 @@ namespace OKHOSTING.ORM
 		{
 			var native = new Sql.Filters.AndFilter();
 
-			foreach (FilterBase f in filter.InnerFilters)
+			foreach (Filter f in filter.InnerFilters)
 			{
 				native.InnerFilters.Add(Parse(f));
 			}
@@ -947,7 +995,7 @@ namespace OKHOSTING.ORM
 		{
 			var native = new Sql.Filters.OrFilter();
 
-			foreach (FilterBase f in filter.InnerFilters)
+			foreach (Filter f in filter.InnerFilters)
 			{
 				native.InnerFilters.Add(Parse(f));
 			}
@@ -992,7 +1040,7 @@ namespace OKHOSTING.ORM
 				native.Set.Add(new Sql.Operations.ColumnValue(member.Column, member.GetValueForColumn(update.Instance)));
 			}
 
-			foreach (Filters.FilterBase filter in update.Where)
+			foreach (Filters.Filter filter in update.Where)
 			{
 				native.Where.Add(Parse(filter));
 			}
@@ -1010,7 +1058,7 @@ namespace OKHOSTING.ORM
 			var native = new OKHOSTING.Sql.Operations.Delete();
 			native.Table = delete.DataType.Table;
 
-			foreach (Filters.FilterBase filter in delete.Where)
+			foreach (Filters.Filter filter in delete.Where)
 			{
 				native.Where.Add(Parse(filter));
 			}
@@ -1105,7 +1153,7 @@ namespace OKHOSTING.ORM
 				native.Columns.Add(new Sql.Operations.SelectColumn(selectMember.DataMember.Column, selectMember.Alias));
 			}
 
-			foreach (Filters.FilterBase filter in join.On)
+			foreach (Filters.Filter filter in join.On)
 			{
 				native.On.Add(Parse(filter));
 			}
@@ -1153,7 +1201,7 @@ namespace OKHOSTING.ORM
 				native.Joins.Add(Parse(join));
 			}
 
-			foreach (Filters.FilterBase filter in select.Where)
+			foreach (Filters.Filter filter in select.Where)
 			{
 				native.Where.Add(Parse(filter));
 			}
@@ -1224,7 +1272,7 @@ namespace OKHOSTING.ORM
 			return select;
 		}
 
-		public FilterBase GetPrimaryKeyFilter<T>(DataType dtype, T instance)
+		public Filter GetPrimaryKeyFilter<T>(DataType dtype, T instance)
 		{
 			Filters.AndFilter filter = new Filters.AndFilter();
 			var primaryKeys = dtype.PrimaryKey.ToList();
@@ -1424,7 +1472,7 @@ namespace OKHOSTING.ORM
 
 		/// <summary>
 		/// Will create a ready to use database. 
-		/// You should subscribeto Create and (optionally) Created events to return a fully configured database. Then just call this method from everywhere else.
+		/// You should subscribeto Setup and (optionally) SettingUp events to return a fully configured database. Then just call this method from everywhere else.
 		/// </summary>
 		public static DataBase CreateDataBase()
 		{

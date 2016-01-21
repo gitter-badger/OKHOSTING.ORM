@@ -655,7 +655,7 @@ namespace OKHOSTING.ORM
 
 							if (column.IsString)
 							{
-								column.Length = StringLengthValidator.GetMaxLenght(pk.Member.FinalMemberInfo);
+								column.Length = StringLengthValidator.GetMaxLength(pk.Member.FinalMemberInfo);
 							}
 
 							dtype.Table.Columns.Add(column);
@@ -697,7 +697,7 @@ namespace OKHOSTING.ORM
 
 						if (column.IsString)
 						{
-							column.Length = Data.Validation.StringLengthValidator.GetMaxLenght(memberInfo);
+							column.Length = Data.Validation.StringLengthValidator.GetMaxLength(memberInfo);
 						}
 
 						dtype.Table.Columns.Add(column);

@@ -107,7 +107,7 @@ namespace OKHOSTING.ORM
 
 		#region Non public
 
-		protected virtual Filters.FilterBase GetPrimaryKeyFilter(DataType dtype, TKey key)
+		protected virtual Filters.Filter GetPrimaryKeyFilter(DataType dtype, TKey key)
 		{
 			return new Filters.ValueCompareFilter()
 			{

@@ -60,7 +60,7 @@ namespace OKHOSTING.ORM
 			}
 		}
 
-		protected override Filters.FilterBase GetPrimaryKeyFilter(DataType dtype, object[] key)
+		protected override Filters.Filter GetPrimaryKeyFilter(DataType dtype, object[] key)
 		{
 			Filters.AndFilter filter = new Filters.AndFilter();
 			var primaryKeys = dtype.PrimaryKey.ToList();

@@ -29,6 +29,6 @@ namespace OKHOSTING.ORM.Operations
 		/// </remarks>
 		public string Alias;
 
-		public readonly List<Filters.FilterBase> On = new List<Filters.FilterBase>();
+		public readonly List<Filters.Filter> On = new List<Filters.Filter>();
 	}
 }

@@ -120,7 +120,7 @@ namespace OKHOSTING.ORM
 
 			if (Column.IsString)
 			{
-				Column.Length = StringLengthValidator.GetMaxLenght(finalMember);
+				Column.Length = StringLengthValidator.GetMaxLength(finalMember);
 			}
 
 			DataType.Table.Columns.Add(Column);

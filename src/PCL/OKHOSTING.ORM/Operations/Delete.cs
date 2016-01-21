@@ -8,7 +8,7 @@ namespace OKHOSTING.ORM.Operations
 {
 	public class Delete : Operation
 	{
-		public readonly List<Filters.FilterBase> Where = new List<Filters.FilterBase>();
+		public readonly List<Filters.Filter> Where = new List<Filters.Filter>();
 	}
 
 	public class Delete<T> : Delete

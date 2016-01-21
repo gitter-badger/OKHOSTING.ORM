@@ -11,5 +11,5 @@ namespace OKHOSTING.ORM.Filters
 	/// <param name="e">
 	/// Event information argument
 	/// </param>
-	public delegate void FilterEventHandler(FilterBase sender, FilterEventArgs e);
+	public delegate void FilterEventHandler(Filter sender, FilterEventArgs e);
 }

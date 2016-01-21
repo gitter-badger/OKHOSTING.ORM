@@ -14,7 +14,7 @@ namespace OKHOSTING.ORM.Operations
 
 		public object Instance { get; set; }
 		public readonly List<DataMember> Set = new List<DataMember>();
-		public readonly List<Filters.FilterBase> Where = new List<Filters.FilterBase>();
+		public readonly List<Filters.Filter> Where = new List<Filters.Filter>();
 	}
 
 	public class Update<T> : Update

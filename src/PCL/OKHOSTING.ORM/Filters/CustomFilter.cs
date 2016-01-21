@@ -8,7 +8,7 @@ namespace OKHOSTING.ORM.Filters
 	/// <summary>
 	/// Represents a custom filter
 	/// </summary>
-	public class CustomFilter : FilterBase
+	public class CustomFilter : Filter
 	{
 		/// <summary>
 		/// Sql filter expression
