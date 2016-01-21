@@ -2,6 +2,7 @@
 using OKHOSTING.UI;
 using OKHOSTING.UI.Controls.Forms;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
@@ -15,7 +16,7 @@ namespace OKHOSTING.ORM.UI
 		/// <summary>
 		/// Creates a field for a DataMember
 		/// </summary>
-		public void AddField(MemberInfo member)
+		public FormField AddField(MemberInfo member)
 		{
 			//if there's no values defined, exit
 			if (member == null) throw new ArgumentNullException(nameof(member));
@@ -70,18 +71,64 @@ namespace OKHOSTING.ORM.UI
 
 			//add to fields collection
 			Fields.Add(field);
+
+			return field;
 		}
 
 		/// <summary>
 		/// Returns the field that corresponds to this DataMember
 		/// </summary>
-		public FormField GetField(DataMember member)
+		public FormField GetField(MemberInfo member)
 		{
 			//if there's no values defined, exit
 			if (member == null) throw new ArgumentNullException(nameof(member));
 
 			//search corresponding field for this DataMember
-			return Fields.Where(f => f.Name == member.Member.Expression).SingleOrDefault();
+			return Fields.Where(f => f.Name == member.Name).SingleOrDefault();
+		}
+
+		/// <summary>
+		/// Copies all values entered by the user to a DavaValueInstance collection
+		/// </summary>
+		/// <param name="dvalues">Collection where values will be copied to</param>
+		public void CopyValuesTo(object instance)
+		{
+			//validate arguments
+			if (instance == null) throw new ArgumentNullException(nameof(instance));
+			DataType dtype = instance.GetType();
+
+			//create fields
+			foreach (MemberInfo member in dtype.AllMemberInfos)
+			{
+				//search corresponding field for this DataValueInstance
+				FormField field = GetField(member);
+
+				if (field != null)
+				{
+					//assing value
+					MemberExpression.SetValue(member, instance, field.Value);
+				}
+			}
+		}
+
+		/// <summary>
+		/// Adds fields for every Member that is mapped on a persistent object
+		/// </summary>
+		/// <param name="instance">Object which values will be copied to the form</param>
+		public IEnumerable<FormField> AddFields(object instance)
+		{
+			//validate arguments
+			if (instance == null) throw new ArgumentNullException(nameof(instance));
+			DataType dtype = instance.GetType();
+
+			//create fields
+			foreach (MemberInfo member in dtype.AllMemberInfos)
+			{
+				FormField field = AddField(member);
+				field.Value = MemberExpression.GetValue(member, instance);
+
+				yield return field;
+			}
 		}
 
 		#region Static methods
