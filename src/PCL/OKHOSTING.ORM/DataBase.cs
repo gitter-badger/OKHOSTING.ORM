@@ -245,6 +245,27 @@ namespace OKHOSTING.ORM
 			return args.Result;
 		}
 
+		/// <summary>
+		/// Performs a Count operation on a select statement so you can know how many records
+		/// would be returned for that select, without actually executing it
+		/// </summary>
+		/// <param name="select">Select operation</param>
+		/// <returns>The number of rows that the select operation would return when executed</returns>
+		public ulong Count(Select select)
+		{
+			//create a count select with the same conditions as the original select
+			SelectAggregate count = new SelectAggregate();
+			count.DataType = select.DataType;
+			count.Joins.AddRange(select.Joins);
+			count.Where.AddRange(select.Where);
+			count.Limit = select.Limit;
+
+			//count function
+			count.AggregateMembers.Add(new SelectAggregateMember(select.DataType.PrimaryKey.First(), SelectAggregateFunction.Count));
+
+			return (ulong) SelectScalar(count);
+		}
+
 		//private 
 
 		/// <summary>
@@ -252,6 +273,14 @@ namespace OKHOSTING.ORM
 		/// </summary>
 		private IEnumerable<object> SelectPrivate(Select select)
 		{
+			if (select.Members.Count == 0)
+			{
+				foreach (var defaultDataMember in select.DataType.DataMembers.Where(dm => dm.SelectByDefault))
+				{
+					select.Members.Add(new SelectMember(defaultDataMember));
+				}
+			}
+
 			Command sql = SqlGenerator.Select(Parse(select));
 
 			using (var dataReader = NativeDataBase.GetDataReader(sql))

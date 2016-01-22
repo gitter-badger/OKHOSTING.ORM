@@ -8,7 +8,7 @@ namespace OKHOSTING.ORM.UI
 	/// <summary>
 	/// A DropDownList for selecting DataObjects
 	/// </summary>
-	public class DataObjectListPickerField : ListPickerField
+	public class ObjectListPickerField : ListPickerField
 	{
 		/// <summary>
 		/// The type of object that will be selected on this field
@@ -26,7 +26,7 @@ namespace OKHOSTING.ORM.UI
 		/// </summary>
 		protected object ValueCache;
 
-		public DataObjectListPickerField(DataType dtype)
+		public ObjectListPickerField(DataType dtype)
 		{
 			if (dtype == null)
 			{

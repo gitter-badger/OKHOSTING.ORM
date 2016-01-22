@@ -147,7 +147,7 @@ namespace OKHOSTING.ORM.UI
 			//The type is a persistent type
 			if (DataType.IsMapped(type))
 			{
-				field = new DataObjectListPickerField(DataType.GetMap(type));
+				field = new ObjectListPickerField(DataType.GetMap(type));
 
 				//if it's a short list, create a DropDown
 				/*if (DataBase.Current.Count(type) <= 100)

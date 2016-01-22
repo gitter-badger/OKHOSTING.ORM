@@ -12,11 +12,30 @@ namespace OKHOSTING.ORM.Operations
 	/// </summary>
 	public class Select : Operation
 	{
-		public SelectLimit Limit { get; set; }
+		/// <summary>
+		/// List of columns to select. If no column is specified, then we will only load the DataMembers marked as "Default"
+		/// </summary>
 		public readonly List<SelectMember> Members = new List<SelectMember>();
+
+		/// <summary>
+		/// List of joins to other tables
+		/// </summary>
 		public readonly List<SelectJoin> Joins = new List<SelectJoin>();
+
+		/// <summary>
+		/// List of filters to be applied
+		/// </summary>
 		public readonly List<Filters.Filter> Where = new List<Filters.Filter>();
+
+		/// <summary>
+		/// List of columns to which we will perform sorting
+		/// </summary>
 		public readonly List<OrderBy> OrderBy = new List<OrderBy>();
+
+		/// <summary>
+		/// Limit of records to retrieve. Set to null to retrieve all records. Usefull for pagination.
+		/// </summary>
+		public SelectLimit Limit { get; set; }
 
 		public void AddMember(string memberExpression)
 		{

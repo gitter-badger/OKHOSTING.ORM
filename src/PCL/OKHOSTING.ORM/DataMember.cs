@@ -63,6 +63,12 @@ namespace OKHOSTING.ORM
 		public MemberExpression Member { get; set; }
 
 		/// <summary>
+		/// Default DataMembers are the ones that are loaded when performing a Select operation
+		/// with no members specified. 
+		/// </summary>
+		public bool SelectByDefault { get; set; }
+
+		/// <summary>
 		/// Conversions to apply when writing yo or reading from the database
 		/// </summary>
 		public Conversions.ConverterBase Converter { get; set; }
