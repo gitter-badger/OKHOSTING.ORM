@@ -62,20 +62,101 @@ namespace OKHOSTING.ORM.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string OKHOSTING_ORM_UI_DeleteController_Cancel {
+            get {
+                return ResourceManager.GetString("OKHOSTING_ORM_UI_DeleteController_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please confirm you want to delete this object by clicking Delete.
+        /// </summary>
+        internal static string OKHOSTING_ORM_UI_DeleteController_Confirm {
+            get {
+                return ResourceManager.GetString("OKHOSTING_ORM_UI_DeleteController_Confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        internal static string OKHOSTING_ORM_UI_DeleteController_Delete {
+            get {
+                return ResourceManager.GetString("OKHOSTING_ORM_UI_DeleteController_Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to To.
         /// </summary>
-        internal static string OKHOSTING_ORM_UI_FilterDataForm_Max {
+        internal static string OKHOSTING_ORM_UI_Forms_FilterDataForm_Max {
             get {
-                return ResourceManager.GetString("OKHOSTING_ORM_UI_FilterDataForm_Max", resourceCulture);
+                return ResourceManager.GetString("OKHOSTING_ORM_UI_Forms_FilterDataForm_Max", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to From.
         /// </summary>
-        internal static string OKHOSTING_ORM_UI_FilterDataForm_Min {
+        internal static string OKHOSTING_ORM_UI_Forms_FilterDataForm_Min {
             get {
-                return ResourceManager.GetString("OKHOSTING_ORM_UI_FilterDataForm_Min", resourceCulture);
+                return ResourceManager.GetString("OKHOSTING_ORM_UI_Forms_FilterDataForm_Min", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string OKHOSTING_ORM_UI_InsertController_Cancel {
+            get {
+                return ResourceManager.GetString("OKHOSTING_ORM_UI_InsertController_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New.
+        /// </summary>
+        internal static string OKHOSTING_ORM_UI_InsertController_New {
+            get {
+                return ResourceManager.GetString("OKHOSTING_ORM_UI_InsertController_New", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        internal static string OKHOSTING_ORM_UI_InsertController_Save {
+            get {
+                return ResourceManager.GetString("OKHOSTING_ORM_UI_InsertController_Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string OKHOSTING_ORM_UI_UpdateController_Cancel {
+            get {
+                return ResourceManager.GetString("OKHOSTING_ORM_UI_UpdateController_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        internal static string OKHOSTING_ORM_UI_UpdateController_Save {
+            get {
+                return ResourceManager.GetString("OKHOSTING_ORM_UI_UpdateController_Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update.
+        /// </summary>
+        internal static string OKHOSTING_ORM_UI_UpdateController_Update {
+            get {
+                return ResourceManager.GetString("OKHOSTING_ORM_UI_UpdateController_Update", resourceCulture);
             }
         }
     }

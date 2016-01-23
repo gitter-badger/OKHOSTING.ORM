@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace OKHOSTING.ORM.UI
+namespace OKHOSTING.ORM.UI.Forms
 {
 	/// <summary>
 	/// A form used to retrieve all parameters necessary for executing a DataMethod

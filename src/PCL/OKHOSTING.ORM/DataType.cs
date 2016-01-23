@@ -408,52 +408,6 @@ namespace OKHOSTING.ORM
 			}
 		}
 
-		/// <summary>
-		/// Determines a list of MemberInfos from a list of DataMembers. 
-		/// If a DataMember represents an atomic value, then it's a 1-1 ratio,
-		/// but if the DataMember is part of a foreign key, then I might take many
-		/// DataMembers (as many as columns in the primary key) just to construct 1 Member representing a foreign key
-		/// </summary>
-		public IEnumerable<MemberInfo> GetMembers(IEnumerable<DataMember> dmembers)
-		{
-			foreach (MemberInfo member in AllMemberInfos)
-			{
-				//if this is a foreign key, all the primary key columns should be in members
-				if (IsForeignKey(member))
-				{
-					bool isMapped = false;
-
-					foreach (DataMember dm in AllDataMembers.Where(dm2 => dm2.Member.Expression.StartsWith(member.Name + '.')))
-					{
-						if (!dmembers.Contains(dm))
-						{
-							isMapped = false;
-							break;
-						}
-						else
-						{
-							isMapped = true;
-						}
-					}
-
-					if (isMapped)
-					{
-						yield return member;
-					}
-				}
-				//otherwise this "atomic" member should have a DataMember with the same name
-				else
-				{
-					var dmember = dmembers.Where(dm => dm.Member.FinalMemberInfo == member).SingleOrDefault();
-
-					if (dmember != null)
-					{
-						yield return member;
-					}
-				}
-			}
-		}
-
 		#endregion
 
 		#region Equality

@@ -6,13 +6,49 @@
     </header>
     <body>
       <group id="OKHOSTING.ORM.UI/RESOURCES/STRINGS.RESX" datatype="resx">
-        <trans-unit id="OKHOSTING_ORM_UI_FilterDataForm_Max" translate="yes" xml:space="preserve">
+        <trans-unit id="OKHOSTING_ORM_UI_Forms_FilterDataForm_Max" translate="yes" xml:space="preserve">
           <source>To</source>
           <target state="new">To</target>
         </trans-unit>
-        <trans-unit id="OKHOSTING_ORM_UI_FilterDataForm_Min" translate="yes" xml:space="preserve">
+        <trans-unit id="OKHOSTING_ORM_UI_Forms_FilterDataForm_Min" translate="yes" xml:space="preserve">
           <source>From</source>
           <target state="new">From</target>
+        </trans-unit>
+        <trans-unit id="OKHOSTING_ORM_UI_InsertController_Cancel" translate="yes" xml:space="preserve">
+          <source>Cancel</source>
+          <target state="new">Cancel</target>
+        </trans-unit>
+        <trans-unit id="OKHOSTING_ORM_UI_InsertController_New" translate="yes" xml:space="preserve">
+          <source>New</source>
+          <target state="new">New</target>
+        </trans-unit>
+        <trans-unit id="OKHOSTING_ORM_UI_InsertController_Save" translate="yes" xml:space="preserve">
+          <source>Save</source>
+          <target state="new">Save</target>
+        </trans-unit>
+        <trans-unit id="OKHOSTING_ORM_UI_UpdateController_Cancel" translate="yes" xml:space="preserve">
+          <source>Cancel</source>
+          <target state="new">Cancel</target>
+        </trans-unit>
+        <trans-unit id="OKHOSTING_ORM_UI_UpdateController_Save" translate="yes" xml:space="preserve">
+          <source>Save</source>
+          <target state="new">Save</target>
+        </trans-unit>
+        <trans-unit id="OKHOSTING_ORM_UI_UpdateController_Update" translate="yes" xml:space="preserve">
+          <source>Update</source>
+          <target state="new">Update</target>
+        </trans-unit>
+        <trans-unit id="OKHOSTING_ORM_UI_DeleteController_Cancel" translate="yes" xml:space="preserve">
+          <source>Cancel</source>
+          <target state="new">Cancel</target>
+        </trans-unit>
+        <trans-unit id="OKHOSTING_ORM_UI_DeleteController_Confirm" translate="yes" xml:space="preserve">
+          <source>Please confirm you want to delete this object by clicking Delete</source>
+          <target state="new">Please confirm you want to delete this object by clicking Delete</target>
+        </trans-unit>
+        <trans-unit id="OKHOSTING_ORM_UI_DeleteController_Delete" translate="yes" xml:space="preserve">
+          <source>Delete</source>
+          <target state="new">Delete</target>
         </trans-unit>
       </group>
     </body>

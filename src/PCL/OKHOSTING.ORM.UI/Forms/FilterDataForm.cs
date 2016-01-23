@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using static OKHOSTING.Core.TypeExtensions;
 
-namespace OKHOSTING.ORM.UI
+namespace OKHOSTING.ORM.UI.Forms
 {
 	/// <summary>
 	/// A form that enables the user to create advanced filters when searching for DataObjects
@@ -166,8 +166,8 @@ namespace OKHOSTING.ORM.UI
 				fieldMax.Name += "_1";
 
 				//labels
-				fieldMin.CaptionControl.Text += Resources.Strings.OKHOSTING_ORM_UI_FilterDataForm_Min;
-				fieldMax.CaptionControl.Text += Resources.Strings.OKHOSTING_ORM_UI_FilterDataForm_Max;
+				fieldMin.CaptionControl.Text += Resources.Strings.OKHOSTING_ORM_UI_Forms_FilterDataForm_Min;
+				fieldMax.CaptionControl.Text += Resources.Strings.OKHOSTING_ORM_UI_Forms_FilterDataForm_Max;
 
 				//set container
 				fieldMin.Container = this;

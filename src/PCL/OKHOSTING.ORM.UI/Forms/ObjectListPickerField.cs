@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace OKHOSTING.ORM.UI
+namespace OKHOSTING.ORM.UI.Forms
 {
 	/// <summary>
 	/// A DropDownList for selecting DataObjects

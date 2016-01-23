@@ -2,7 +2,7 @@
 using System.Linq;
 using OKHOSTING.UI.Controls.Forms;
 
-namespace OKHOSTING.ORM.UI
+namespace OKHOSTING.ORM.UI.Forms
 {
 	/// <summary>
 	/// Field for selecting a DataType

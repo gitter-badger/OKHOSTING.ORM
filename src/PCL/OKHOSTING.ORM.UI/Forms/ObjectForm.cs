@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace OKHOSTING.ORM.UI
+namespace OKHOSTING.ORM.UI.Forms
 {
 	/// <summary>
 	/// A dataForm that creates fields automatically for a DataMember conllection
