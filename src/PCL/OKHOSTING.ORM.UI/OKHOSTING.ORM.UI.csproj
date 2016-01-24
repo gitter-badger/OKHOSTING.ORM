@@ -24,6 +24,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -66,6 +67,7 @@
     <Compile Include="Forms\FilterDataForm.cs" />
     <Compile Include="Forms\MethodForm.cs" />
     <Compile Include="DeleteController.cs" />
+    <Compile Include="SelectController.cs" />
     <Compile Include="UpdateController.cs" />
     <Compile Include="InsertController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

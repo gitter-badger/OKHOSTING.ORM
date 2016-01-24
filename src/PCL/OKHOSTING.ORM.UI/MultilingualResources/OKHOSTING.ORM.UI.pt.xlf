@@ -50,6 +50,14 @@
           <source>Delete</source>
           <target state="new">Delete</target>
         </trans-unit>
+        <trans-unit id="OKHOSTING_ORM_UI_SelectController_List" translate="yes" xml:space="preserve">
+          <source>List of</source>
+          <target state="new">List of</target>
+        </trans-unit>
+        <trans-unit id="OKHOSTING_ORM_UI_SelectController_New" translate="yes" xml:space="preserve">
+          <source>Create new</source>
+          <target state="new">Create new</target>
+        </trans-unit>
       </group>
     </body>
   </file>

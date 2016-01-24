@@ -134,6 +134,24 @@ namespace OKHOSTING.ORM.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to List of.
+        /// </summary>
+        internal static string OKHOSTING_ORM_UI_SelectController_List {
+            get {
+                return ResourceManager.GetString("OKHOSTING_ORM_UI_SelectController_List", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create new.
+        /// </summary>
+        internal static string OKHOSTING_ORM_UI_SelectController_New {
+            get {
+                return ResourceManager.GetString("OKHOSTING_ORM_UI_SelectController_New", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         internal static string OKHOSTING_ORM_UI_UpdateController_Cancel {

@@ -141,6 +141,12 @@
   <data name="OKHOSTING_ORM_UI_InsertController_Save" xml:space="preserve">
     <value>Save</value>
   </data>
+  <data name="OKHOSTING_ORM_UI_SelectController_List" xml:space="preserve">
+    <value>List of</value>
+  </data>
+  <data name="OKHOSTING_ORM_UI_SelectController_New" xml:space="preserve">
+    <value>Create new</value>
+  </data>
   <data name="OKHOSTING_ORM_UI_UpdateController_Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
