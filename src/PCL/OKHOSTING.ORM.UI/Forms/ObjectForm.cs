@@ -76,6 +76,26 @@ namespace OKHOSTING.ORM.UI.Forms
 		}
 
 		/// <summary>
+		/// Adds fields for every Member that is mapped on a persistent object
+		/// </summary>
+		/// <param name="instance">Object which values will be copied to the form</param>
+		public IEnumerable<FormField> AddFieldsFrom(object instance)
+		{
+			//validate arguments
+			if (instance == null) throw new ArgumentNullException(nameof(instance));
+			DataType dtype = instance.GetType();
+
+			//create fields
+			foreach (MemberInfo member in dtype.AllMemberInfos)
+			{
+				FormField field = AddField(member);
+				field.Value = MemberExpression.GetValue(member, instance);
+
+				yield return field;
+			}
+		}
+
+		/// <summary>
 		/// Returns the field that corresponds to this DataMember
 		/// </summary>
 		public FormField GetField(MemberInfo member)
@@ -108,26 +128,6 @@ namespace OKHOSTING.ORM.UI.Forms
 					//assing value
 					MemberExpression.SetValue(member, instance, field.Value);
 				}
-			}
-		}
-
-		/// <summary>
-		/// Adds fields for every Member that is mapped on a persistent object
-		/// </summary>
-		/// <param name="instance">Object which values will be copied to the form</param>
-		public IEnumerable<FormField> AddFields(object instance)
-		{
-			//validate arguments
-			if (instance == null) throw new ArgumentNullException(nameof(instance));
-			DataType dtype = instance.GetType();
-
-			//create fields
-			foreach (MemberInfo member in dtype.AllMemberInfos)
-			{
-				FormField field = AddField(member);
-				field.Value = MemberExpression.GetValue(member, instance);
-
-				yield return field;
 			}
 		}
 

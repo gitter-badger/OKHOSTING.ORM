@@ -40,7 +40,7 @@ namespace OKHOSTING.ORM.UI
 			base.Start();
 
 			//add fields and populate values
-			Form.AddFields(Instance);
+			Form.AddFieldsFrom(Instance);
 
 			//actually create the form
 			Form.DataBind();

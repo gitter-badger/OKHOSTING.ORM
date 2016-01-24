@@ -62,6 +62,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataTypeListController.cs" />
     <Compile Include="Forms\ObjectGrid.cs" />
     <Compile Include="Forms\ObjectListPickerField.cs" />
     <Compile Include="Forms\FilterDataForm.cs" />

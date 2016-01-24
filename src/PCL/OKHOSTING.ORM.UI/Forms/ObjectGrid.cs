@@ -4,6 +4,7 @@ using OKHOSTING.UI.Controls.Layouts;
 using System;
 using System.Linq;
 using OKHOSTING.ORM.Operations;
+using System.Collections.Generic;
 
 namespace OKHOSTING.ORM.UI.Forms
 {
@@ -35,6 +36,24 @@ namespace OKHOSTING.ORM.UI.Forms
 			Content = Platform.Current.Create<IGrid>();
 			var db = DataBase.CreateDataBase();
 
+			//if DataSource has no members defined, we will use the default members
+			if (DataSource.Members.Count == 0)
+			{
+				foreach (var defaultDataMember in DataSource.DataType.DataMembers.Where(dm => dm.SelectByDefault))
+				{
+					DataSource.Members.Add(new SelectMember(defaultDataMember));
+				}
+
+				//if there are no default members, we use all fucking members
+				if (DataSource.Members.Count == 0)
+				{
+					foreach (var defaultDataMember in DataSource.DataType.DataMembers)
+					{
+						DataSource.Members.Add(new SelectMember(defaultDataMember));
+					}
+				}
+			}
+
 			//find out the total number of records
 			SelectAggregate count = new SelectAggregate();
 			count.DataType = DataSource.DataType;
@@ -42,7 +61,7 @@ namespace OKHOSTING.ORM.UI.Forms
 			count.Where.AddRange(DataSource.Where);
 			count.AggregateMembers.Add(new SelectAggregateMember(DataSource.DataType.PrimaryKey.First(), SelectAggregateFunction.Count));
 
-			int totalrecordsCount = (int) db.SelectScalar(count);
+			long totalrecordsCount = (long) db.SelectScalar(count);
 			int pageSize = DataSource.Limit == null ? 0 : DataSource.Limit.Count;
 			int currentPage = DataSource.Limit == null ? 0 : DataSource.Limit.From / pageSize;
 			int pagesCount = DataSource.Limit == null ? 1 : (int) Math.Ceiling((decimal) totalrecordsCount / pageSize);
@@ -91,6 +110,7 @@ namespace OKHOSTING.ORM.UI.Forms
 
 				//add page size picker
 				IListPicker pageSizeOptions = Platform.Current.Create<IListPicker>();
+				pageSizeOptions.Items = new List<string>();
 
 				//handle page size change
 				pageSizeOptions.ValueChanged += PageSizeOptions_ValueChanged;
@@ -103,6 +123,7 @@ namespace OKHOSTING.ORM.UI.Forms
 
 				//add current page picker
 				IListPicker pageNumbers = Platform.Current.Create<IListPicker>();
+				pageNumbers.Items = new List<string>();
 
 				//handle paging
 				pageNumbers.ValueChanged += PageNumbers_ValueChanged;
