@@ -39,18 +39,17 @@ namespace OKHOSTING.ORM.UI.Forms
 			//if DataSource has no members defined, we will use the default members
 			if (DataSource.Members.Count == 0)
 			{
-				foreach (var defaultDataMember in DataSource.DataType.DataMembers.Where(dm => dm.SelectByDefault))
+                var defaultMembers = DataSource.DataType.DataMembers.Where(dm => dm.SelectByDefault);
+                
+                //if there are no default members, we use all fucking members
+                if (defaultMembers.Count() == 0)
+                {
+                    defaultMembers = DataSource.DataType.DataMembers;
+                }
+
+                foreach (var defaultDataMember in defaultMembers)
 				{
 					DataSource.Members.Add(new SelectMember(defaultDataMember));
-				}
-
-				//if there are no default members, we use all fucking members
-				if (DataSource.Members.Count == 0)
-				{
-					foreach (var defaultDataMember in DataSource.DataType.DataMembers)
-					{
-						DataSource.Members.Add(new SelectMember(defaultDataMember));
-					}
 				}
 			}
 

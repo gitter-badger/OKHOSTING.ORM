@@ -27,7 +27,7 @@ namespace OKHOSTING.ORM.Operations
 		{ 
 			get
 			{
-				return From - To;
+				return To - From;
 			}
 		}
 
