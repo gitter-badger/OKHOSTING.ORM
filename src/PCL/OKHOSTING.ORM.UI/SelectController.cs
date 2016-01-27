@@ -41,6 +41,7 @@ namespace OKHOSTING.ORM.UI
 			base.Refresh();
 
 			//rebuild data grid
+			
 			Grid = new ObjectGrid();
 			Grid.DataSource = DataSource;
 			Grid.DataBind();
@@ -57,11 +58,6 @@ namespace OKHOSTING.ORM.UI
 
 			container.SetContent(0, 0, Grid.Content);
 			container.SetContent(1, 0, newRecord);
-
-			if (Platform.Current.Page.Content != null)
-			{
-				Platform.Current.Page.Content.Dispose();
-			}
 
 			Platform.Current.Page.Title = Resources.Strings.OKHOSTING_ORM_UI_SelectController_List + ' ' + Translator.Translate(DataSource.DataType.InnerType);
 			Platform.Current.Page.Content = container;

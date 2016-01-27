@@ -11,7 +11,7 @@ namespace OKHOSTING.ORM.UI.Forms
 	/// <summary>
 	/// Creates a grid that shows a collection of persistent objects
 	/// </summary>
-	public class ObjectGrid
+	public class ObjectGrid: IDisposable
 	{
 		/// <summary>
 		/// The grid that will be populated with all the fields. 
@@ -189,6 +189,11 @@ namespace OKHOSTING.ORM.UI.Forms
 			}
 
 			DataBind();
+		}
+
+		void IDisposable.Dispose()
+		{
+			Content.Dispose();
 		}
 	}
 }
