@@ -79,7 +79,7 @@ namespace OKHOSTING.ORM.UI.Forms
 		/// Adds fields for every Member that is mapped on a persistent object
 		/// </summary>
 		/// <param name="instance">Object which values will be copied to the form</param>
-		public IEnumerable<FormField> AddFieldsFrom(object instance)
+		public IEnumerable<FormField> AddFields(object instance)
 		{
 			//validate arguments
 			if (instance == null) throw new ArgumentNullException(nameof(instance));
@@ -98,13 +98,16 @@ namespace OKHOSTING.ORM.UI.Forms
 		/// <summary>
 		/// Returns the field that corresponds to this DataMember
 		/// </summary>
-		public FormField GetField(MemberInfo member)
+		public FormField this[MemberInfo member]
 		{
-			//if there's no values defined, exit
-			if (member == null) throw new ArgumentNullException(nameof(member));
+			get
+			{
+				//if there's no values defined, exit
+				if (member == null) throw new ArgumentNullException(nameof(member));
 
-			//search corresponding field for this DataMember
-			return Fields.Where(f => f.Name == member.Name).SingleOrDefault();
+				//search corresponding field for this DataMember
+				return Fields.Where(f => f.Name == member.Name).SingleOrDefault();
+			}
 		}
 
 		/// <summary>
@@ -121,7 +124,7 @@ namespace OKHOSTING.ORM.UI.Forms
 			foreach (MemberInfo member in dtype.AllMemberInfos)
 			{
 				//search corresponding field for this DataValueInstance
-				FormField field = GetField(member);
+				FormField field = this[member];
 
 				if (field != null)
 				{

@@ -18,7 +18,7 @@ namespace OKHOSTING.ORM.UI
 		/// <summary>
 		/// The actual form that we will use to populate the object from user input
 		/// </summary>
-		protected readonly ObjectGrid Grid;
+		protected ObjectGrid Grid;
 
 		public SelectController(Select dataSource)
 		{
@@ -28,13 +28,20 @@ namespace OKHOSTING.ORM.UI
 			}
 
 			DataSource = dataSource;
-			Grid = new ObjectGrid();
 		}
 
 		public override void Start()
 		{
 			base.Start();
+			Refresh();
+		}
 
+		public override void Refresh()
+		{
+			base.Refresh();
+
+			//rebuild data grid
+			Grid = new ObjectGrid();
 			Grid.DataSource = DataSource;
 			Grid.DataBind();
 
@@ -50,6 +57,11 @@ namespace OKHOSTING.ORM.UI
 
 			container.SetContent(0, 0, Grid.Content);
 			container.SetContent(1, 0, newRecord);
+
+			if (Platform.Current.Page.Content != null)
+			{
+				Platform.Current.Page.Content.Dispose();
+			}
 
 			Platform.Current.Page.Title = Resources.Strings.OKHOSTING_ORM_UI_SelectController_List + ' ' + Translator.Translate(DataSource.DataType.InnerType);
 			Platform.Current.Page.Content = container;

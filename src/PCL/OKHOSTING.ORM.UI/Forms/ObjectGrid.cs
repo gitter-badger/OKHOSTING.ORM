@@ -39,15 +39,15 @@ namespace OKHOSTING.ORM.UI.Forms
 			//if DataSource has no members defined, we will use the default members
 			if (DataSource.Members.Count == 0)
 			{
-                var defaultMembers = DataSource.DataType.DataMembers.Where(dm => dm.SelectByDefault);
-                
-                //if there are no default members, we use all fucking members
-                if (defaultMembers.Count() == 0)
-                {
-                    defaultMembers = DataSource.DataType.DataMembers;
-                }
+				var defaultMembers = DataSource.DataType.DataMembers.Where(dm => dm.SelectByDefault);
+				
+				//if there are no default members, we use all fucking members
+				if (defaultMembers.Count() == 0)
+				{
+					defaultMembers = DataSource.DataType.DataMembers;
+				}
 
-                foreach (var defaultDataMember in defaultMembers)
+				foreach (var defaultDataMember in defaultMembers)
 				{
 					DataSource.Members.Add(new SelectMember(defaultDataMember));
 				}
@@ -92,10 +92,12 @@ namespace OKHOSTING.ORM.UI.Forms
 
 				foreach (DataMember member in DataSource.Members.Select(dm => dm.DataMember))
 				{
-					ILabel content = Platform.Current.Create<ILabel>();
+					ILabelButton content = Platform.Current.Create<ILabelButton>();
 					content.Text = member.Member.GetValue(instance).ToString();
+					content.Tag = instance;
+					content.Click += Content_Click;
 
-					Content.SetContent(Content.RowCount - 1, column, content);
+					Content.SetContent(Content.RowCount - 1, column++, content);
 				}
 			}
 
@@ -139,6 +141,12 @@ namespace OKHOSTING.ORM.UI.Forms
 				Content.SetContent(Content.RowCount - 1, 0, pagination);
 				Content.SetColumnSpan(Content.ColumnCount, pagination);
 			}
+		}
+
+		private void Content_Click(object sender, EventArgs e)
+		{
+			object instance = ((ILabelButton) sender).Tag;
+			new UpdateController(instance).Start();
 		}
 
 		private void PageNumbers_ValueChanged(object sender, string e)

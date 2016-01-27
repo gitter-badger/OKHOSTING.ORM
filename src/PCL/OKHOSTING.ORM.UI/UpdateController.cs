@@ -40,7 +40,16 @@ namespace OKHOSTING.ORM.UI
 			base.Start();
 
 			//add fields and populate values
-			Form.AddFieldsFrom(Instance);
+			//Form.AddFieldsFrom(Instance);
+
+			DataType dtype = Instance.GetType();
+
+			//create fields
+			foreach (System.Reflection.MemberInfo member in dtype.AllMemberInfos)
+			{
+				OKHOSTING.UI.Controls.Forms.FormField field = Form.AddField(member);
+				field.Value = Data.Validation.MemberExpression.GetValue(member, Instance);
+			}
 
 			//actually create the form
 			Form.DataBind();

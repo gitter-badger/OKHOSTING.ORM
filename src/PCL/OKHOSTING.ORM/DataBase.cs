@@ -259,17 +259,17 @@ namespace OKHOSTING.ORM
 					select.Members.Add(new SelectMember(defaultDataMember));
 				}
 
-                //if there are no default members, we use all fucking members
-                if (select.Members.Count == 0)
-                {
-                    foreach (var defaultDataMember in select.DataType.DataMembers)
-                    {
-                        select.Members.Add(new SelectMember(defaultDataMember));
-                    }
-                }
-            }
+				//if there are no default members, we use all fucking members
+				if (select.Members.Count == 0)
+				{
+					foreach (var defaultDataMember in select.DataType.DataMembers)
+					{
+						select.Members.Add(new SelectMember(defaultDataMember));
+					}
+				}
+			}
 
-            Command sql = SqlGenerator.Select(Parse(select));
+			Command sql = SqlGenerator.Select(Parse(select));
 
 			using (var dataReader = NativeDataBase.GetDataReader(sql))
 			{
@@ -526,6 +526,12 @@ namespace OKHOSTING.ORM
 				foreach (DataMember dmember in parent.DataMembers.Except(parent.PrimaryKey))
 				{
 					update.Set.Add(dmember);
+				}
+
+				if (update.Set.Count == 0)
+				{
+					//there is nothing to update in this table
+					continue;
 				}
 
 				update.Where.Add(GetPrimaryKeyFilter(parent, instance));
