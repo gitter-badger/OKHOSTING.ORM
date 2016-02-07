@@ -1,6 +1,8 @@
  Motherfucking cool ORM for all devices
 
  # Features
+
+[![Join the chat at https://gitter.im/okhosting/OKHOSTING.ORM](https://badges.gitter.im/okhosting/OKHOSTING.ORM.svg)](https://gitter.im/okhosting/OKHOSTING.ORM?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
  
  * Real POCOs, you don't need use "special classes", you can use any class you already have
  * Supports every database schema you want to use. You dont need a "special schema"
